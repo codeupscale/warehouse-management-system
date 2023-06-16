@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Customer;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use Inertia\Inertia;
 |
 */
 
+Route::resource('customers', CustomerController::class);
 Route::get('/', function () {
     return Inertia::render('login', [
         'canLogin' => Route::has('login'),
@@ -34,7 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('customers',CustomerController::class);
 });
 
 

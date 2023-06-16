@@ -6,6 +6,7 @@ use App\Http\Requests\Cuatomer\StoreCustomer;
 use App\Models\Customer;
 use App\Services\Customer\CustomerService;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CustomerController extends Controller
 {
@@ -22,10 +23,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-
-        return view('customers.index',[
-            'customers' => Customer::all()
-        ]);
+        $customers = Customer::all();
+        // return Inertia::render('Customers/Index', ['customers' => $customers]);
+        return Inertia::render('Customers/Index', compact('customers'));
     }
 
     /**
@@ -51,7 +51,7 @@ class CustomerController extends Controller
     public function show(string $id)
     {
         $customer = Customer::find($id);
-        return view('customers.show',compact('customer'));
+        // return view('customers.show',compact('customer'));
     }
 
     /**
