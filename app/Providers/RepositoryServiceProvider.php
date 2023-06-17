@@ -6,6 +6,7 @@ use App\Interfaces\Customer\CustomerInterface;
 use App\Interfaces\Warehouse\WarehouseInterface;
 use App\Repositories\Warehouse\WarehouseRepository;
 use App\Interfaces\User\UserInterface;
+use App\Repositories\Customer\CustomerRepository;
 use App\Repositories\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
