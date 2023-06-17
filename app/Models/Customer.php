@@ -18,4 +18,13 @@ class Customer extends Model
         'country',
         'email',
     ];
+
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
