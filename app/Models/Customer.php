@@ -18,4 +18,9 @@ class Customer extends Model
         'country',
         'email',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
