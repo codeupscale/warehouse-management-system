@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Cuatomer\StoreCustomer;
+use App\Http\Requests\Customer\StoreCustomer;
+use App\Http\Requests\Customer\UpdateCustomer;
 use App\Models\Customer;
 use App\Services\Customer\CustomerService;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class CustomerController extends Controller
         return Inertia::render('Customers/edit',compact('customer'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(UpdateCustomer $request, string $id)
     {
         $updateCustomer = $this->customerService->update($request, $id);
         return redirect()->route('customers.index');

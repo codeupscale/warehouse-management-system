@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Warehouse;
+namespace App\Services\Stock;
 
-use App\Interfaces\Warehouse\WarehouseInterface;
+use App\Interfaces\Stock\StockInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -10,29 +10,29 @@ use InvalidArgumentException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
-Class WarehouseService
+Class StockService
 {
-    protected WarehouseInterface $warehouseInterface;
+    protected StockInterface $stockInterface;
 
     /**
      * PostService constructor.
      *
      * @param UserRepositoryInterface $userRepositoryInterface
      */
-    public function __construct(WarehouseInterface $warehouseInterface)
+    public function __construct(StockInterface $stockInterface)
     {
-        $this->warehouseInterface = $warehouseInterface;
+        $this->stockInterface = $stockInterface;
     }
 
     public function index()
     {
         try {
-            $warehouses =  $this->warehouseInterface->index();
-            return view('warehouses.index');
+            $stocks =  $this->stockInterface->index();
+            return view('stocks.index');
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to fetch warehouses');
+            throw new InvalidArgumentException('Unable to fetch stocks');
         }
 
     }
@@ -43,13 +43,13 @@ Class WarehouseService
             DB::beginTransaction();
             $input = $request->all();
             $input = Arr::except($input,['_token']);
-            $warehouse = $this->warehouseInterface->create($input);
+            $stock = $this->stockInterface->create($input);
             DB::commit();
-            return $warehouse;
+            return $stock;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create warehouse');
+            throw new InvalidArgumentException('Unable to create stock');
             return false;
         }
         
@@ -57,12 +57,12 @@ Class WarehouseService
     public function find($id)
     {
         try {
-            $warehouse = $this->warehouseInterface->find($id);
-            return $warehouse;
+            $stock = $this->stockInterface->find($id);
+            return $stock;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to find warehouse');
+            throw new InvalidArgumentException('Unable to find stock');
             return false;
         }
     }
@@ -71,26 +71,26 @@ Class WarehouseService
         try {
             DB::beginTransaction();
             $input = $request->all();
-            $warehouse = $this->warehouseInterface->update($input, $id);
+            $stock = $this->stockInterface->update($input, $id);
 
             DB::commit();
-            return $warehouse;
+            return $stock;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create warehouse');
+            throw new InvalidArgumentException('Unable to create stock');
             return false;
         }
     }
     public function destroy($id){
         try {
             DB::beginTransaction();
-            $this->warehouseInterface->destroy($id);
+            $this->stockInterface->destroy($id);
             DB::commit();
         }catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to delete warehouse');
+            throw new InvalidArgumentException('Unable to delete stock');
             return false;
         }
     }
