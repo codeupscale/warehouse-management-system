@@ -17,64 +17,41 @@ class CustomerController extends Controller
     {
         $this->customerService = $customerService;
     }
-
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $customers = Customer::all();
         return Inertia::render('Customer', ['customers' => $customers]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return Inertia::render('Customers/create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreCustomer $request)
     {
         $createCustomer = $this->customerService->create($request);
         return redirect()->route('customers.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $customer = Customer::find($id);
-        // return view('customers.show',compact('customer'));
         return view('customers.show', ['customer' => $customer]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $customer = $this->customerService->find($id);
         return Inertia::render('Customers/edit',compact('customer'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $updateCustomer = $this->customerService->update($request, $id);
         return redirect()->route('customers.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $this->customerService->destroy($id);
