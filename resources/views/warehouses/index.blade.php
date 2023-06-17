@@ -10,10 +10,10 @@
 
 <body>
     <h3>hello</h3>
-    <a class="btn btn-primary" href="{{ route('customers.create') }}">Create Customer</a>
-    @foreach ($customers as $customer)
-        <a class="btn btn-primary" href="{{ route('customers.edit', $customer->id) }}">Edit Customer</a>
-        <form action="{{ route('customers.destroy', $customer->id) }}" method="POST">
+    <a class="btn btn-primary" href="{{ route('warehouses.create') }}">Create Warehouse</a>
+    @foreach ($warehouses as $warehouse)
+        <a class="btn btn-primary" href="{{ route('warehouses.edit', $warehouse->id) }}">Edit Warehouse</a>
+        <form action="{{ route('warehouses.destroy', $warehouse->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger">Delete</button>

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Customer;
+namespace App\Services\warehouse;
 
-use App\Interfaces\Customer\CustomerInterface;
+use App\Interfaces\Warehouse\WarehouseInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -10,29 +10,29 @@ use InvalidArgumentException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
-Class CustomerService
+Class WarehouseService
 {
-    protected CustomerInterface $customerInterface;
+    protected WarehouseInterface $warehouseInterface;
 
     /**
      * PostService constructor.
      *
      * @param UserRepositoryInterface $userRepositoryInterface
      */
-    public function __construct(CustomerInterface $customerInterface)
+    public function __construct(WarehouseInterface $warehouseInterface)
     {
-        $this->customerInterface = $customerInterface;
+        $this->warehouseInterface = $warehouseInterface;
     }
 
     public function index()
     {
         try {
-            $customers =  $this->customerInterface->index();
-            return view('customers.index');
+            $warehouses =  $this->warehouseInterface->index();
+            return view('warehouses.index');
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to fetch customers');
+            throw new InvalidArgumentException('Unable to fetch warehouses');
         }
 
     }
@@ -43,53 +43,55 @@ Class CustomerService
             DB::beginTransaction();
             $input = $request->all();
             $input = Arr::except($input,['_token']);
-            $customer = $this->customerInterface->create($input);
-
+            $warehouse = $this->warehouseInterface->create($input);
             DB::commit();
+            return $warehouse;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create customer');
+            throw new InvalidArgumentException('Unable to create warehouse');
+            return false;
         }
-        return "success";
+        
     }
     public function find($id)
     {
         try {
-            $customer = $this->customerInterface->find($id);
-            return $customer;
+            $warehouse = $this->warehouseInterface->find($id);
+            return $warehouse;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to find customer');
+            throw new InvalidArgumentException('Unable to find warehouse');
+            return false;
         }
-        return "success";
     }
     public function update(Request $request, $id)
     {
         try {
             DB::beginTransaction();
             $input = $request->all();
-            $customer = $this->customerInterface->update($input, $id);
+            $warehouse = $this->warehouseInterface->update($input, $id);
 
             DB::commit();
+            return $warehouse;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create Customer');
+            throw new InvalidArgumentException('Unable to create warehouse');
+            return false;
         }
-        return "success";
     }
     public function destroy($id){
         try {
             DB::beginTransaction();
-            $this->customerInterface->destroy($id);
+            $this->warehouseInterface->destroy($id);
             DB::commit();
         }catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to delete customer');
+            throw new InvalidArgumentException('Unable to delete warehouse');
+            return false;
         }
-        return "success";
     }
 }
