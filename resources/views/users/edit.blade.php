@@ -10,7 +10,7 @@
 
 <body>
     <h3>hello</h3>
-    <form action="{{ route('users.update', $user->id) }}" method="POST">
+    <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <input type="text" name="first_name" value="{{ $user->first_name }}">

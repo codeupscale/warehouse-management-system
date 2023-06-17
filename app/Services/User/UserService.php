@@ -73,7 +73,9 @@ Class UserService
         try {
             DB::beginTransaction();
             $input = $request->all();
-            $input['image'] = userImage($request->image, 'User-Picture');
+            if(isset($input['image'])) {
+                $input['image'] = userImage($request->image, 'User-Picture');
+            }
             $user = $this->userInterface->update($input, $id);
 
             DB::commit();
