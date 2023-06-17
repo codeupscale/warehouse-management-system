@@ -23,4 +23,8 @@ class Customer extends Model
     {
         return $this->belongsTo(Warehouse::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
