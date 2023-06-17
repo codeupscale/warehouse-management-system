@@ -18,6 +18,7 @@ use App\Models\Customer;
 |
 */
 
+
 Route::resource('customers', CustomerController::class);
 Route::get('/', function () {
     return Inertia::render('login', [
@@ -27,6 +28,22 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+// Route::get('/CreateCustomer', function () {
+//     return Inertia::render('CreateCustomer', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
+// Route::get('/EditCustomer', function () {
+//     return Inertia::render('EditCustomer', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
