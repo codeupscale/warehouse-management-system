@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class CustomerService
 {
@@ -39,7 +40,7 @@ class CustomerService
         try {
             DB::beginTransaction();
             $input = $request->all();
-            $input = \Arr::except($input, ['_token']);
+            $input = Arr::except($input, ['_token']);
             $customer = $this->customerInterface->create($input);
 
             DB::commit();
