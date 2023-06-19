@@ -136,20 +136,20 @@ export default function Create({ customers }: any) {
         last_name: "",
     });
 
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    function handleSubmit(e: any) {
         e.preventDefault();
-        const formData = new FormData() as any;
+        const formData = new FormData();
         formData.append("customer_name", data.customer_name);
         formData.append("email", data.email);
         formData.append("password", data.password);
         formData.append("first_name", data.first_name);
         formData.append("last_name", data.last_name);
         if (image) {
-            formData.append("image", image);
+            formData.append("profile", image); // Use "profile" as the field name
         }
-        console.log("Profile image", image)
-        post(route("users.store"), formData);
+        post(route("users.store"), formData as any);
     }
+
 
     useEffect(() => {
         console.log("Data", data);
@@ -159,8 +159,6 @@ export default function Create({ customers }: any) {
     const handleProfileImageChange = (e: any) => {
         const file = e.target.files[0];
         setImage(file);
-        setData("profile" as keyof typeof data, file);
-        console.log("file", file)
     };
 
     return (
@@ -179,7 +177,7 @@ export default function Create({ customers }: any) {
                         required
                     >
                         <option value="">Select a customer</option>
-                        {customers.map((customer:any) => (
+                        {customers.map((customer: any) => (
                             <option key={customer.id} value={customer.customer_name}>
                                 {customer.customer_name}
                             </option>
