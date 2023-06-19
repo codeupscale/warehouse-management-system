@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Stock;
+namespace App\Services\StockItem;
 
-use App\Interfaces\Stock\StockInterface;
+use App\Interfaces\StockItem\StockItemInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -10,29 +10,29 @@ use InvalidArgumentException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
-Class StockService
+Class StockItemService
 {
-    protected StockInterface $stockInterface;
+    protected StockItemInterface $stockItemInterface;
 
     /**
-     * StockService constructor.
+     * StockItemService constructor.
      *
-     * @param StockInterface $stockInterface
+     * @param StockItemInterface $stockItemInterface
      */
-    public function __construct(StockInterface $stockInterface)
+    public function __construct(StockItemInterface $stockItemInterface)
     {
-        $this->stockInterface = $stockInterface;
+        $this->stockItemInterface = $stockItemInterface;
     }
 
     public function index()
     {
         try {
-            $stocks =  $this->stockInterface->index();
-            return view('stocks.index');
+            $stockItems =  $this->stockItemInterface->index();
+            return view('stockItems.index');
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to fetch stocks');
+            throw new InvalidArgumentException('Unable to fetch stock items');
         }
 
     }
@@ -43,13 +43,13 @@ Class StockService
             DB::beginTransaction();
             $input = $request->all();
             $input = Arr::except($input,['_token']);
-            $stock = $this->stockInterface->create($input);
+            $stockItem = $this->stockItemInterface->create($input);
             DB::commit();
-            return $stock;
+            return $stockItem;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create stock');
+            throw new InvalidArgumentException('Unable to create stockItem');
             return false;
         }
         
@@ -57,12 +57,12 @@ Class StockService
     public function find($id)
     {
         try {
-            $stock = $this->stockInterface->find($id);
-            return $stock;
+            $stockItem = $this->stockItemInterface->find($id);
+            return $stockItem;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to find stock');
+            throw new InvalidArgumentException('Unable to find stockItem');
             return false;
         }
     }
@@ -71,27 +71,25 @@ Class StockService
         try {
             DB::beginTransaction();
             $input = $request->all();
-            $stock = $this->stockInterface->update($input, $id);
+            $stockItem = $this->stockItemInterface->update($input, $id);
 
             DB::commit();
-            return $stock;
+            return $stockItem;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create stock');
-            return false;
+            throw new InvalidArgumentException('Unable to create stockItem');
         }
     }
     public function destroy($id){
         try {
             DB::beginTransaction();
-            $this->stockInterface->destroy($id);
+            $this->stockItemInterface->destroy($id);
             DB::commit();
         }catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to delete stock');
-            return false;
+            throw new InvalidArgumentException('Unable to delete stockItem');
         }
     }
 }
