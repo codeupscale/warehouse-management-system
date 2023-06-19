@@ -28,6 +28,7 @@ class UpdateStockItem extends FormRequest
             'name'              => 'string',
             'size'              => 'integer',
             'minimum_quantity'  => 'integer',
+            'quantity'          => 'integer',
         ];
     }
 
@@ -40,6 +41,7 @@ class UpdateStockItem extends FormRequest
             'name.string'                => 'Name must e string',
             'size.integer'               => 'Size must be integer',
             'minimum_quantity.integer'   => 'Minimum quantity must be integer',
+            'quantity.integer'           => 'Quantity must be integer',
         ];
     }
 }

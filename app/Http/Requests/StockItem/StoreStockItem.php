@@ -30,6 +30,7 @@ class StoreStockItem extends FormRequest
             'name'              => 'required|string',
             'size'              => 'required|integer',
             'minimum_quantity'  => 'required|integer',
+            'quantity'          => 'required|integer',
         ];
     }
 
@@ -46,7 +47,9 @@ class StoreStockItem extends FormRequest
             'size.required'              => 'Size is required',
             'size.integer'               => 'Size must be integer',
             'minimum_quantity.required'  => 'Minimum quantity is required',
+            'quantity.required'          => 'Quantity is required',
             'minimum_quantity.integer'   => 'Minimum quantity must be integer',
+            'quantity.integer'           => 'Quantity must be integer',
         ];
     }
 
