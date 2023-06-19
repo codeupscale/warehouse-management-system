@@ -125,10 +125,10 @@
 import { useForm } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 
-export default function Create() {
-    const [profileImage, setProfileImage] = useState(null);
+export default function Create({ customers }: any) {
+    const [image, setImage] = useState<File | null>(null);
 
-    const { data, setData, errors, post } = useForm({
+    const { data, setData, errors, post, processing } = useForm({
         customer_name: "",
         email: "",
         password: "",
@@ -136,7 +136,7 @@ export default function Create() {
         last_name: "",
     });
 
-    function handleSubmit(e: any) {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const formData = new FormData() as any;
         formData.append("customer_name", data.customer_name);
@@ -144,7 +144,10 @@ export default function Create() {
         formData.append("password", data.password);
         formData.append("first_name", data.first_name);
         formData.append("last_name", data.last_name);
-        formData.append("profile", profileImage);
+        if (image) {
+            formData.append("image", image);
+        }
+        console.log("Profile image", image)
         post(route("users.store"), formData);
     }
 
@@ -155,8 +158,9 @@ export default function Create() {
 
     const handleProfileImageChange = (e: any) => {
         const file = e.target.files[0];
-        setProfileImage(file);
+        setImage(file);
         setData("profile" as keyof typeof data, file);
+        console.log("file", file)
     };
 
     return (
@@ -166,15 +170,21 @@ export default function Create() {
                     <label htmlFor="customerName" className="block mb-1">
                         Customer Name
                     </label>
-                    <input
-                        type="text"
+                    <select
                         name="customer_name"
                         id="customerName"
                         value={data.customer_name}
                         onChange={(e) => setData("customer_name", e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
-                    />
+                    >
+                        <option value="">Select a customer</option>
+                        {customers.map((customer:any) => (
+                            <option key={customer.id} value={customer.customer_name}>
+                                {customer.customer_name}
+                            </option>
+                        ))}
+                    </select>
                 </div>
                 <div className="mb-1">
                     <label htmlFor="email" className="block mb-1">
@@ -196,15 +206,15 @@ export default function Create() {
                     </label>
                     <input
                         type="file"
-                        id="profile"
-                        name="profile"
+                        id="image"
+                        name="image"
                         onChange={handleProfileImageChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
                 </div>
                 <div className="mb-1">
-                    <label htmlFor="email" className="block mb-1">
+                    <label htmlFor="password" className="block mb-1">
                         Password
                     </label>
                     <input
@@ -249,7 +259,7 @@ export default function Create() {
                     type="submit"
                     className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
                 >
-                    Submit
+                    {processing ? "Uploading..." : "Submit"}
                 </button>
             </form>
         </>
