@@ -21,9 +21,7 @@ class UpdateStockItem extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'warehouse_id'      => 'exists:warehouses',
-            'customer_id'       => 'exists:customers',       
+        return [      
             'stock_id'          => 'exists:stocks',
             'name'              => 'string',
             'size'              => 'integer',
@@ -35,8 +33,6 @@ class UpdateStockItem extends FormRequest
     function messages()
     {
         return [
-            'warehouse_id.exists'        => 'Warehouse id does not exist',
-            'customer_id.exists'         => 'Customer id does not exists',
             'stock_id.required'          => 'Stock id does not exists',
             'name.string'                => 'Name must e string',
             'size.integer'               => 'Size must be integer',

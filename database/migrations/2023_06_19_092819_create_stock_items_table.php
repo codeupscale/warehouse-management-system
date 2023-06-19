@@ -16,11 +16,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->integer('size')->nullable();
             $table->integer('minimum_quantity')->nullable();
-            $table->unsignedBigInteger('warehouse_id')->nullable();
-            $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('stock_id')->nullable();
-            $table->foreign('warehouse_id')->references('id')->on('warehouses')->onDelete('cascade');
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
             $table->timestamps();
         });

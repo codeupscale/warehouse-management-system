@@ -3,6 +3,7 @@
 namespace App\Services\StockItem;
 
 use App\Interfaces\StockItem\StockItemInterface;
+use App\Models\Stock;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -53,6 +54,7 @@ Class StockItemService
         }
         
     }
+
     public function find($id)
     {
         try {

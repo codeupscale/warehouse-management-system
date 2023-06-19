@@ -17,12 +17,17 @@ class Stock extends Model
 
     public function customers()
     {
-        return $this->hasMany(Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function warehouse()
     {
         return $this->belongsTo(Warehouse::class);
+    }
+
+    public function stockItems()
+    {
+        return $this->hasMany(StockItem::class);
     }
     
 }

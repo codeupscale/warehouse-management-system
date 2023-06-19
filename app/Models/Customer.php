@@ -29,11 +29,6 @@ class Customer extends Model
     }
     public function stock()
     {
-        return $this->belongsTo(Stock::class);
-    }
-
-    public function stockItem()
-    {
-        return $this->hasOne(StockItem::class);
+        return $this->hasMany(Stock::class);
     }
 }

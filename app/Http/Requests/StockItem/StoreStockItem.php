@@ -23,9 +23,7 @@ class StoreStockItem extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'warehouse_id'      => 'required|exists:warehouses',
-            'customer_id'       => 'required|exists:customers',       
+        return [     
             'stock_id'          => 'required|exists:stocks',
             'name'              => 'required|string',
             'size'              => 'required|integer',
@@ -37,10 +35,6 @@ class StoreStockItem extends FormRequest
     function messages()
     {
         return [
-            'warehouse_id.required'      => 'Warehouse id is required',
-            'warehouse_id.exists'        => 'Warehouse id does not exist',
-            'customer_id.required'       => 'Customer id is required',
-            'customer_id.exists'         => 'Customer id does not exists',
             'stock_id.required'          => 'Stock id is required',
             'stock_id.exists'            => 'Stock id does not exists',
             'name.required'              => 'Name is required',

@@ -18,18 +18,9 @@ class StockItem extends Model
         'minimum_quantity',
     ];
 
-    public function warehouse()
-    {
-        return $this->belongsTo(Warehouse::class);
-    }
-
     public function stock()
     {
         return $this->belongsTo(Stock::class);
     }
 
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class);
-    }
 }
