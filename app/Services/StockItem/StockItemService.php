@@ -50,7 +50,6 @@ Class StockItemService
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to create stockItem');
-            return false;
         }
         
     }
@@ -63,7 +62,6 @@ Class StockItemService
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to find stockItem');
-            return false;
         }
     }
     public function update(Request $request, $id)

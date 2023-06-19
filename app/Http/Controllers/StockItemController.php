@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StockItem\StoreStockItem;
 use App\Http\Requests\StockItem\UpdateStockItem;
 use App\Services\StockItem\StockItemService;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class StockItemController extends Controller
