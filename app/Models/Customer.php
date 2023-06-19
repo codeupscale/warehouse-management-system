@@ -27,4 +27,8 @@ class Customer extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function stock()
+    {
+        return $this->belongsTo(Stock::class);
+    }
 }
