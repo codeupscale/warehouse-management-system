@@ -28,12 +28,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('customers',CustomerController::class);
-    Route::resource('warehouses', WarehouseController::class);
-    Route::resource('users',UserController::class);
-    Route::resource('stocks',StockController::class);
-
+    
 });
+Route::resource('customers',CustomerController::class);
+Route::resource('warehouses', WarehouseController::class);
+Route::resource('users',UserController::class);
+Route::resource('stocks',StockController::class);
 
 
 
