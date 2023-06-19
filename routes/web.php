@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('customers',CustomerController::class);
     Route::resource('warehouses', WarehouseController::class);
     Route::resource('users',UserController::class);
+    Route::resource('stocks',StockController::class);
 
 });
 
