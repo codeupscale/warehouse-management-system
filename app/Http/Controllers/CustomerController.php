@@ -19,7 +19,7 @@ class CustomerController extends Controller
     }
     public function index()
     {
-        $customers = Customer::all();
+        $customers = $this->customerService->index();
         return Inertia::render('Customer', ['customers' => $customers]);
     }
 
@@ -43,7 +43,7 @@ class CustomerController extends Controller
     public function edit(string $id)
     {
         $customer = $this->customerService->find($id);
-        return Inertia::render('Customers/edit',compact('customer'));
+        return Inertia::render('Customers/edit', compact('customer'));
     }
 
     public function update(Request $request, string $id)

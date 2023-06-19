@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use Illuminate\Http\Request;
 
-Class CustomerService
+class CustomerService
 {
     protected CustomerInterface $customerInterface;
 
     /**
      * PostService constructor.
      *
-     * @param UserRepositoryInterface $userRepositoryInterface
+     * @param CustomerInterface $customerInterface
      */
     public function __construct(CustomerInterface $customerInterface)
     {
@@ -26,14 +26,12 @@ Class CustomerService
     public function index()
     {
         try {
-            $customers =  $this->customerInterface->index();
-            return view('customers.index');
+            $customers = $this->customerInterface->index();
+            return $customers;
         } catch (Exception $e) {
-            DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to fetch customers');
         }
-
     }
 
     public function create(Request $request)
@@ -41,29 +39,29 @@ Class CustomerService
         try {
             DB::beginTransaction();
             $input = $request->all();
-            $input = \Arr::except($input,['_token']);
+            $input = \Arr::except($input, ['_token']);
             $customer = $this->customerInterface->create($input);
 
             DB::commit();
+            return $customer;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to create customer');
         }
-        return "success";
     }
+
     public function find($id)
     {
         try {
             $customer = $this->customerInterface->find($id);
             return $customer;
         } catch (Exception $e) {
-            DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to find customer');
         }
-        return "success";
     }
+
     public function update(Request $request, $id)
     {
         try {
@@ -72,23 +70,24 @@ Class CustomerService
             $customer = $this->customerInterface->update($input, $id);
 
             DB::commit();
+            return $customer;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to create Customer');
         }
-        return "success";
     }
-    public function destroy($id){
+
+    public function destroy($id)
+    {
         try {
             DB::beginTransaction();
             $this->customerInterface->destroy($id);
             DB::commit();
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to delete customer');
         }
-        return "success";
     }
 }
