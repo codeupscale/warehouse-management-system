@@ -28,7 +28,7 @@ Class WarehouseService
     {
         try {
             $warehouses =  $this->warehouseInterface->index();
-            return $warehouses;
+            return view('warehouses.index');
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
@@ -44,10 +44,6 @@ Class WarehouseService
             $input = $request->all();
             $input = Arr::except($input,['_token']);
             $warehouse = $this->warehouseInterface->create($input);
-
-            $customers = $request->input('customer', []);
-            $warehouse->customers()->attach($customers);
-            
             DB::commit();
             return $warehouse;
         } catch (Exception $e) {
