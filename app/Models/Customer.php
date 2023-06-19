@@ -31,4 +31,9 @@ class Customer extends Model
     {
         return $this->belongsTo(Stock::class);
     }
+
+    public function stockItem()
+    {
+        return $this->hasOne(StockItem::class);
+    }
 }

@@ -23,4 +23,9 @@ class Warehouse extends Model
     {
         return $this->hasOne(Stock::class);
     }
+
+    public function stockItem()
+    {
+        return $this->hasOne(StockItem::class);
+    }
 }

@@ -28,7 +28,7 @@ Class StockItemService
     {
         try {
             $stockItems =  $this->stockItemInterface->index();
-            return view('stockItems.index');
+            return $stockItems;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());

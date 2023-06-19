@@ -20,9 +20,9 @@ class Stock extends Model
         return $this->hasMany(Customer::class);
     }
 
-    public function stock()
+    public function warehouse()
     {
-        return $this->belongsTo(Stock::class);
+        return $this->belongsTo(Warehouse::class);
     }
     
 }
