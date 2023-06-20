@@ -41,7 +41,7 @@ class StockController extends Controller
     public function show(string $id)
     {
         $stock = Stock::find($id);
-        return view('customers.show', ['stock' => $stock]);
+        return view('stocks.show', ['stock' => $stock]);
     }
 
     public function edit(string $id)
