@@ -97,37 +97,34 @@ Class StockItemService
         }
     }
 
-    public function itemTakeout(int $id)
+    public function itemTakeout($id)
     {
         try {
             DB::beginTransaction();
             $stockItem = $this->stockItemInterface->find($id);
+            StockItem::where('id',$id)->decrement('quantity', 1);
             $stock = Stock::where('id',$stockItem->stock_id)->first();
             $warehouse_name = $stock->warehouse->name;
-            $email = $stock->customer->email;
-            $full_name = Auth::user()->first_name.' '.Auth::user()->last_name;
-            $content = [
-                'body'      => $full_name. 'has taken out this'. $stockItem->name .'from'. $warehouse_name .'warehouse and'. $stock->name .'stock',
-            ];
-            Mail::send('mail.takeoutItemEmail', $content, function($message) use($email){
-                $message->to($email)->subject('Item Takeout Notification');
-            });
 
-            if($stockItem->quantity <= $stockItem->minimum_quantity) {
-
-                $email = User::where('type', config('constants.actor.admin'))->pluck('email');
-
+            if($stockItem->quantity <= $stockItem->minimum_quantity) {  
+                $email = 'admin@admin.com';
                 $content = [
-                    'body'      => $stockItem->name . 'has reached its minimum quantity.',
+                    'body'      => $stockItem->name . ' has reached its minimum quantity.',
                 ];
                 Mail::send('mail.itemMinimumQuantity', $content, function($message) use($email){
                     $message->to($email)->subject('Item Reaches Minimum Quantity Notification');
                 });
 
             }
-
+            $email = $stock->customer->email;
+            $full_name = Auth::user()->first_name.' '.Auth::user()->last_name;
+            $content = [
+                'body'      => $full_name. ' has taken out this '. $stockItem->name .' from '. $warehouse_name .' warehouse and '. $stock->name .' stock',
+            ];
+            Mail::send('mail.takeoutItemEmail', $content, function($message) use($email){
+                $message->to($email)->subject('Item Takeout Notification');
+            });
             DB::commit();
-            return $stockItem;
         }catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
