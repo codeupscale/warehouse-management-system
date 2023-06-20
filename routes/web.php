@@ -9,7 +9,6 @@ use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Models\Customer;
 
 Route::get('/', function () {
     return Inertia::render('login', [
@@ -35,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('stocks',StockController::class);
     Route::resource('stockItems',StockItemController::class);
     Route::get('stockItems/takeout/{id}',[StockItemController::class,'itemTakeout'])->name('stockItem.takeout');
+    Route::get('/warehouses/{id}/stocks', [WarehouseController::class,'getAllStocks'])->name('warehouses.stock');
 
 });
 
