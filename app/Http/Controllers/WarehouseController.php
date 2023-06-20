@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Warehouse\StoreWarehouse;
+use App\Http\Requests\Warehouse\UpdateWarehouse;
 use App\Models\Customer;
 use App\Models\Warehouse;
 use App\Services\Warehouse\WarehouseService;
@@ -39,7 +41,7 @@ class WarehouseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreWarehouse $request)
     {
         $createCustomer = $this->warehouseService->create($request);
         return redirect()->route('warehouses.index');
@@ -68,7 +70,7 @@ class WarehouseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateWarehouse $request, string $id)
     {
         $updateWarehouse = $this->warehouseService->update($request, $id);
         return redirect()->route('warehouses.index');

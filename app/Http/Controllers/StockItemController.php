@@ -81,7 +81,6 @@ class StockItemController extends Controller
     public function itemTakeout($id)
     {
         $this->stockItemService->itemTakeout($id);
-        return true;
         return redirect()->route('stockItems.index');
     }
 }
