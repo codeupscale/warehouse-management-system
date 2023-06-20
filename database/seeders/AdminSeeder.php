@@ -19,6 +19,7 @@ class AdminSeeder extends Seeder
                 User::create([
                     'email' => 'admin@admin.com',
                     'password' => bcrypt('12345678'),
+                    'type' => config('constants.actor.admin'),
                 ]);
     
                 DB::commit();

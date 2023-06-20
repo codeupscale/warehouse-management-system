@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StockItem\StoreStockItem;
 use App\Http\Requests\StockItem\UpdateStockItem;
+use App\Models\Stock;
+use App\Models\StockItem;
 use App\Services\StockItem\StockItemService;
 use Inertia\Inertia;
 
@@ -75,6 +77,12 @@ class StockItemController extends Controller
     public function destroy(string $id)
     {
         $this->stockItemService->destroy($id);
+        return redirect()->route('stockItemss.index');
+    }
+
+    public function itemTakeout(int $id)
+    {
+        $this->stockItemService->itemTakeout($id);
         return redirect()->route('stocks.index');
     }
 }
