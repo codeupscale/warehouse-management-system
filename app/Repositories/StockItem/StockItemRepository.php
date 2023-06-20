@@ -5,7 +5,7 @@ namespace App\Repositories\StockItem;
 use App\Interfaces\StockItem\StockItemInterface;
 use App\Models\StockItem;
 
-class StockRepository implements StockItemInterface
+class StockItemRepository implements StockItemInterface
 {
     /**
      * 
@@ -49,6 +49,15 @@ class StockRepository implements StockItemInterface
     public function destroy(int $id)
     {
         return $this->stockItem::where('id', $id)->delete();
+    }
+
+    public function itemTakeout(int $id)
+    {
+        $stockItem = StockItem::findOrFail($id);
+        $stockItem->quantity -= 1;
+        $stockItem->save();
+
+        return $stockItem;
     }
 
 }
