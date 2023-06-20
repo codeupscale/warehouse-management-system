@@ -107,7 +107,7 @@ Class StockItemService
             $warehouse_name = $stock->warehouse->name;
 
             if($stockItem->quantity <= $stockItem->minimum_quantity) {  
-                $email = 'admin@admin.com';
+                $email = User::where('type',config('constants.actor.admin'))->pluck('email')->first();
                 $content = [
                     'body'      => $stockItem->name . ' has reached its minimum quantity.',
                 ];
@@ -128,7 +128,7 @@ Class StockItemService
         }catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to delete stockItem');
+            throw new InvalidArgumentException('Unable to send email');
         }
         
     }
