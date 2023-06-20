@@ -1,35 +1,61 @@
 import { useForm } from "@inertiajs/react";
 import { useEffect } from "react";
+import axios from "axios";
 
 export default function Create({ customers }: any) {
     const { data, setData, errors, post } = useForm({
-        customer_name: "",
+        customer_id: "",
         email: "",
-        profile: "",
+        image: "",
         password: "",
         first_name: "",
         last_name: ""
     });
 
-    function handleSubmit(e: any) {
-        // e.preventDefault();
-        // post(route("users.store"));
-
+    // function handleSubmit(e: any) {
+    //     e.preventDefault();
+    //     try {
+    //         const formData = new FormData();
+    //         formData.append('data', JSON.stringify({
+    //             customer_name: data.customer_name, email: data.email, password: data.password, first_name: data.first_name, last_name: data.last_name
+    //         }));
+    //         formData.append('files.profile', data.profile)
+    //         const res = post(route("users.store"), formData);
+    //         console.log("res", res)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+    async function handleSubmit(e: any) {
+        e.preventDefault();
         try {
             const formData = new FormData();
-            formData.append('data', JSON.stringify({
-                customer_name: data.customer_name, email: data.email, password: data.password, first_name: data.first_name, last_name: data.last_name
-            }));
-            formData.append('files.profile', data.profile)
-            const res = post(route("users.store"));
-            console.log(res)
+            formData.append("customer_id", data.customer_id);
+            formData.append("email", data.email);
+            formData.append("password", data.password);
+            formData.append("first_name", data.first_name);
+            formData.append("last_name", data.last_name);
+            formData.append("image", data.image.toString());
+
+            const res = await axios.post(route("users.store"), formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            console.log("res", res);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
+
+    // const handleChange = (e: any) => {
+    //     e.target.values
+    // }
     const handleChange = (e: any) => {
-        e.target.values
-    }
+        setData(e.target.name, e.target.value);
+    };
+
     useEffect(() => {
         console.log("Data", data)
         console.log("errors", errors)
@@ -43,16 +69,16 @@ export default function Create({ customers }: any) {
                         Customer Name
                     </label>
                     <select
-                        name="customer_name"
+                        name="customer_id"
                         id="customerName"
-                        value={data.customer_name}
-                        onChange={(e) => setData("customer_name", e.target.value)}
+                        value={data.customer_id}
+                        onChange={(e) => setData("customer_id", e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     >
                         <option value="">Select a customer</option>
                         {customers.map((customer: any) => (
-                            <option key={customer.id} value={customer.customer_name}>
+                            <option key={customer.id} value={customer.id}>
                                 {customer.customer_name}
                             </option>
                         ))}
@@ -85,13 +111,14 @@ export default function Create({ customers }: any) {
                     required
                     onChange={(e:any) => setData('profile', e.target.files[0])} /> */}
                     <input
-                        name='profile'
+                        name="image"
                         type="file"
                         onChange={(event: any) => {
                             const file = event.currentTarget.files[0];
-                            handleChange({ target: { name: "profile", value: file } });
+                            handleChange({ target: { name: "image", value: file } });
                         }}
                     />
+
                 </div>
                 <div className="mb-1">
                     <label htmlFor="email" className="block mb-1">
