@@ -1,22 +1,18 @@
 import { useForm } from "@inertiajs/react";
 import { useEffect, useState } from "react";
-import Multiselect from "multiselect-react-dropdown";
-export default function Create({ customers }: any) {
-    const { data, setData, errors, post } = useForm({
-        name: "",
-        customer_id: ""
+export default function Edit({ warehouse, customers }: any) {
+    const { data, setData, errors, put } = useForm({
+        name: warehouse.name,
+        customer_id: warehouse.customer_id
     });
-    const [success, setSuccess] = useState(false);
-    const [something, setSomething] = useState([]);
 
     function handleSubmit(e: any) {
         e.preventDefault();
-        post(route("warehouses.store"));
+        put(route("warehouses.update", warehouse?.id));
     }
     useEffect(() => {
         console.log("Data", data)
         console.log("errors", errors)
-        console.log("Customers", customers)
     }, [data])
     return (
         <>

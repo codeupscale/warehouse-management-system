@@ -31,10 +31,11 @@ export default function Index({ warehouses }: any) {
                 <tbody>
                     {
                         warehouses?.map((warehouse: any) => {
+                            console.log("customer", warehouse?.customer_id)
                             return (
                                 <tr key={warehouse?.id}>
                                     <td className="border px-4 py-2">{warehouse?.name}</td>
-                                    <td className="border px-4 py-2">{warehouse?.created_at}</td>
+                                    <td className="border px-4 py-2">{warehouse?.customer_id}</td>
                                     <td className="border px-4 py-2">
                                         <div className="actions flex text-2xl">
                                             <Link href={route('warehouses.edit', warehouse.id)}>

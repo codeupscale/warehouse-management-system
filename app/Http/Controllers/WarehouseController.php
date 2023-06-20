@@ -58,11 +58,16 @@ class WarehouseController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
+    // {
+    //     $warehouse = $this->warehouseService->find($id);
+
+    //     $customers = Customer::all();
+    //     return view('warehouses.edit',compact('warehouse','customers'));
+    // }
     {
         $warehouse = $this->warehouseService->find($id);
-
         $customers = Customer::all();
-        return view('warehouses.edit',compact('warehouse','customers'));
+        return Inertia::render('Warehouses/edit',compact('warehouse', 'customers'));
     }
 
     /**
