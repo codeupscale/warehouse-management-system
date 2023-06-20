@@ -19,9 +19,9 @@ class Customer extends Model
         'email',
     ];
 
-    public function warehouse()
+    public function warehouses()
     {
-        return $this->belongsTo(Warehouse::class);
+        return $this->hasMany(Warehouse::class);
     }
     public function user()
     {

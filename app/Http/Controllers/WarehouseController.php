@@ -23,7 +23,7 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        $warehouses = Warehouse::all();
+        $warehouses = Warehouse::with("customer")->get();
         return Inertia::render('Warehouses/index', ['warehouses' => $warehouses]);
     }
 

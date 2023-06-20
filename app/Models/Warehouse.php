@@ -14,9 +14,9 @@ class Warehouse extends Model
         'customer_id',
     ];
 
-    public function customers()
+    public function customer()
     {
-        return $this->hasMany(Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function stock()
