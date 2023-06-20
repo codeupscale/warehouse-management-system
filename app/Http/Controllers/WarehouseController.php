@@ -38,7 +38,7 @@ class WarehouseController extends Controller
         return Inertia::render('Warehouses/create', ['customers'=> $customers]);
     }
 
-    /**
+    /**WarehouseController@stocks
      * Store a newly created resource in storage.
      */
     public function store(StoreWarehouse $request)
@@ -82,5 +82,11 @@ class WarehouseController extends Controller
     {
         $this->warehouseService->destroy($id);
         return redirect()->route('warehouses.index');
+    }
+
+    public function getAllStocks(string $id)
+    {
+        $this->warehouseService->getAllStocks($id);
+        return redirect()->route('warehouses.stock');
     }
 }
