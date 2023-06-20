@@ -23,8 +23,8 @@ class UpdateStock extends FormRequest
     {
         return [
             'name'          => 'string',
-            'customer_id'   => 'exists:customers',
-            'warehouse_id'  => 'exists:warehouses'
+            'customer_id'   => 'exists:customers,id',
+            'warehouse_id'  => 'exists:warehouses,id'
         ];
     }
 
