@@ -10,14 +10,16 @@ export default function Index({ warehouses }: any) {
         }
     }
     useEffect(() => {
-      console.log("Warehouses", warehouses)
+        console.log("Warehouses", warehouses)
     }, [])
-    
+
     return (
         <div className="bg-white w-4/5 h-screen">
-            <button className="bg-indigo-400 text-white p-1">
-                <Link href={route('warehouses.create')}>Add Warehouse</Link>
-            </button>
+            <div className="flex justify-end pt-2">
+                <button className="bg-indigo-400 text-white p-1">
+                    <Link href={route('warehouses.create')}>Add Warehouse</Link>
+                </button>
+            </div>
             <table className="table-auto w-full">
                 <thead>
                     <tr>
@@ -41,6 +43,9 @@ export default function Index({ warehouses }: any) {
                                             </Link>
                                             <Link href=''>
                                                 <button className="border bg-red-400 py-1 px-2 text-white text-sm" onClick={() => destroy(warehouse.id)}>Remove</button>
+                                            </Link>
+                                            <Link href={route('stocks.index')}>
+                                                <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Stocks</button>
                                             </Link>
                                         </div>
                                     </td>
