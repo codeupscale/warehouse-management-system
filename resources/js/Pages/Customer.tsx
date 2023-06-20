@@ -1,5 +1,4 @@
-import { BiEdit } from 'react-icons/bi';
-import { AiFillDelete } from 'react-icons/ai';
+
 import { Inertia } from "@inertiajs/inertia";
 import { Head, usePage, Link } from '@inertiajs/inertia-react';
 
@@ -45,10 +44,10 @@ export default function Index({ customers }: any) {
                                     <td className="border px-4 py-2">
                                         <div className="actions flex text-2xl">
                                             <Link href={route('customers.edit', customer.id)}>
-                                                <BiEdit />
+                                                <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Edit</button>
                                             </Link>
                                             <Link href=''>
-                                                <AiFillDelete onClick={() => destroy(customer.id)} />
+                                                <button className="border bg-red-400 py-1 px-2 text-white text-sm" onClick={() => destroy(customer.id)}>Delete</button>
                                             </Link>
                                         </div>
                                     </td>

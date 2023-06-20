@@ -28,7 +28,7 @@ class StoreUser extends FormRequest
             'email'                 => 'required|email|unique:users',
             'password'              => 'required|string|min:8',
             'password_confirmation' => 'string|same:password',
-            'image'                 => 'required|string',
+            'image'                 => 'required|string|mimes:png,jpg,gif,svg,jpeg',
         ];
     }
 

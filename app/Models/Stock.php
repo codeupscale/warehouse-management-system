@@ -15,12 +15,19 @@ class Stock extends Model
         'warehouse_id',
     ];
 
-    public function customers()
+    public function customer()
     {
-        return $this->hasMany(Customer::class);
+        return $this->belongsTo(Customer::class);
     }
-    public function warehouses()
+
+    public function warehouse()
     {
-        return $this->hasMany(Warehouse::class);
+        return $this->belongsTo(Warehouse::class);
     }
+
+    public function stockItems()
+    {
+        return $this->hasMany(StockItem::class);
+    }
+    
 }

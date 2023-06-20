@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Warehouse;
 use App\Services\Warehouse\WarehouseService;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class WarehouseController extends Controller
 {
@@ -22,9 +23,8 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        return view('warehouses.index',[
-            'warehouses' => Warehouse::all()
-        ]);
+        $warehouses = Warehouse::with("customer")->get();
+        return Inertia::render('Warehouses/index', ['warehouses' => $warehouses]);
     }
 
     /**
@@ -32,8 +32,8 @@ class WarehouseController extends Controller
      */
     public function create()
     {
-        $customers = Customer::all();
-        return view('warehouses.create',compact('customers'));
+        $customers=Customer::all();
+        return Inertia::render('Warehouses/create', ['customers'=> $customers]);
     }
 
     /**
@@ -58,11 +58,16 @@ class WarehouseController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
+    // {
+    //     $warehouse = $this->warehouseService->find($id);
+
+    //     $customers = Customer::all();
+    //     return view('warehouses.edit',compact('warehouse','customers'));
+    // }
     {
         $warehouse = $this->warehouseService->find($id);
-
         $customers = Customer::all();
-        return view('warehouses.edit',compact('warehouse','customers'));
+        return Inertia::render('Warehouses/edit',compact('warehouse', 'customers'));
     }
 
     /**

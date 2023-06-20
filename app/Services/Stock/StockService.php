@@ -15,9 +15,9 @@ Class StockService
     protected StockInterface $stockInterface;
 
     /**
-     * PostService constructor.
+     * StockService constructor.
      *
-     * @param UserRepositoryInterface $userRepositoryInterface
+     * @param StockInterface $stockInterface
      */
     public function __construct(StockInterface $stockInterface)
     {
