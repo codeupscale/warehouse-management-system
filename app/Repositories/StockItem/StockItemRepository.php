@@ -51,10 +51,9 @@ class StockItemRepository implements StockItemInterface
         return $this->stockItem::where('id', $id)->delete();
     }
 
-    public function itemTakeout(int $id)
+    public function itemTakeout($id)
     {
-        $stockItem = $this->stockItem::where('id',$id)->decrement('quantity',1);
-        $stockItem->save();
+        $stockItem = StockItem::findOrFail($id);
         return $stockItem;
     }
 
