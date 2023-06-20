@@ -22,7 +22,7 @@ class UpdateStockItem extends FormRequest
     public function rules(): array
     {
         return [      
-            'stock_id'          => 'exists:stocks',
+            'stock_id'          => 'exists:stocks,id',
             'name'              => 'string',
             'size'              => 'integer',
             'minimum_quantity'  => 'integer',

@@ -24,7 +24,7 @@ class StoreStockItem extends FormRequest
     public function rules(): array
     {
         return [     
-            'stock_id'          => 'required|exists:stocks',
+            'stock_id'          => 'required|exists:stocks,id',
             'name'              => 'required|string',
             'size'              => 'required|integer',
             'minimum_quantity'  => 'required|integer',
