@@ -19,7 +19,7 @@ createInertiaApp({
                 <nav className="flex-1 px-4 py-6">
                     <ul className="space-y-2">
                         <li>
-                            <InertiaLink href="#" className="flex items-center space-x-2 text-gray-300 hover:text-white">
+                            <InertiaLink href="/warehouses" className="flex items-center space-x-2 text-gray-300 hover:text-white">
                                 <svg className="h-5 w-5 fill-current" viewBox="0 0 20 20">
                                     <path d="M7 2H4C2.89543 2 2 2.89543 2 4V17C2 18.1046 2.89543 19 4 19H16C17.1046 19 18 18.1046 18 17V4C18 2.89543 17.1046 2 16 2H13V1C13 0.447715 12.5523 0 12 0H8C7.44772 0 7 0.447715 7 1V2ZM13 4H16V17H4V4H7V6C7 6.55228 7.44772 7 8 7H12C12.5523 7 13 6.55228 13 6V4Z"></path>
                                 </svg>

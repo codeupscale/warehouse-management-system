@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Stock\StoreStock;
 use App\Http\Requests\Stock\UpdateStock;
 use App\Models\Stock;
+use App\Models\Customer;
+use App\Models\Warehouse;
 use App\Services\Stock\StockService;
 use Inertia\Inertia;
 
@@ -19,13 +21,15 @@ class StockController extends Controller
     }
     public function index()
     {
-        $stocks = Stock::all();
-        return Inertia::render('Customer', ['stocks' => $stocks]);
+        $stocks = Stock::with("customer", "warehouse")->get();
+        return Inertia::render('Stocks/index', ['stocks' => $stocks]);
     }
 
     public function create()
     {
-        return Inertia::render('Stocks/create');
+        $customers = Customer::all();
+        $warehouses = Warehouse::all();
+        return Inertia::render('Stocks/create', ['customers' => $customers, 'warehouses'=>$warehouses]);
     }
 
     public function store(StoreStock $request)
@@ -43,7 +47,10 @@ class StockController extends Controller
     public function edit(string $id)
     {
         $stock = $this->stockService->find($id);
-        return Inertia::render('Stocks/edit',compact('stock'));
+        // $stocks = Stock::with("customer", "warehouse")->get();
+        $customers = Customer::all();
+        $warehouses = Warehouse::all();
+        return Inertia::render('Stocks/edit',['stock' => $stock, 'customers'=>$customers, 'warehouses'=>$warehouses]);
     }
 
     public function update(UpdateStock $request, string $id)
