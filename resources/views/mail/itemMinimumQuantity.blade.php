@@ -388,7 +388,7 @@ a {text-decoration: none;}
 
                                                                     <h2
                                                                         style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;font-size:14px  ;color:white; ">
-                                                                        CAR CMS</h2>
+                                                                        Warehouse Management System</h2>
 
                                                                 </td>
                                                             </tr>
@@ -465,7 +465,7 @@ a {text-decoration: none;}
                                                                     style="padding:0;Margin:0;padding-top:15px">
                                                                     <h3
                                                                         style="Margin:0;line-height:24px;mso-line-height-rule:exactly;font-family:georgia, times, 'times new roman', serif;font-size:20px;font-style:normal;font-weight:normal;color:#24578E">
-                                                                        Car CMS Company,</h3>
+                                                                        Warehouse Management System,</h3>
                                                                 </td>
                                                             </tr>
                                                             <tr style="border-collapse:collapse">
@@ -661,7 +661,7 @@ cellspacing="0"><tr><td style="width:100px" valign="top"><![endif]-->
                                                                     <p
                                                                         style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:verdana, geneva, sans-serif;line-height:21px;color:#FFFFFF;font-size:14px">
                                                                         <span
-                                                                            style="font-size:12px;line-height:18px">CarCMS
+                                                                            style="font-size:12px;line-height:18px">WMS
                                                                             © All Rights Reserved</span><br>
                                                                     </p>
                                                                 </td>
