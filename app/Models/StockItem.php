@@ -16,6 +16,7 @@ class StockItem extends Model
         'name',
         'size',
         'minimum_quantity',
+        'quantity',
     ];
 
     public function stock()
