@@ -23,9 +23,9 @@ class Customer extends Model
     {
         return $this->hasMany(Warehouse::class);
     }
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class, 'id');
     }
     public function stocks()
     {

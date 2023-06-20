@@ -47,9 +47,9 @@ class User extends Authenticatable
     ];
 
 
-    public function customers()
+    public function customer()
     {
-        return $this->hasMany(Customer::class);
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 
     
