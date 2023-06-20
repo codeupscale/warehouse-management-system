@@ -27,7 +27,7 @@ class Customer extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function stock()
+    public function stocks()
     {
         return $this->hasMany(Stock::class);
     }

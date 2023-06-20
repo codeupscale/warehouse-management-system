@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('users',UserController::class);
     Route::resource('stocks',StockController::class);
     Route::resource('stockItems',StockItemController::class);
-    Route::post('stockItems/takeout{id}',[StockItemController::class,'itemTakeout'])->name('stockItem.takeout');
+    Route::get('stockItems/takeout/{id}',[StockItemController::class,'itemTakeout'])->name('stockItem.takeout');
 
 });
 

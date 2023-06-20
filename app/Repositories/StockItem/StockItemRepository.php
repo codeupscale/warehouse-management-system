@@ -53,10 +53,8 @@ class StockItemRepository implements StockItemInterface
 
     public function itemTakeout(int $id)
     {
-        $stockItem = StockItem::findOrFail($id);
-        $stockItem->quantity -= 1;
+        $stockItem = $this->stockItem::where('id',$id)->decrement('quantity',1);
         $stockItem->save();
-
         return $stockItem;
     }
 

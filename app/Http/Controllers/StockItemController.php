@@ -82,10 +82,6 @@ class StockItemController extends Controller
 
     public function itemTakeout(int $id)
     {
-        $stockItem = StockItem::where('id',$id);
-        $stock = Stock::where('id',$stockItem->stock_id)->first();
-        $email = $stock->customer->email;
-        dd($email);
         $this->stockItemService->itemTakeout($id);
         return redirect()->route('stocks.index');
     }

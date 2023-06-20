@@ -5,12 +5,15 @@ namespace App\Services\StockItem;
 use App\Interfaces\StockItem\StockItemInterface;
 use App\Models\Stock;
 use App\Models\StockItem;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 Class StockItemService
 {
@@ -98,21 +101,38 @@ Class StockItemService
     {
         try {
             DB::beginTransaction();
-            $stockItem = $this->stockItemInterface->itemTakeout($id);
+            $stockItem = $this->stockItemInterface->find($id);
             $stock = Stock::where('id',$stockItem->stock_id)->first();
+            $warehouse_name = $stock->warehouse->name;
             $email = $stock->customer->email;
-            dd($email);
+            $full_name = Auth::user()->first_name.' '.Auth::user()->last_name;
             $content = [
-                'body'      => 'It is  Reminder. Your meeting will be held tomorrow ',
+                'body'      => $full_name. 'has taken out this'. $stockItem->name .'from'. $warehouse_name .'warehouse and'. $stock->name .'stock',
             ];
-            Mail::send('mail.appointmentReminder', $content, function($message) use($email){
-                $message->to($email)->subject('Appointment Reminder');
+            Mail::send('mail.takeoutItemEmail', $content, function($message) use($email){
+                $message->to($email)->subject('Item Takeout Notification');
             });
+
+            if($stockItem->quantity <= $stockItem->minimum_quantity) {
+
+                $email = User::where('type', config('constants.actor.admin'))->pluck('email');
+
+                $content = [
+                    'body'      => $stockItem->name . 'has reached its minimum quantity.',
+                ];
+                Mail::send('mail.itemMinimumQuantity', $content, function($message) use($email){
+                    $message->to($email)->subject('Item Reaches Minimum Quantity Notification');
+                });
+
+            }
+
             DB::commit();
+            return $stockItem;
         }catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to delete stockItem');
         }
+        
     }
 }
