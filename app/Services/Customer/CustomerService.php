@@ -15,9 +15,9 @@ Class CustomerService
     protected CustomerInterface $customerInterface;
 
     /**
-     * PostService constructor.
+     * CustomerService constructor.
      *
-     * @param UserRepositoryInterface $userRepositoryInterface
+     * @param CustomerInterface $customerInterface
      */
     public function __construct(CustomerInterface $customerInterface)
     {
@@ -28,7 +28,7 @@ Class CustomerService
     {
         try {
             $customers =  $this->customerInterface->index();
-            return view('customers.index');
+            return $customers;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
@@ -46,12 +46,12 @@ Class CustomerService
             $customer = $this->customerInterface->create($input);
 
             DB::commit();
+            return $customer;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to create customer');
         }
-        return "success";
     }
     public function find($id)
     {
@@ -63,7 +63,6 @@ Class CustomerService
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to find customer');
         }
-        return "success";
     }
     public function update(Request $request, $id)
     {
@@ -73,12 +72,12 @@ Class CustomerService
             $customer = $this->customerInterface->update($input, $id);
 
             DB::commit();
+            return $customer;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create Customer');
+            throw new InvalidArgumentException('Unable to Update Customer');
         }
-        return "success";
     }
     public function destroy($id){
         try {
@@ -90,6 +89,5 @@ Class CustomerService
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to delete customer');
         }
-        return "success";
     }
 }

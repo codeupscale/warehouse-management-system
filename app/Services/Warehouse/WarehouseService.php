@@ -15,9 +15,9 @@ Class WarehouseService
     protected WarehouseInterface $warehouseInterface;
 
     /**
-     * PostService constructor.
+     * WarehouseService constructor.
      *
-     * @param UserRepositoryInterface $userRepositoryInterface
+     * @param WarehouseInterface $warehouseInterface
      */
     public function __construct(WarehouseInterface $warehouseInterface)
     {
@@ -28,7 +28,7 @@ Class WarehouseService
     {
         try {
             $warehouses =  $this->warehouseInterface->index();
-            return view('warehouses.index');
+            return $warehouses;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
@@ -50,7 +50,6 @@ Class WarehouseService
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to create warehouse');
-            return false;
         }
         
     }
@@ -63,7 +62,6 @@ Class WarehouseService
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to find warehouse');
-            return false;
         }
     }
     public function update(Request $request, $id)
@@ -78,8 +76,7 @@ Class WarehouseService
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create warehouse');
-            return false;
+            throw new InvalidArgumentException('Unable to update warehouse');
         }
     }
     public function destroy($id){
@@ -91,7 +88,6 @@ Class WarehouseService
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to delete warehouse');
-            return false;
         }
     }
 
@@ -105,7 +101,6 @@ Class WarehouseService
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to get stocks');
-            return false;
         }
     }
 }

@@ -70,6 +70,7 @@ Class StockItemService
             throw new InvalidArgumentException('Unable to find stockItem');
         }
     }
+    
     public function update(Request $request, $id)
     {
         try {
@@ -85,6 +86,7 @@ Class StockItemService
             throw new InvalidArgumentException('Unable to create stockItem');
         }
     }
+
     public function destroy($id){
         try {
             DB::beginTransaction();
@@ -108,14 +110,17 @@ Class StockItemService
 
             if($stockItem->quantity <= $stockItem->minimum_quantity) {  
                 $email = User::where('type',config('constants.actor.admin'))->pluck('email')->first();
-                $content = [
-                    'body'      => $stockItem->name . ' has reached its minimum quantity.',
-                ];
-                Mail::send('mail.itemMinimumQuantity', $content, function($message) use($email){
-                    $message->to($email)->subject('Item Reaches Minimum Quantity Notification');
-                });
+                if(isset($email)) {
+                    $content = [
+                        'body'      => $stockItem->name . ' has reached its minimum quantity.',
+                    ];
+                    Mail::send('mail.itemMinimumQuantity', $content, function($message) use($email){
+                        $message->to($email)->subject('Item Reaches Minimum Quantity Notification');
+                    });
+                }
 
             }
+
             $email = $stock->customer->email;
             $full_name = Auth::user()->first_name.' '.Auth::user()->last_name;
             $content = [
