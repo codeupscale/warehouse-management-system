@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('stockItems/takeout/{id}',[StockItemController::class,'itemTakeout'])->name('stockItem.takeout');
     Route::get('/warehouse/{id}/stocks', [WarehouseController::class,'getAllStocks'])->name('warehouse.stocks');
     Route::get('/stock/{id}/stockItems', [StockController::class,'getStockItems'])->name('stock.stockItems');
+    Route::get('/customer/warehouses', [WarehouseController::class,'customerWarehouses'])->name('customer.warehouses');
 
 });
 

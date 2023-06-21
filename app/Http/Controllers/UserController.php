@@ -7,6 +7,7 @@ use App\Http\Requests\User\UpdateUser;
 use App\Models\Customer;
 use App\Models\User;
 use App\Services\User\UserService;
+use App\Services\Customer\CustomerService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,10 +15,12 @@ class UserController extends Controller
 {
 
     protected $userService;
+    protected $customerService;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, CustomerService $customerService)
     {
         $this->userService = $userService;
+        $this->customerService = $customerService;
     }
 
     /**
@@ -25,8 +28,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return Inertia::render('User', ['users' => $users]);
+        $users = User::with("customer")->get();
+        return Inertia::render('Users/index', ['users' => $users]);
     }
 
     /**
@@ -65,9 +68,14 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
+    // {
+    //     $user = $this->userService->find($id);
+    //     return view('users.edit',compact('user'));
+    // }
     {
         $user = $this->userService->find($id);
-        return view('users.edit',compact('user'));
+        $customers = Customer::all();
+        return Inertia::render('Users/edit',compact('user', 'customers'));
     }
 
     /**

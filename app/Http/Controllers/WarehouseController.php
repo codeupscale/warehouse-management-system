@@ -9,6 +9,7 @@ use App\Models\Warehouse;
 use App\Services\Warehouse\WarehouseService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class WarehouseController extends Controller
 {
@@ -88,5 +89,11 @@ class WarehouseController extends Controller
     {
         $allStocks=$this->warehouseService->getAllStocks($id);
         return Inertia::render('Warehouses/stock', ["allStocks" => $allStocks]);
+    }
+    public function customerWarehouses()
+    {
+        $user = Auth::user();
+        $customerWarehouses = Warehouse::where('company_id', $user->customer_id)->get();
+        return Inertia::render('Users.warehouse', ['customerWarehouses' => $customerWarehouses]);
     }
 }
