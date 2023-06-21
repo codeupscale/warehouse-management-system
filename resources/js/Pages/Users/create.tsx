@@ -34,7 +34,7 @@ export default function Create({ customers }: any) {
 
     return (
         <>
-            <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
+            <form className="max-w-md mx-auto shadow-lg p-5 text-sm mt-6 h-full rounded" onSubmit={handleSubmit}>
                 <div className="mb-1">
                     <label htmlFor="customerName" className="block mb-1">
                         Customer Name
@@ -127,7 +127,7 @@ export default function Create({ customers }: any) {
                 </div>
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full mt-3"
                 >
                     Submit
                 </button>

@@ -1,3 +1,4 @@
+import Sidebar from "@/Components/Sidebar";
 import { Inertia } from "@inertiajs/inertia";
 import { Head, usePage, Link } from '@inertiajs/inertia-react';
 import { useEffect } from "react";
@@ -14,12 +15,14 @@ export default function Index({ users }: any) {
     }, [])
 
     return (
-        <div className="bg-white w-4/5 h-screen">
-            <div className="flex justify-end pt-2">
-                <button className="bg-indigo-400 text-white p-1">
-                    <Link href={route('users.create')}>Add User</Link>
-                </button>
-            </div>
+        <>
+            <Sidebar />
+            <div className="bg-white w-4/5 h-screen mt-6 text-sm text-left">
+                <div className="flex justify-end pt-2">
+                    <button className="bg-indigo-400 text-white p-1">
+                        <Link href={route('users.create')}>Add User</Link>
+                    </button>
+                </div>
             <table className="table-auto w-full">
                 <thead>
                     <tr>
@@ -60,6 +63,7 @@ export default function Index({ users }: any) {
                     }
                 </tbody>
             </table>
-        </div>
+            </div>
+        </>
     )
 }
