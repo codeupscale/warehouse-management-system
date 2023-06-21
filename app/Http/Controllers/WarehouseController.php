@@ -34,8 +34,12 @@ class WarehouseController extends Controller
      */
     public function create()
     {
-        $customers=Customer::all();
-        return Inertia::render('Warehouses/create', ['customers'=> $customers]);
+        if(auth()->user()->type == config('constants.actor.admin')) {
+            $customers=Customer::all();
+            return Inertia::render('Warehouses/create', ['customers'=> $customers]);
+        } else {
+            return redirect()->route('warehouses.index');
+        }
     }
 
     /**WarehouseController@stocks
@@ -43,8 +47,10 @@ class WarehouseController extends Controller
      */
     public function store(StoreWarehouse $request)
     {
-        $createCustomer = $this->warehouseService->create($request);
-        return redirect()->route('warehouses.index');
+        if(auth()->user()->type == config('constants.actor.admin')) {
+            $createCustomer = $this->warehouseService->create($request);
+            return redirect()->route('warehouses.index');
+        }
     }
 
     /**
@@ -52,8 +58,10 @@ class WarehouseController extends Controller
      */
     public function show(string $id)
     {
-        $warehouse = Warehouse::find($id);
-        return view('warehouses.show',compact('warehouse'));
+        if(auth()->user()->type == config('constants.actor.admin')) {
+            $warehouse = Warehouse::find($id);
+            return view('warehouses.show',compact('warehouse'));
+        }
     }
 
     /**
@@ -61,9 +69,12 @@ class WarehouseController extends Controller
      */
     public function edit(string $id)
     {
-        $warehouse = $this->warehouseService->find($id);
-        $customers = Customer::all();
-        return Inertia::render('Warehouses/edit',compact('warehouse', 'customers'));
+
+        if(auth()->user()->type == config('constants.actor.admin')) {
+            $warehouse = $this->warehouseService->find($id);
+            $customers = Customer::all();
+            return Inertia::render('Warehouses/edit',compact('warehouse', 'customers'));
+        }
     }
 
     /**
@@ -71,8 +82,13 @@ class WarehouseController extends Controller
      */
     public function update(UpdateWarehouse $request, string $id)
     {
-        $updateWarehouse = $this->warehouseService->update($request, $id);
-        return redirect()->route('warehouses.index');
+
+        if(auth()->user()->type == config('constants.actor.admin')) {
+            $updateWarehouse = $this->warehouseService->update($request, $id);
+            return redirect()->route('warehouses.index');
+        } else {
+            return redirect()->route('warehouses.index');
+        }
     }
 
     /**
@@ -80,8 +96,13 @@ class WarehouseController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->warehouseService->destroy($id);
-        return redirect()->route('warehouses.index');
+
+        if(auth()->user()->type == config('constants.actor.admin')) {
+            $this->warehouseService->destroy($id);
+            return redirect()->route('warehouses.index');
+        } else {
+            return redirect()->route('warehouses.index');
+        }
     }
 
     public function getAllStocks(string $id)

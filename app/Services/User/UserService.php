@@ -16,9 +16,9 @@ Class UserService
     protected UserInterface $userInterface;
 
     /**
-     * PostService constructor.
+     * UserService constructor.
      *
-     * @param UserRepositoryInterface $userRepositoryInterface
+     * @param UserInterface $userInterface
      */
     public function __construct(UserInterface $userInterface)
     {
@@ -29,7 +29,7 @@ Class UserService
     {
         try {
             $users =  $this->userInterface->index();
-            return view('users.index');
+            return $users;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
@@ -47,15 +47,13 @@ Class UserService
             $input['image'] = userImage($request->image, 'User-Picture');
             $input = Arr::except($input,['_token']);
             $user = $this->userInterface->create($input);
-            // dd($user);
-
             DB::commit();
+            return $user;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to create user');
         }
-        return "success";
     }
     public function find($id)
     {
@@ -67,7 +65,6 @@ Class UserService
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to find user');
         }
-        return "success";
     }
     public function update(Request $request, $id)
     {
@@ -80,12 +77,12 @@ Class UserService
             $user = $this->userInterface->update($input, $id);
 
             DB::commit();
+            return $user;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create user');
+            throw new InvalidArgumentException('Unable to update user');
         }
-        return "success";
     }
     public function destroy($id){
         try {
@@ -97,6 +94,5 @@ Class UserService
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to delete user');
         }
-        return "success";
     }
 }

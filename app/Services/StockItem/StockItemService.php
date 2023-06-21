@@ -70,6 +70,7 @@ Class StockItemService
             throw new InvalidArgumentException('Unable to find stockItem');
         }
     }
+    
     public function update(Request $request, $id)
     {
         try {
@@ -85,6 +86,7 @@ Class StockItemService
             throw new InvalidArgumentException('Unable to create stockItem');
         }
     }
+
     public function destroy($id){
         try {
             DB::beginTransaction();
@@ -118,6 +120,7 @@ Class StockItemService
                 }
 
             }
+
             $email = $stock->customer->email;
             $full_name = Auth::user()->first_name.' '.Auth::user()->last_name;
             $content = [

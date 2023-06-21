@@ -28,7 +28,7 @@ Class StockService
     {
         try {
             $stocks =  $this->stockInterface->index();
-            return view('stocks.index');
+            return $stocks;
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
@@ -50,7 +50,6 @@ Class StockService
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to create stock');
-            return false;
         }
         
     }
@@ -63,7 +62,6 @@ Class StockService
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to find stock');
-            return false;
         }
     }
     public function update(Request $request, $id)
@@ -78,8 +76,7 @@ Class StockService
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create stock');
-            return false;
+            throw new InvalidArgumentException('Unable to update stock');
         }
     }
     public function destroy($id){
@@ -91,7 +88,6 @@ Class StockService
             DB::rollBack();
             Log::info($e->getMessage());
             throw new InvalidArgumentException('Unable to delete stock');
-            return false;
         }
     }
 }
