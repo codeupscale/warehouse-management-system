@@ -43,7 +43,7 @@ Class UserService
         try {
             DB::beginTransaction();
             $input = $request->all();
-            $input['type'] = 0;
+            $input['type'] = config('constants.actor.user');
             $input['image'] = userImage($request->image, 'User-Picture');
             $input = Arr::except($input,['_token']);
             $user = $this->userInterface->create($input);
