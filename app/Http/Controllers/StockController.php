@@ -8,7 +8,6 @@ use App\Models\Stock;
 use App\Models\Customer;
 use App\Models\StockItem;
 use App\Models\Warehouse;
-use App\Models\StockItem;
 use App\Services\Stock\StockService;
 use Inertia\Inertia;
 
