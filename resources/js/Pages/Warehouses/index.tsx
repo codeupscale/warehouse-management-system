@@ -14,13 +14,13 @@ export default function Index({ warehouses }: any) {
     }, [])
 
     return (
-        <div className="bg-white w-4/5 h-screen">
+        <div className="bg-white w-4/5 h-screen mt-6 text-sm text-left">
             <div className="flex justify-end pt-2">
                 <button className="bg-indigo-400 text-white p-1">
                     <Link href={route('warehouses.create')}>Add Warehouse</Link>
                 </button>
             </div>
-            <table className="table-auto w-full">
+            <table className="table-auto w-full text-left">
                 <thead>
                     <tr>
                         <th className="px-4 py-2">Warehouse name</th>
@@ -44,7 +44,7 @@ export default function Index({ warehouses }: any) {
                                             <Link href=''>
                                                 <button className="border bg-red-400 py-1 px-2 text-white text-sm" onClick={() => destroy(warehouse.id)}>Remove</button>
                                             </Link>
-                                            <Link href={route('stocks.index')}>
+                                            <Link href={route('warehouse.stocks', warehouse.id)}>
                                                 <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Stocks</button>
                                             </Link>
                                         </div>

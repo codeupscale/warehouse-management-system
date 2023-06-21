@@ -64,4 +64,11 @@ class StockController extends Controller
         $this->stockService->destroy($id);
         return redirect()->route('stocks.index');
     }
+
+  
+    public function getStockItems($id)
+    {
+        $stockItems = $this->stockService->getStockItems($id);
+        return Inertia::render('Stocks/stockItems', ["stockItems" => $stockItems]);
+    }   
 }
