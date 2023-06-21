@@ -51,7 +51,14 @@ class User extends Authenticatable
     protected function type(): Attribute
     {
         return new Attribute(
-            get: fn ($value) =>  ["user", "admin"][$value],
+            get: function ($value) {
+                if ($value === 0 || $value === 1) {
+                    return ['user', 'admin'][$value];
+                } else {
+                    // Handle invalid value here, such as returning a default or throwing an exception
+                    return 'Invalid value';
+                }
+            }
         );
     }
 

@@ -34,7 +34,7 @@ Route::middleware(['auth','user-access:admin'])->group(function () {
     Route::resource('users',UserController::class);
     Route::resource('stocks',StockController::class);
     Route::resource('stockItems',StockItemController::class);
-    Route::get('/warehouse/{id}/stocks', [WarehouseController::class,'getAllStocks'])->name('warehouse.stocks');
+    Route::get('/warehouses/{id}/stocks', [WarehouseController::class,'getAllStocks'])->name('warehouses.stock');
     Route::get('/warehouses/stock/{id}/stockItems', [StockController::class,'getStockItems'])->name('stock.stockItems');
 
     
@@ -44,10 +44,17 @@ Route::middleware(['auth','user-access:admin'])->group(function () {
 Route::middleware(['auth','user-access:user'])->group(function () {
     Route::get('items/takeout/{id}',[StockItemController::class,'itemTakeout'])->name('stockItem.takeout');
     Route::get('warehouses/index',[WarehouseController::class,'index'])->name('warehouses.user.index');
-    Route::get('/warehouses/{id}/stocks', [WarehouseController::class,'getAllStocks'])->name('warehouses.stock');
     Route::get('/customer/warehouses', [WarehouseController::class,'customerWarehouses'])->name('customer.warehouses');
-});
+    Route::get('/users/stock/{id}', [StockController::class,'getAllUserStocks'])->name('user.stock');
+    Route::get('/users/stockItem/{id}', [StockController::class,'userStockItems'])->name('user.stockItem');
 
+
+
+
+
+
+
+});
 
 
 

@@ -3,11 +3,9 @@ import { Inertia } from "@inertiajs/inertia";
 import { Link } from '@inertiajs/inertia-react';
 import { useEffect } from 'react';
 
-export default function Index({ stocks, warehouseId, allStocks }: any) {
+export default function UserStock({ allUserStocks }: any) {
     useEffect(() => {
-        console.log("Stocks", stocks)
-        console.log("Warehouse id", warehouseId)
-        console.log("All Stocks", allStocks)
+        console.log("Stocks", allUserStocks)
     }, [])
 
     return (
@@ -23,14 +21,14 @@ export default function Index({ stocks, warehouseId, allStocks }: any) {
                     </thead>
                     <tbody>
                         {
-                            allStocks?.map((stock: any) => {
+                            allUserStocks?.map((stock: any) => {
                                 console.log("customer", stock?.customer_id)
                                 return (
                                     <tr key={stock?.id}>
                                         <td className="border px-4 py-2">{stock?.name}</td>
                                         <td className="border px-4 py-2">
                                             <div className="actions flex text-2xl">
-                                                <Link href={route('stock.stockItems', stock?.id)}>
+                                                <Link href={route('user.stockItem', stock?.id)}>
                                                     <button className="border bg-blue-400 py-1 px-2 text-white text-sm">Stock Items</button>
                                                 </Link>
                                             </div>

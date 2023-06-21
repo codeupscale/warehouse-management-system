@@ -5,7 +5,7 @@ export default function Login({ auth, laravelVersion, phpVersion }: PageProps<{ 
         <>
             <div className="container mx-auto">
                 <div className="signup-text mt-10 p-10 text-center">
-                    <div className="text-4xl mb-5">Login here</div>
+                    <div className="text-4xl mb-5">Login</div>
                     <div className="form_bg-img">
                         <div className="lg:w-4/12 mx-auto relative">
                             <div className="bg-signup-img">
