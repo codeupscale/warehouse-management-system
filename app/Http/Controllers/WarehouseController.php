@@ -94,7 +94,7 @@ class WarehouseController extends Controller
     public function customerWarehouses()
     {
         $user = Auth::user();
-        $customerWarehouses = Warehouse::where('company_id', $user->customer_id)->get();
+        $customerWarehouses = Warehouse::where('customer_id', $user->customer_id)->get();
 
         return Inertia::render('Users.warehouse', ['customerWarehouses' => $customerWarehouses]);
     }
