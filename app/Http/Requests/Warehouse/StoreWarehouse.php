@@ -23,7 +23,7 @@ class StoreWarehouse extends FormRequest
     {
         return [
             'name'          => 'required|string',
-            'customer_id'   => 'required|integer|exists:customer,id',
+            'customer_id'   => 'required|integer|exists:customers,id',
         ];
     }
 

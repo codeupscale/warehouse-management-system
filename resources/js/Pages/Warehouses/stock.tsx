@@ -20,7 +20,7 @@ export default function Index({ stocks, warehouseId, allStocks }: any) {
                 </thead>
                 <tbody>
                     {
-                        allStocks?.map((stock: any) => {
+                         allStocks?.map((stock: any) => {
                             console.log("customer", stock?.customer_id)
                             return (
                                 <tr key={stock?.id}>
