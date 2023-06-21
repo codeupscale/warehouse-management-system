@@ -23,7 +23,7 @@ class UpdateWarehouse extends FormRequest
     {
         return [
             'name'          => 'string',
-            'customer_id'   => 'required|integer|exists:customer,id',
+            'customer_id'   => 'required|integer|exists:customers,id',
         ];
     }
 

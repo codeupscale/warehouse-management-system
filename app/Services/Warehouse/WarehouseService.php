@@ -95,8 +95,8 @@ Class WarehouseService
     {
         try {
             DB::beginTransaction();
-            $this->warehouseInterface->getAllStocks($id);
-            DB::commit();
+            $allStocks = $this->warehouseInterface->getAllStocks($id);
+            return $allStocks;
         }catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());

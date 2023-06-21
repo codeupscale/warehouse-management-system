@@ -90,4 +90,16 @@ Class StockService
             throw new InvalidArgumentException('Unable to delete stock');
         }
     }
+
+    public function getStockItems($id){
+        try {
+            DB::beginTransaction();
+           $stockItems = $this->stockInterface->getStockItems($id);
+           return $stockItems;
+        }catch (Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+            throw new InvalidArgumentException('Unable to get stockItem');
+        }
+    }
 }
