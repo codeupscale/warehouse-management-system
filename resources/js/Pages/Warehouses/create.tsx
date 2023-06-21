@@ -1,6 +1,5 @@
 import { useForm } from "@inertiajs/react";
 import { useEffect, useState } from "react";
-import Multiselect from "multiselect-react-dropdown";
 export default function Create({ customers }: any) {
     const { data, setData, errors, post } = useForm({
         name: "",

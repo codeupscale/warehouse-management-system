@@ -7,6 +7,7 @@ use App\Http\Requests\Stock\UpdateStock;
 use App\Models\Stock;
 use App\Models\Customer;
 use App\Models\Warehouse;
+use App\Models\StockItem;
 use App\Services\Stock\StockService;
 use Inertia\Inertia;
 
@@ -71,4 +72,15 @@ class StockController extends Controller
         $stockItems = $this->stockService->getStockItems($id);
         return Inertia::render('Stocks/stockItems', ["stockItems" => $stockItems]);
     }   
+    public function getAllUserStocks($id)
+    {
+        $allUserStocks = Stock::where('warehouse_id',$id)->get();
+        return Inertia::render('Stocks/userStock', ["allUserStocks" => $allUserStocks]);
+    }
+
+    public function userStockItems($id)
+    {
+        $stockItems = StockItem::where('stock_id',$id)->with('stock')->get();
+        return Inertia::render('StockItems/userStockItems',['stockItems' => $stockItems]);
+    }
 }

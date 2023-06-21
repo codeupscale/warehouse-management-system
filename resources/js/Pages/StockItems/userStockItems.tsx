@@ -11,12 +11,7 @@ export default function Index({ stockItems }: any) {
     return (
         <>
             <Sidebar />
-            <div className="bg-white w-4/5 h-screen">
-                <div className="flex justify-end pt-2">
-                    <button className="bg-indigo-400 text-white p-1">
-                        <Link href={route('stockItems.create')}>Add Item</Link>
-                    </button>
-                </div>
+            <div className="bg-white w-4/5 h-screen mt-6 text-sm text-left">
                 <table className="table-auto w-full">
                     <thead>
                         <tr>
