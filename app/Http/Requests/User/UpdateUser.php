@@ -11,7 +11,7 @@ class UpdateUser extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,8 +25,9 @@ class UpdateUser extends FormRequest
             'first_name'            => 'string',
             'last_name'             => 'string',
             'email'                 => 'email|unique:users',
-            'password'              => 'required|string|min:8',
-            'image'                 => 'required|string|mimes:jpeg,jpg,png,gif',
+            'password'              => 'string|min:8',
+            'password_confirmation' => 'string|same:password',
+            'image'                 => 'mimes:jpeg,jpg,png,gif',
         ];
     }
 

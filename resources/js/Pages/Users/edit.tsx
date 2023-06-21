@@ -1,12 +1,11 @@
 import { useForm } from "@inertiajs/react";
 import { useEffect } from "react";
-import axios from "axios";
 
 export default function Edit({ customers, user }: any) {
     const { data, setData, errors, put } = useForm({
         customer_id: user.customer_id,
         email: user.email,
-        image: null,
+        image: user.image,
         password: user.password,
         first_name: user.first_name,
         last_name: user.last_name
@@ -25,33 +24,12 @@ export default function Edit({ customers, user }: any) {
             console.log("your error", error)
         }
     }
-    // async function handleSubmit(e: any) {
-    //     e.preventDefault();
-    //     try {
-    //         const formData = new FormData();
-    //         formData.append("customer_id", data.customer_id);
-    //         formData.append("email", data.email);
-    //         formData.append("password", data.password);
-    //         formData.append("first_name", data.first_name);
-    //         formData.append("last_name", data.last_name);
-    //         formData.append("image", data.image.toString());
-
-    //         const res = await axios.post(route("users.store"), formData, {
-    //             headers: {
-    //                 "Content-Type": "multipart/form-data",
-    //             },
-    //         });
-
-    //         console.log("res", res);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
 
 
     useEffect(() => {
         console.log("Data", data)
         console.log("errors", errors)
+        console.log("User image", user?.image)
     }, [data])
 
     return (
@@ -103,7 +81,7 @@ export default function Edit({ customers, user }: any) {
                         // value={data.image} 
                         required
                         onChange={(e: any) => setData('image', e.target.files[0])} />
-
+                       { data?.image ? <img src={`http://127.0.0.1:8000/images/User-Picture/${user?.image}`} alt="previous"  /> : null}
                 </div>
                 <div className="mb-1">
                     <label htmlFor="email" className="block mb-1">
@@ -116,7 +94,6 @@ export default function Edit({ customers, user }: any) {
                         value={data.password}
                         onChange={(e) => setData("password", e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded"
-                        required
                     />
                 </div>
                 <div className="mb-1">
