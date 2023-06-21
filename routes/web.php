@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
@@ -20,7 +21,9 @@ use Inertia\Inertia;
 // });
 
 Route::middleware(['guest'])->group(function () {
-    Route::view('/', 'auth/login');
+    Route::fallback(function () {
+        return view('auth.login');
+    });
 });
 
 Route::get('/dashboard', function () {
