@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\Warehouse;
 use App\Services\Warehouse\WarehouseService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class WarehouseController extends Controller
@@ -34,12 +35,8 @@ class WarehouseController extends Controller
      */
     public function create()
     {
-        if(auth()->user()->type == config('constants.actor.admin')) {
-            $customers=Customer::all();
-            return Inertia::render('Warehouses/create', ['customers'=> $customers]);
-        } else {
-            return redirect()->route('warehouses.index');
-        }
+        $customers=Customer::all();
+        return Inertia::render('Warehouses/create', ['customers'=> $customers]);
     }
 
     /**WarehouseController@stocks
@@ -47,10 +44,8 @@ class WarehouseController extends Controller
      */
     public function store(StoreWarehouse $request)
     {
-        if(auth()->user()->type == config('constants.actor.admin')) {
-            $createCustomer = $this->warehouseService->create($request);
-            return redirect()->route('warehouses.index');
-        }
+        $createCustomer = $this->warehouseService->create($request);
+        return redirect()->route('warehouses.index');
     }
 
     /**
@@ -58,10 +53,8 @@ class WarehouseController extends Controller
      */
     public function show(string $id)
     {
-        if(auth()->user()->type == config('constants.actor.admin')) {
-            $warehouse = Warehouse::find($id);
-            return view('warehouses.show',compact('warehouse'));
-        }
+        $warehouse = Warehouse::find($id);
+        return view('warehouses.show',compact('warehouse'));
     }
 
     /**
@@ -69,12 +62,9 @@ class WarehouseController extends Controller
      */
     public function edit(string $id)
     {
-
-        if(auth()->user()->type == config('constants.actor.admin')) {
-            $warehouse = $this->warehouseService->find($id);
-            $customers = Customer::all();
-            return Inertia::render('Warehouses/edit',compact('warehouse', 'customers'));
-        }
+        $warehouse = $this->warehouseService->find($id);
+        $customers = Customer::all();
+        return Inertia::render('Warehouses/edit',compact('warehouse', 'customers'));  
     }
 
     /**
@@ -82,13 +72,8 @@ class WarehouseController extends Controller
      */
     public function update(UpdateWarehouse $request, string $id)
     {
-
-        if(auth()->user()->type == config('constants.actor.admin')) {
-            $updateWarehouse = $this->warehouseService->update($request, $id);
-            return redirect()->route('warehouses.index');
-        } else {
-            return redirect()->route('warehouses.index');
-        }
+        $updateWarehouse = $this->warehouseService->update($request, $id);
+        return redirect()->route('warehouses.index');
     }
 
     /**
@@ -96,18 +81,21 @@ class WarehouseController extends Controller
      */
     public function destroy(string $id)
     {
-
-        if(auth()->user()->type == config('constants.actor.admin')) {
-            $this->warehouseService->destroy($id);
-            return redirect()->route('warehouses.index');
-        } else {
-            return redirect()->route('warehouses.index');
-        }
+        $this->warehouseService->destroy($id);
+        return redirect()->route('warehouses.index');
     }
 
     public function getAllStocks($id)
     {
         $allStocks=$this->warehouseService->getAllStocks($id);
         return Inertia::render('Warehouses/stock', ["allStocks" => $allStocks]);
+    }
+
+    public function customerWarehouses()
+    {
+        $user = Auth::user();
+        $customerWarehouses = Warehouse::where('company_id', $user->customer_id)->get();
+
+        return Inertia::render('Users.warehouse', ['customerWarehouses' => $customerWarehouses]);
     }
 }
