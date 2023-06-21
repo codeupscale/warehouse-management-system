@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\User;
 use App\Services\User\UserService;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -24,20 +25,22 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index',[
-            'users' => User::all(),
-            
-        ]);
+        $users = User::all();
+        return Inertia::render('User', ['users' => $users]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
+    // {
+    //     return view('users.create',[
+    //         'customers' => Customer::all(),
+    //     ]);
+    // }
     {
-        return view('users.create',[
-            'customers' => Customer::all(),
-        ]);
+        $customers = Customer::all();
+        return Inertia::render('Users/create', compact("customers"));
     }
 
     /**

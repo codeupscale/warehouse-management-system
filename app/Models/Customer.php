@@ -19,13 +19,13 @@ class Customer extends Model
         'email',
     ];
 
-    public function warehouse()
+    public function warehouses()
     {
-        return $this->belongsTo(Warehouse::class);
+        return $this->hasMany(Warehouse::class);
     }
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class, 'id');
     }
     public function stocks()
     {

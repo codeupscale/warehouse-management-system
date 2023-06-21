@@ -6,6 +6,8 @@ use App\Http\Requests\StockItem\StoreStockItem;
 use App\Http\Requests\StockItem\UpdateStockItem;
 use App\Services\StockItem\StockItemService;
 use Inertia\Inertia;
+use App\Models\StockItem;
+use App\Models\Stock;
 
 class StockItemController extends Controller
 {
@@ -21,8 +23,8 @@ class StockItemController extends Controller
      */
     public function index()
     {
-        $stockItems = $this->stockItemService->index();
-        return Inertia::render('StockItems', ['stockItems' => $stockItems]);
+        $stockItems = StockItem::with("stock")->get();
+        return Inertia::render('StockItems/index', ['stockItems' => $stockItems]);
     }
 
     /**
@@ -30,7 +32,8 @@ class StockItemController extends Controller
      */
     public function create()
     {
-        return Inertia::render('StockItems/create');
+        $stocks = Stock::all();
+        return Inertia::render('StockItems/create',['stocks' => $stocks]);
     }
 
     /**
@@ -57,7 +60,8 @@ class StockItemController extends Controller
     public function edit(string $id)
     {
         $stockItem = $this->stockItemService->find($id);
-        return Inertia::render('Stocks/edit',['stockItem' => $stockItem]);
+        $stocks = Stock::all();
+        return Inertia::render('StockItems/edit',['stockItem' => $stockItem, 'stocks' => $stocks]);
     }
 
     /**

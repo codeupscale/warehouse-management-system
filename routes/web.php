@@ -18,7 +18,6 @@ use Inertia\Inertia;
 //         'phpVersion' => PHP_VERSION,
 //     ]);
 // });
-
 Route::view('/', 'auth/login');
 
 Route::get('/dashboard', function () {

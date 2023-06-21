@@ -24,7 +24,7 @@ class StoreUser extends FormRequest
         return [
             'first_name'            => 'required|string',
             'last_name'             => 'required|string',
-            'company_id'            => 'required|integer|exists:customers',
+            'customer_id'            => 'required|integer',
             'email'                 => 'required|email|unique:users',
             'password'              => 'required|string|min:8',
             'password_confirmation' => 'string|same:password',
@@ -41,8 +41,8 @@ class StoreUser extends FormRequest
             'email.unique'          => 'Email already taken',
             'password.required'     => 'Password is requied ans min length is 8',
             'image.required'        => 'Image is required',
-            'company_id.required'   => 'Company id is required',
-            'company_id.exists'     => 'Company id does not exist',
+            'customer_id.required'   => 'Customer id is required',
+            'customer_id.exists'     => 'Customer id does not exist',
            ];
     }
 }

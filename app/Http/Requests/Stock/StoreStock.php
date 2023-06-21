@@ -23,8 +23,8 @@ class StoreStock extends FormRequest
     {
         return [
             'name'  => 'required|string',
-            'customer_id'   => 'required|exists:customers',
-            'warehouse_id'  => 'required|exists:warehouses'
+            'customer_id'   => 'required|exists:customers,id',
+            'warehouse_id'  => 'required|exists:warehouses,id'
         ];
     }
 
