@@ -23,8 +23,8 @@ export default function EditCustomer({ customer }:any) {
 
     return (
         <>
-            <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
-                <div className="mb-1">
+            <form className="max-w-md mx-auto shadow-lg p-5 text-sm mt-6 h-full rounded" onSubmit={handleSubmit}>
+                <div className="mb-1 w-96">
                     <label htmlFor="customerName" className="block mb-1">
                         Customer Name
                     </label>
@@ -38,7 +38,7 @@ export default function EditCustomer({ customer }:any) {
                         required
                     />
                 </div>
-                <div className="mb-1">
+                <div className="mb-1 w-96">
                     <label htmlFor="street" className="block mb-1">
                         Street
                     </label>
@@ -52,7 +52,7 @@ export default function EditCustomer({ customer }:any) {
                         required
                     />
                 </div>
-                <div className="mb-1">
+                <div className="mb-1 w-96">
                     <label htmlFor="houseNo" className="block mb-1">
                         House No
                     </label>
@@ -66,7 +66,7 @@ export default function EditCustomer({ customer }:any) {
                         required
                     />
                 </div>
-                <div className="mb-1">
+                <div className="mb-1 w-96">
                     <label htmlFor="postalCode" className="block mb-1">
                         Postal Code
                     </label>
@@ -80,7 +80,7 @@ export default function EditCustomer({ customer }:any) {
                         required
                     />
                 </div>
-                <div className="mb-1">
+                <div className="mb-1 w-96">
                     <label htmlFor="city" className="block mb-1">
                         City
                     </label>
@@ -94,7 +94,7 @@ export default function EditCustomer({ customer }:any) {
                         required
                     />
                 </div>
-                <div className="mb-1">
+                <div className="mb-1 w-96">
                     <label htmlFor="country" className="block mb-1">
                         Country
                     </label>
@@ -108,7 +108,7 @@ export default function EditCustomer({ customer }:any) {
                         required
                     />
                 </div>
-                <div className="mb-1">
+                <div className="mb-1 w-96">
                     <label htmlFor="email" className="block mb-1">
                         Email
                     </label>
@@ -124,7 +124,7 @@ export default function EditCustomer({ customer }:any) {
                 </div>
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full mt-3"
                 >
                     Submit
                 </button>
