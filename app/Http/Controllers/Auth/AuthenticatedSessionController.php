@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
         } else if (auth()->user()->type == 'user') {
             return redirect()->route('customer.warehouses');
         } else {
-            return redirect()->route('warehouses.index');
+            return redirect('/');
         }
     }
 
