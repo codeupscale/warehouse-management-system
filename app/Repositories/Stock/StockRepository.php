@@ -3,6 +3,7 @@
 namespace App\Repositories\Stock;
 
 use App\Interfaces\Stock\StockInterface;
+use App\Models\StockItem;
 use App\Models\Stock;
 
 class StockRepository implements StockInterface
@@ -11,15 +12,17 @@ class StockRepository implements StockInterface
      * 
      */
     protected $stock;
+    protected $stockItem;
 
     /**
      * PostRepository constructor.
      *
      * 
      */
-    public function __construct(Stock $stock)
+    public function __construct(Stock $stock, StockItem $stockItem)
     {
         $this->stock = $stock;
+        $this->stockItem = $stockItem;
     }
 
     public function index()
@@ -50,5 +53,13 @@ class StockRepository implements StockInterface
     {
         return $this->stock::where('id', $id)->delete();
     }
+
+    public function getStockItems($id)
+    {
+        
+        $stockItems = $this->stockItem::where('stock_id',$id)->get();
+        return $stockItems;
+    }
+
 
 }

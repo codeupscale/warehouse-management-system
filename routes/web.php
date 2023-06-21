@@ -28,7 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('stocks',StockController::class);
     Route::resource('stockItems',StockItemController::class);
     Route::get('stockItems/takeout/{id}',[StockItemController::class,'itemTakeout'])->name('stockItem.takeout');
-    Route::get('/warehouses/{id}/stocks', [WarehouseController::class,'getAllStocks'])->name('warehouses.stock');
+    Route::get('/warehouse/{id}/stocks', [WarehouseController::class,'getAllStocks'])->name('warehouse.stocks');
+    Route::get('/stock/{id}/stockItems', [StockController::class,'getStockItems'])->name('stock.stockItems');
 
 });
 

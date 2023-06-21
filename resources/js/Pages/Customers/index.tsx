@@ -10,7 +10,7 @@ export default function Index({ customers }: any) {
         }
     }
     return (
-        <div className="bg-white w-4/5 h-screen">
+        <div className="bg-white w-4/5 h-screen mt-6 text-sm text-left">
             <div className="flex justify-end pt-2">
                 <button className="bg-indigo-400 text-white p-1">
                     <Link href={route('customers.create')}>Add Customer</Link>

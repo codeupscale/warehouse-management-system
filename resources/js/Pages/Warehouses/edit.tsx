@@ -16,8 +16,8 @@ export default function Edit({ warehouse, customers }: any) {
     }, [data])
     return (
         <>
-            <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
-                <div className="mb-1">
+            <form className="max-w-md mx-auto shadow-lg p-5 text-sm mt-6 h-full rounded" onSubmit={handleSubmit}>
+                <div className="mb-1 w-96">
                     <label htmlFor="street" className="block mb-1">
                         Warehouse name
                     </label>
@@ -31,7 +31,7 @@ export default function Edit({ warehouse, customers }: any) {
                         required
                     />
                 </div>
-                <div className="mb-1">
+                <div className="mb-1 w-96">
                     <select
                         name="customer_id"
                         id="customerName"
@@ -50,7 +50,7 @@ export default function Edit({ warehouse, customers }: any) {
                 </div>
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full mt-3"
                 >
                     Submit
                 </button>
