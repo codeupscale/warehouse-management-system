@@ -22,7 +22,7 @@ class StockItemController extends Controller
     public function index()
     {
         $stockItems = $this->stockItemService->index();
-        return Inertia::render('Customer', ['stockItems' => $stockItems]);
+        return Inertia::render('StockItems', ['stockItems' => $stockItems]);
     }
 
     /**
@@ -75,7 +75,7 @@ class StockItemController extends Controller
     public function destroy(string $id)
     {
         $this->stockItemService->destroy($id);
-        return redirect()->route('stockItemss.index');
+        return redirect()->route('stockItems.index');
     }
 
     public function itemTakeout($id)

@@ -108,12 +108,14 @@ Class StockItemService
 
             if($stockItem->quantity <= $stockItem->minimum_quantity) {  
                 $email = User::where('type',config('constants.actor.admin'))->pluck('email')->first();
-                $content = [
-                    'body'      => $stockItem->name . ' has reached its minimum quantity.',
-                ];
-                Mail::send('mail.itemMinimumQuantity', $content, function($message) use($email){
-                    $message->to($email)->subject('Item Reaches Minimum Quantity Notification');
-                });
+                if(isset($email)) {
+                    $content = [
+                        'body'      => $stockItem->name . ' has reached its minimum quantity.',
+                    ];
+                    Mail::send('mail.itemMinimumQuantity', $content, function($message) use($email){
+                        $message->to($email)->subject('Item Reaches Minimum Quantity Notification');
+                    });
+                }
 
             }
             $email = $stock->customer->email;
