@@ -10,7 +10,6 @@ export default function Index({ stockItems }: any) {
 
     return (
         <>
-            <Sidebar />
             <div className="bg-white w-4/5 h-screen mt-6 text-sm text-left">
                 <table className="table-auto w-full">
                     <thead>
@@ -26,7 +25,7 @@ export default function Index({ stockItems }: any) {
                     <tbody>
                         {
                             stockItems?.map((item: any) => {
-                                console.log("Item", item?.customer_id)
+                                console.log("Item takeout", item?.stock)
                                 return (
                                     <tr key={item?.id}>
                                         <td className="border px-4 py-2">{item?.stock?.name}</td>

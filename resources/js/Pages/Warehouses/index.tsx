@@ -1,9 +1,10 @@
 import Sidebar from "@/Components/Sidebar";
+import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Inertia } from "@inertiajs/inertia";
 import { Link } from '@inertiajs/inertia-react';
 import { useEffect } from 'react';
 
-export default function Index({ warehouses }: any) {
+export default function Index(props: any) {
     function destroy(warehouseId: any) {
         if (confirm("Are you sure you want to delete this Warehouse?")) {
             Inertia.delete(route("warehouses.destroy", warehouseId));
@@ -11,13 +12,14 @@ export default function Index({ warehouses }: any) {
         }
     }
     useEffect(() => {
-        console.log("Warehouses", warehouses)
+        console.log("Warehouses", props.warehouses)
+        console.log("Props", props)
     }, [])
 
     return (
         <>
             <Sidebar />
-            <div className="bg-white w-4/5 h-screen mt-6 text-sm text-left">
+            <div className="bg-white p-3 w-full h-screen text-sm text-left">
                 <div className="flex justify-end pt-2">
                     <button className="bg-indigo-400 text-white p-1">
                         <Link href={route('warehouses.create')}>Add Warehouse</Link>
@@ -33,7 +35,7 @@ export default function Index({ warehouses }: any) {
                     </thead>
                     <tbody>
                         {
-                            warehouses?.map((warehouse: any) => {
+                            props.warehouses?.map((warehouse: any) => {
                                 console.log("customer", warehouse?.customer_id)
                                 return (
                                     <tr key={warehouse?.id}>

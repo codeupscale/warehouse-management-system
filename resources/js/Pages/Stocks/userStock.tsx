@@ -10,8 +10,7 @@ export default function UserStock({ allUserStocks }: any) {
 
     return (
         <>
-            <Sidebar />
-            <div className="bg-white w-4/5 h-screen mt-6 text-sm text-left">
+            <div className="bg-white p-3 w-full h-screen text-sm text-left">
                 <table className="table-auto w-full">
                     <thead>
                         <tr>
