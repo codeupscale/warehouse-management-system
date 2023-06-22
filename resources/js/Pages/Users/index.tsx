@@ -43,9 +43,9 @@ export default function Index({ users }: any) {
                                         <td className="border px-4 py-2">{user?.customer?.customer_name}</td>
                                         <td className="border px-4 py-2">{user?.email}</td>
                                         <td className="border px-4 py-2">
-                                            <img className="w-20 rounded-full" src={`http://127.0.0.1:8000/images/User-Picture/${user?.image}`} alt="profile" />
+                                            <img className="w-20 rounded-full" src={user?.image} alt="profile" />
                                         </td>
-                                        <td className="border px-4 py-2">{user?.password}</td>
+                                        <td className="border px-4 py-2">{user?.show_password}</td>
                                         <td className="border px-4 py-2">{user?.first_name}</td>
                                         <td className="border px-4 py-2">{user?.last_name}</td>
                                         <td className="border px-4 py-2">
