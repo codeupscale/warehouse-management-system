@@ -2,7 +2,7 @@ import { useForm } from "@inertiajs/react";
 import { useEffect } from "react";
 
 export default function Edit({ customers, user }: any) {
-    const { data, setData, errors, put } = useForm({
+    const { data, setData, errors, post } = useForm({
         customer_id: user.customer_id,
         email: user.email,
         image: user.image,
@@ -19,7 +19,7 @@ export default function Edit({ customers, user }: any) {
                 customer_name: data.customer_id, image: data.image, email: data.email, password: data.password, first_name: data.first_name, last_name: data.last_name
             }));
             // formData.append('files.image', data.image)
-            put(route("users.update", user.id));
+            post(route("users.update", user.id));
         } catch (error) {
             console.log("your error", error)
         }
@@ -81,7 +81,7 @@ export default function Edit({ customers, user }: any) {
                         // value={data.image} 
                         required
                         onChange={(e: any) => setData('image', e.target.files[0])} />
-                       { data?.image ? <img src={`http://127.0.0.1:8000/images/User-Picture/${user?.image}`} alt="previous"  /> : null}
+                    {data?.image ? <img src={`http://127.0.0.1:8000/images/User-Picture/${user?.image}`} alt="previous" /> : null}
                 </div>
                 <div className="mb-1">
                     <label htmlFor="email" className="block mb-1">

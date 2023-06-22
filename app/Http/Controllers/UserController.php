@@ -36,11 +36,6 @@ class UserController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    // {
-    //     return view('users.create',[
-    //         'customers' => Customer::all(),
-    //     ]);
-    // }
     {
         $customers = Customer::all();
         return Inertia::render('Users/create', compact("customers"));
@@ -68,10 +63,6 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    // {
-    //     $user = $this->userService->find($id);
-    //     return view('users.edit',compact('user'));
-    // }
     {
         $user = $this->userService->find($id);
         $customers = Customer::all();
