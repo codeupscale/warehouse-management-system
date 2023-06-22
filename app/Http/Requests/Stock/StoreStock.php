@@ -36,7 +36,7 @@ class StoreStock extends FormRequest
             'customer_id.required'   => 'Customer id is required',
             'warehouse_id.required'  => 'Warehouse id is required',
             'warehouse_id.exists'    => 'Warehouse id does not exist',
-            'customer_id'            => 'Customer id does not exist',
+            'customer_id.exists'     => 'Customer id does not exist',
         ];
     }
 }

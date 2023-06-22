@@ -104,7 +104,7 @@ Class StockItemService
         try {
             DB::beginTransaction();
             $stockItem = $this->stockItemInterface->find($id);
-            StockItem::where('id',$id)->decrement('quantity', 1);
+            $stockItem->decrement('quantity', 1);
             $stock = Stock::where('id',$stockItem->stock_id)->first();
             $warehouse_name = $stock->warehouse->name;
 

@@ -33,7 +33,7 @@ class UpdateStockItem extends FormRequest
     function messages()
     {
         return [
-            'stock_id.required'          => 'Stock id does not exists',
+            'stock_id.exists'          => 'Stock id does not exists',
             'name.string'                => 'Name must e string',
             'size.integer'               => 'Size must be integer',
             'minimum_quantity.integer'   => 'Minimum quantity must be integer',

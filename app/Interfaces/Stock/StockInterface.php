@@ -10,4 +10,6 @@ interface StockInterface {
     public function update($input,int $id);
     public function destroy(int $id);
     public function getStockItems($id);
+    public function getAllUserStocks($id);
+    public function userStockItems($id);
 }

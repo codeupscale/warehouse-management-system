@@ -27,7 +27,7 @@ class StockRepository implements StockInterface
 
     public function index()
     {
-        return $this->stock::all();
+        return $this->stock::with('warehouse','warehouse')->get();
     }
 
     public function create($input)
@@ -58,6 +58,21 @@ class StockRepository implements StockInterface
     {
         
         $stockItems = $this->stockItem::where('stock_id',$id)->get();
+
+        return $stockItems;
+    }
+
+    public function getAllUserStocks($id)
+    {
+        $allUserStocks = $this->stock::where('warehouse_id',$id)->get();
+
+        return $allUserStocks;
+    }
+
+    public function userStockItems($id)
+    {
+        $stockItems = $this->stockItem::where('stock_id',$id)->get();
+        
         return $stockItems;
     }
 
