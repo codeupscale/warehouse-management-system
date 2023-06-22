@@ -28,7 +28,7 @@ class StoreCustomer extends FormRequest
             'postal_code'   => 'required|string',
             'city'          => 'required|string',
             'country'       => 'required|string',
-            'email'         => 'required|string|exists:customers,email',
+            'email'         => 'required|string',
         ];
     }
 
@@ -42,7 +42,6 @@ class StoreCustomer extends FormRequest
             'city.required'             => 'City is required',
             'country.required'          => 'Country is required',
             'email.required'            => 'Email is required',
-            'email.exists'              => 'Email already taken',
         ];
     }
 }
