@@ -20,8 +20,8 @@ export default function Create({ stocks }: any) {
     }, [data])
     return (
         <>
-            <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
-                <div className="mb-1">
+            <form className="max-w-md mx-auto shadow-lg p-5 text-sm mt-6 h-full rounded" onSubmit={handleSubmit}>
+                <div className="mb-1 w-96">
                     <select
                         name="stock_id"
                         id="stock_id"
@@ -38,7 +38,7 @@ export default function Create({ stocks }: any) {
                         ))}
                     </select>
                 </div>
-                <div className="mb-1">
+                <div className="mb-1 w-96">
                     <label htmlFor="name" className="block mb-1">
                         Item name
                     </label>
@@ -52,7 +52,7 @@ export default function Create({ stocks }: any) {
                         required
                     />
                 </div>
-                <div className="mb-1">
+                <div className="mb-1 w-96">
                     <label htmlFor="name" className="block mb-1">
                         Size
                     </label>
@@ -66,7 +66,7 @@ export default function Create({ stocks }: any) {
                         required
                     />
                 </div>
-                <div className="mb-1">
+                <div className="mb-1 w-96">
                     <label htmlFor="name" className="block mb-1">
                         Minimum Quantity
                     </label>
@@ -80,7 +80,7 @@ export default function Create({ stocks }: any) {
                         required
                     />
                 </div>
-                <div className="mb-1">
+                <div className="mb-1 w-96">
                     <label htmlFor="name" className="block mb-1">
                         Quantity
                     </label>
@@ -96,7 +96,7 @@ export default function Create({ stocks }: any) {
                 </div>
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full mt-3"
                 >
                     Submit
                 </button>
