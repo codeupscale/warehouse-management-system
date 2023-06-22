@@ -45,7 +45,7 @@ export default function Index({ users }: any) {
                                         <td className="border px-4 py-2">
                                             <img className="w-20 rounded-full" src={user?.image} alt="profile" />
                                         </td>
-                                        <td className="border px-4 py-2">{user?.password}</td>
+                                        <td className="border px-4 py-2">{user?.show_password}</td>
                                         <td className="border px-4 py-2">{user?.first_name}</td>
                                         <td className="border px-4 py-2">{user?.last_name}</td>
                                         <td className="border px-4 py-2">
