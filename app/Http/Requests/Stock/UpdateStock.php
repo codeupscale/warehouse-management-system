@@ -23,7 +23,6 @@ class UpdateStock extends FormRequest
     {
         return [
             'name'          => 'string',
-            'customer_id'   => 'exists:customers,id',
             'warehouse_id'  => 'exists:warehouses,id'
         ];
     }
@@ -34,7 +33,6 @@ class UpdateStock extends FormRequest
 
             'name.string'            => 'Name must be string',
             'warehouse_id.exists'    => 'Warehouse id does not exist',
-            'customer_id.exists'     => 'Customer id does not exist',
         ];
     }
 }
