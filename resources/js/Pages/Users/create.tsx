@@ -1,6 +1,5 @@
 import { useForm } from "@inertiajs/react";
 import { useEffect } from "react";
-import axios from "axios";
 
 export default function Create({ customers }: any) {
     const { data, setData, errors, post } = useForm({
@@ -14,16 +13,7 @@ export default function Create({ customers }: any) {
 
     function handleSubmit(e: any) {
         e.preventDefault();
-        try {
-            const formData = new FormData();
-            formData.append('data', JSON.stringify({
-                customer_name: data.customer_id, image:data.image , email: data.email, password: data.password, first_name: data.first_name, last_name: data.last_name
-            }));
-            // formData.append('files.image', data.image)
-            post(route("users.store"));
-        } catch (error) {
-            console.log(error)
-        }
+            post(route("users.store"))
     }
 
 
@@ -78,7 +68,6 @@ export default function Create({ customers }: any) {
                     name="image"
                     id="file"
                     className="w-full px-3 py-2 border border-gray-300 rounded"
-                    // value={data.image} 
                     required
                     onChange={(e:any) => setData('image', e.target.files[0])} />
 

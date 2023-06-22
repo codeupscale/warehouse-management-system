@@ -3,38 +3,28 @@ import { useEffect } from "react";
 
 export default function Edit({ customers, user }: any) {
     const { data, setData, errors, put } = useForm({
-        customer_id: user.customer_id,
-        email: user.email,
-        image: user.image,
-        password: user.password,
-        first_name: user.first_name,
-        last_name: user.last_name
+        customer_id: user.customer_id || "",
+        email: user.email || "",
+        image: null,
+        password: user.password || "",
+        first_name: user.first_name || "",
+        last_name: user.last_name || ""
     });
-
+    
     function handleSubmit(e: any) {
         e.preventDefault();
-        try {
-            const formData = new FormData();
-            formData.append('data', JSON.stringify({
-                customer_name: data.customer_id, image: data.image, email: data.email, password: data.password, first_name: data.first_name, last_name: data.last_name
-            }));
-            // formData.append('files.image', data.image)
-            put(route("users.update", user.id));
-        } catch (error) {
-            console.log("your error", error)
-        }
+        put(route("users.update", user?.id ));
     }
 
 
     useEffect(() => {
         console.log("Data", data)
         console.log("errors", errors)
-        console.log("User image", user?.image)
     }, [data])
 
     return (
         <>
-            <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
+            <form className="max-w-md mx-auto shadow-lg p-5 text-sm mt-6 h-full rounded" onSubmit={handleSubmit}>
                 <div className="mb-1">
                     <label htmlFor="customerName" className="block mb-1">
                         Customer Name
@@ -48,7 +38,7 @@ export default function Edit({ customers, user }: any) {
                         required
                     >
                         <option value="">Select a customer</option>
-                        {customers?.map((customer: any) => (
+                        {customers.map((customer: any) => (
                             <option key={customer.id} value={customer.id}>
                                 {customer.customer_name}
                             </option>
@@ -70,18 +60,17 @@ export default function Edit({ customers, user }: any) {
                     />
                 </div>
                 <div className="mb-1">
-                    <label htmlFor="street" className="block mb-1">
+                    <label htmlFor="image" className="block mb-1">
                         Profile
                     </label>
                     <input
                         type="file"
                         name="image"
-                        id="file"
+                        id="image"
                         className="w-full px-3 py-2 border border-gray-300 rounded"
-                        // value={data.image} 
                         required
                         onChange={(e: any) => setData('image', e.target.files[0])} />
-                       { data?.image ? <img src={`http://127.0.0.1:8000/images/User-Picture/${user?.image}`} alt="previous"  /> : null}
+
                 </div>
                 <div className="mb-1">
                     <label htmlFor="email" className="block mb-1">
@@ -94,6 +83,7 @@ export default function Edit({ customers, user }: any) {
                         value={data.password}
                         onChange={(e) => setData("password", e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded"
+                        required
                     />
                 </div>
                 <div className="mb-1">
@@ -126,7 +116,7 @@ export default function Edit({ customers, user }: any) {
                 </div>
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full mt-3"
                 >
                     Submit
                 </button>

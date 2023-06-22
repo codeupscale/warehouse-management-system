@@ -47,7 +47,7 @@ export default function Index({ warehouses }: any) {
                                                 <Link href=''>
                                                     <button className="border bg-red-400 py-1 px-2 text-white text-sm" onClick={() => destroy(warehouse.id)}>Remove</button>
                                                 </Link>
-                                                <Link href={route('warehouse.stocks', warehouse.id)}>
+                                                <Link href={route('warehouses.stock', warehouse.id)}>
                                                     <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Stocks</button>
                                                 </Link>
                                             </div>
