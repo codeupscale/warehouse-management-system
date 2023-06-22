@@ -32,6 +32,7 @@ class CustomerController extends Controller
 
     public function store(StoreCustomer $request)
     {
+        dd($request->all());
         $this->customerService->create($request);
 
         return redirect()->route('customers.index');
