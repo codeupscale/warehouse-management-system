@@ -34,7 +34,7 @@ class UpdateStock extends FormRequest
 
             'name.string'            => 'Name must be string',
             'warehouse_id.exists'    => 'Warehouse id does not exist',
-            'customer_id'            => 'Customer id does not exist',
+            'customer_id.exists'     => 'Customer id does not exist',
         ];
     }
 }
