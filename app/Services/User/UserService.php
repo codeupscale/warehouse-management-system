@@ -72,7 +72,6 @@ Class UserService
             DB::beginTransaction();
             $input = $request->all();
             if(isset($input['image'])) {
-                dd("here");
                 $input['image'] = userImage($request->image, 'User-Picture');
             }
             $user = $this->userInterface->update($input, $id);
