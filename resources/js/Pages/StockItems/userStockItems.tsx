@@ -26,7 +26,7 @@ export default function Index({ stockItems }: any) {
                     <tbody>
                         {
                             stockItems?.map((item: any) => {
-                                console.log("Item", item?.customer_id)
+                                console.log("Item takeout", item?.stock)
                                 return (
                                     <tr key={item?.id}>
                                         <td className="border px-4 py-2">{item?.stock?.name}</td>
