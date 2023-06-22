@@ -81,7 +81,7 @@ export default function Edit({ customers, user }: any) {
                         // value={data.image} 
                         required
                         onChange={(e: any) => setData('image', e.target.files[0])} />
-                    {data?.image ? <img src={`http://127.0.0.1:8000/images/User-Picture/${user?.image}`} alt="previous" /> : null}
+                    {data?.image ? <img src={`/images/User-Picture/${user?.image}`} alt="previous" /> : null}
                 </div>
                 <div className="mb-1">
                     <label htmlFor="email" className="block mb-1">
