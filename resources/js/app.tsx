@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import Authenticated from './Layouts/AuthenticatedLayout';
+import { User } from './types';
 
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
@@ -14,22 +15,13 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
         root.render(
-            // <div className='flex' >
-            //     <Authenticated user={props.initialPage.props.auth}>
-            //         <div className='flex'>
-            //             <App {...props} />
-            //         </div>
-            //     </Authenticated>
-            // </div >
-            <>
-                {props.initialPage.props.auth !== '/login' && (
-                    <Authenticated user={props.initialPage.props.auth}>
-                        <div className='flex'>
-                            <App {...props} />
-                        </div>
-                    </Authenticated>
-                )}
-            </>
+            <div className='flex' >
+                <Authenticated user={props.initialPage.props.auth as User}>
+                    <div className='flex'>
+                        <App {...props} />
+                    </div>
+                </Authenticated>
+            </div >
         );
     },
     progress: {
