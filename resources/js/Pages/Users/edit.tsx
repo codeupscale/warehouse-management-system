@@ -78,8 +78,6 @@ export default function Edit({ customers, user }: any) {
                         name="image"
                         id="file"
                         className="w-full px-3 py-2 border border-gray-300 rounded"
-                        // value={data.image} 
-                        required
                         onChange={(e: any) => setData('image', e.target.files[0])} />
                     {data?.image ? <img src={`/images/User-Picture/${user?.image}`} alt="previous" /> : null}
                 </div>
