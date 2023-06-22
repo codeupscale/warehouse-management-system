@@ -29,6 +29,7 @@ export default function Index({ users }: any) {
                             <th className="px-4 py-2">Customer</th>
                             <th className="px-4 py-2">Username</th>
                             <th className="px-4 py-2">Profile</th>
+                            <th className="px-4 py-2">Password</th>
                             <th className="px-4 py-2">First name</th>
                             <th className="px-4 py-2">Last name</th>
                             <th className="px-4 py-2">Actions</th>
@@ -44,6 +45,7 @@ export default function Index({ users }: any) {
                                         <td className="border px-4 py-2">
                                             <img className="w-20 rounded-full" src={`http://127.0.0.1:8000/images/User-Picture/${user?.image}`} alt="profile" />
                                         </td>
+                                        <td className="border px-4 py-2">{user?.password}</td>
                                         <td className="border px-4 py-2">{user?.first_name}</td>
                                         <td className="border px-4 py-2">{user?.last_name}</td>
                                         <td className="border px-4 py-2">
