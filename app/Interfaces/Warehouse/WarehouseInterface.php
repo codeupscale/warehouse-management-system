@@ -10,4 +10,5 @@ interface WarehouseInterface {
     public function update($input,int $id);
     public function destroy(int $id);
     public function getAllStocks($id);
+    public function customerWarehouses();
 }

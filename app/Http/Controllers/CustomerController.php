@@ -20,7 +20,8 @@ class CustomerController extends Controller
     }
     public function index()
     {
-        $customers = Customer::all();
+        $customers = $this->customerService->index();
+
         return Inertia::render('Customers/index', ['customers' => $customers]);
     }
 
@@ -31,31 +32,36 @@ class CustomerController extends Controller
 
     public function store(StoreCustomer $request)
     {
-        $createCustomer = $this->customerService->create($request);
+        $this->customerService->create($request);
+
         return redirect()->route('customers.index');
     }
 
     public function show(string $id)
     {
-        $customer = Customer::find($id);
+        $customer = $this->customerService->find($id);
+
         return view('customers.show', ['customer' => $customer]);
     }
 
     public function edit(string $id)
     {
         $customer = $this->customerService->find($id);
+
         return Inertia::render('Customers/edit',compact('customer'));
     }
 
     public function update(UpdateCustomer $request, string $id)
     {
-        $updateCustomer = $this->customerService->update($request, $id);
+        $this->customerService->update($request, $id);
+
         return redirect()->route('customers.index');
     }
 
     public function destroy(string $id)
     {
         $this->customerService->destroy($id);
+        
         return redirect()->route('customers.index');
     }
 }

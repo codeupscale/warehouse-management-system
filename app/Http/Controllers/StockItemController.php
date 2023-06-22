@@ -8,14 +8,17 @@ use App\Services\StockItem\StockItemService;
 use Inertia\Inertia;
 use App\Models\StockItem;
 use App\Models\Stock;
+use App\Services\Stock\StockService;
 
 class StockItemController extends Controller
 {
-    protected $stockItemService;
+    protected StockItemService $stockItemService;
+    protected StockService $stockService;
 
-    function __construct(StockItemService $stockItemService)
+    function __construct(StockItemService $stockItemService, StockService $stockService)
     {
         $this->stockItemService = $stockItemService;
+        $this->stockService = $stockService;
     }
  
     /**
@@ -23,7 +26,8 @@ class StockItemController extends Controller
      */
     public function index()
     {
-        $stockItems = StockItem::with("stock")->get();
+        $stockItems = $this->stockItemService->index();
+        
         return Inertia::render('StockItems/index', ['stockItems' => $stockItems]);
     }
 
@@ -32,7 +36,8 @@ class StockItemController extends Controller
      */
     public function create()
     {
-        $stocks = Stock::all();
+        $stocks = $this->stockService->index();
+
         return Inertia::render('StockItems/create',['stocks' => $stocks]);
     }
 
@@ -41,7 +46,8 @@ class StockItemController extends Controller
      */
     public function store(StoreStockItem $request)
     {
-        $createStockItem = $this->stockItemService->create($request);
+        $this->stockItemService->create($request);
+
         return redirect()->route('stockItems.index');
     }
 
@@ -51,6 +57,7 @@ class StockItemController extends Controller
     public function show(string $id)
     {
         $stockItem = $this->stockItemService->find($id);
+
         return view('stockItems.show', ['stockItem' => $stockItem]);
     }
 
@@ -60,7 +67,7 @@ class StockItemController extends Controller
     public function edit(string $id)
     {
         $stockItem = $this->stockItemService->find($id);
-        $stocks = Stock::all();
+        $stocks = $this->stockService->index();
         return Inertia::render('StockItems/edit',['stockItem' => $stockItem, 'stocks' => $stocks]);
     }
 
@@ -69,7 +76,8 @@ class StockItemController extends Controller
      */
     public function update(UpdateStockItem $request, string $id)
     {
-        $updateStockItem = $this->stockItemService->update($request, $id);
+        $this->stockItemService->update($request, $id);
+
         return redirect()->route('stockItems.index');
     }
 
@@ -79,12 +87,14 @@ class StockItemController extends Controller
     public function destroy(string $id)
     {
         $this->stockItemService->destroy($id);
+
         return redirect()->route('stockItems.index');
     }
 
     public function itemTakeout($id)
     {
         $this->stockItemService->itemTakeout($id);
+
         return redirect()->route('customer.warehouses');
     }
 

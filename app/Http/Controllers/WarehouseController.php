@@ -6,6 +6,7 @@ use App\Http\Requests\Warehouse\StoreWarehouse;
 use App\Http\Requests\Warehouse\UpdateWarehouse;
 use App\Models\Customer;
 use App\Models\Warehouse;
+use App\Services\Customer\CustomerService;
 use App\Services\Warehouse\WarehouseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,11 +15,13 @@ use Inertia\Inertia;
 class WarehouseController extends Controller
 {
 
-    protected $warehouseService;
+    protected WarehouseService $warehouseService;
+    protected CustomerService $customerService;
 
-    function __construct(WarehouseService $warehouseService)
+    function __construct(WarehouseService $warehouseService, CustomerService $customerService)
     {
         $this->warehouseService = $warehouseService;
+        $this->customerService  = $customerService;
     }
 
     /**
@@ -26,7 +29,7 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        $warehouses = Warehouse::with("customer")->get();
+        $warehouses = $this->warehouseService->index();
         return Inertia::render('Warehouses/index', ['warehouses' => $warehouses]);
     }
 
@@ -35,7 +38,8 @@ class WarehouseController extends Controller
      */
     public function create()
     {
-        $customers=Customer::all();
+        $customers = $this->customerService->index();
+        
         return Inertia::render('Warehouses/create', ['customers'=> $customers]);
     }
 
@@ -44,7 +48,8 @@ class WarehouseController extends Controller
      */
     public function store(StoreWarehouse $request)
     {
-        $createCustomer = $this->warehouseService->create($request);
+        $this->warehouseService->create($request);
+
         return redirect()->route('warehouses.index');
     }
 
@@ -53,7 +58,8 @@ class WarehouseController extends Controller
      */
     public function show(string $id)
     {
-        $warehouse = Warehouse::find($id);
+        $warehouse = $this->warehouseService->find($id);
+
         return view('warehouses.show',compact('warehouse'));
     }
 
@@ -63,7 +69,7 @@ class WarehouseController extends Controller
     public function edit(string $id)
     {
         $warehouse = $this->warehouseService->find($id);
-        $customers = Customer::all();
+        $customers = $this->customerService->index();
         return Inertia::render('Warehouses/edit',compact('warehouse', 'customers'));  
     }
 
@@ -72,7 +78,8 @@ class WarehouseController extends Controller
      */
     public function update(UpdateWarehouse $request, string $id)
     {
-        $updateWarehouse = $this->warehouseService->update($request, $id);
+        $this->warehouseService->update($request, $id);
+
         return redirect()->route('warehouses.index');
     }
 
@@ -82,19 +89,21 @@ class WarehouseController extends Controller
     public function destroy(string $id)
     {
         $this->warehouseService->destroy($id);
+
         return redirect()->route('warehouses.index');
     }
 
     public function getAllStocks($id)
     {
-        
-        $allStocks=$this->warehouseService->getAllStocks($id);
+        $allStocks = $this->warehouseService->getAllStocks($id);
+
         return Inertia::render('Warehouses/stock', ["allStocks" => $allStocks]);
     }
+
     public function customerWarehouses()
     {
-        $user = Auth::user();
-        $customerWarehouses = Warehouse::where('customer_id', $user->customer_id)->with('customer')->get();
+        
+        $customerWarehouses = $this->warehouseService->customerWarehouses();
         
         return Inertia::render('Users/warehouse', ['customerWarehouses' => $customerWarehouses]);
     }

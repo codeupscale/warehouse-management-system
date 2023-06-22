@@ -24,7 +24,7 @@ class StockItemRepository implements StockItemInterface
 
     public function index()
     {
-        return $this->stockItem::all();
+        return $this->stockItem::with('stock')->get();
     }
 
     public function create($input)
@@ -53,7 +53,8 @@ class StockItemRepository implements StockItemInterface
 
     public function itemTakeout($id)
     {
-        $stockItem = StockItem::findOrFail($id);
+        $stockItem = $this->stockItem::findOrFail($id);
+
         return $stockItem;
     }
 
