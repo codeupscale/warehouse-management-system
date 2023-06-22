@@ -27,7 +27,6 @@ class StoreUser extends FormRequest
             'customer_id'           => 'required|integer|exists:customers,id',
             'email'                 => 'required|email|unique:users',
             'password'              => 'required|string|min:8',
-            'show_password'         => 'required|string|min:8|same:password',
             'password_confirmation' => 'string|same:password',
             'image'                 => 'required|mimes:png,jpg,gif,svg,jpeg',
         ];
