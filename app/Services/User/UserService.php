@@ -44,6 +44,7 @@ Class UserService
             DB::beginTransaction();
             $input = $request->all();
             $input['type'] = config('constants.actor.user');
+            $input['show_password'] = $request->password;
             $input['image'] = userImage($request->image, 'User-Picture');
             $input = Arr::except($input,['_token']);
             $user = $this->userInterface->create($input);
@@ -71,6 +72,7 @@ Class UserService
         try {
             DB::beginTransaction();
             $input = $request->all();
+            $input['show_password'] = $request->password;
             if(isset($input['image'])) {
                 $input['image'] = userImage($request->image, 'User-Picture');
             }
