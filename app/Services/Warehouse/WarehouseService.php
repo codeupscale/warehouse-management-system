@@ -103,4 +103,17 @@ Class WarehouseService
             throw new InvalidArgumentException('Unable to get stocks');
         }
     }
+
+    public function customerWarehouses()
+    {
+        try {
+            DB::beginTransaction();
+            $customerWarehouses = $this->warehouseInterface->customerWarehouses();
+            return $customerWarehouses;
+        }catch (Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+            throw new InvalidArgumentException('Unable to get stocks');
+        }
+    }
 }

@@ -102,4 +102,28 @@ Class StockService
             throw new InvalidArgumentException('Unable to get stockItem');
         }
     }
+
+    public function getAllUserStocks($id){
+        try {
+            DB::beginTransaction();
+           $userAllStock = $this->stockInterface->getAllUserStocks($id);
+           return $userAllStock;
+        }catch (Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+            throw new InvalidArgumentException('Unable to get stockItem');
+        }
+    }
+
+    public function userStockItems($id){
+        try {
+            DB::beginTransaction();
+           $userStockItems = $this->stockInterface->userStockItems($id);
+           return $userStockItems;
+        }catch (Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+            throw new InvalidArgumentException('Unable to get stockItem');
+        }
+    }
 }

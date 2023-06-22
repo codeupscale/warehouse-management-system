@@ -5,6 +5,7 @@ namespace App\Repositories\Warehouse;
 use App\Interfaces\Warehouse\WarehouseInterface;
 use App\Models\Stock;
 use App\Models\Warehouse;
+use Illuminate\Support\Facades\Auth;
 
 class WarehouseRepository implements WarehouseInterface
 {
@@ -27,7 +28,7 @@ class WarehouseRepository implements WarehouseInterface
 
     public function index()
     {
-        return $this->warehouse::all();
+        return $this->warehouse::with('customer')->get();
     }
 
     public function create($input)
@@ -58,7 +59,15 @@ class WarehouseRepository implements WarehouseInterface
     {
         
         $allStocks = $this->stock::where('warehouse_id',$id)->get();
+        
         return $allStocks;
+    }
+
+    public function customerWarehouses()
+    {
+        $user = Auth::user();
+        $customerWarehouses = Warehouse::where('customer_id', $user->customer_id)->with('customer')->get();
+        return $customerWarehouses;
     }
 
 }
