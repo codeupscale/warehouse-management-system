@@ -1,7 +1,7 @@
 
 import Sidebar from "@/Components/Sidebar";
 import { Inertia } from "@inertiajs/inertia";
-import { Head, usePage, Link } from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/inertia-react';
 
 export default function Index({ customers }: any) {
     function destroy(customerId: any) {
@@ -13,7 +13,7 @@ export default function Index({ customers }: any) {
     return (
         <>
             <Sidebar />
-            <div className="bg-white w-4/5 h-screen mt-6 text-sm text-left">
+            <div className="bg-white p-3 w-full h-screen text-sm text-left">
                 <div className="flex justify-end pt-2">
                     <button className="bg-indigo-400 text-white p-1">
                         <Link href={route('customers.create')}>Add Customer</Link>

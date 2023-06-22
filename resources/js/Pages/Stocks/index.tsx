@@ -17,7 +17,7 @@ export default function Index({ stocks }: any) {
     return (
         <>
             <Sidebar />
-            <div className="bg-white w-4/5 h-screen">
+            <div className="bg-white p-3 w-full h-screen text-sm text-left">
                 <div className="flex justify-end pt-2">
                     <button className="bg-indigo-400 text-white p-1">
                         <Link href={route('stocks.create')}>Add Stock</Link>
