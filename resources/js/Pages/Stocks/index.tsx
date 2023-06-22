@@ -28,7 +28,6 @@ export default function Index({ stocks }: any) {
                         <tr>
                             <th className="px-4 py-2">Stock name</th>
                             <th className="px-4 py-2">Warehouse name</th>
-                            <th className="px-4 py-2">Customer name</th>
                             <th className="px-4 py-2">Actions</th>
                         </tr>
                     </thead>
@@ -40,7 +39,6 @@ export default function Index({ stocks }: any) {
                                     <tr key={stock?.id}>
                                         <td className="border px-4 py-2">{stock?.name}</td>
                                         <td className="border px-4 py-2">{stock?.warehouse?.name}</td>
-                                        <td className="border px-4 py-2">{stock?.customer?.customer_name}</td>
                                         <td className="border px-4 py-2">
                                             <div className="actions flex text-2xl">
                                                 <Link href={route('stocks.edit', stock.id)}>
@@ -49,9 +47,9 @@ export default function Index({ stocks }: any) {
                                                 <Link href=''>
                                                     <button className="border bg-red-400 py-1 px-2 text-white text-sm" onClick={() => destroy(stock.id)}>Remove</button>
                                                 </Link>
-                                                <Link href={route('stockItems.index')}>
+                                                {/* <Link href={route('stockItems.index')}>
                                                     <button className="border bg-blue-400 py-1 px-2 text-white text-sm">Stock Items</button>
-                                                </Link>
+                                                </Link> */}
                                             </div>
                                         </td>
                                     </tr>
