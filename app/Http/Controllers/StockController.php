@@ -34,9 +34,8 @@ class StockController extends Controller
 
     public function create()
     {
-        $customers = $this->customerService->index();
         $warehouses = $this->warehouseService->index();
-        return Inertia::render('Stocks/create', ['customers' => $customers, 'warehouses'=>$warehouses]);
+        return Inertia::render('Stocks/create', ['warehouses'=>$warehouses]);
     }
 
     public function store(StoreStock $request)
