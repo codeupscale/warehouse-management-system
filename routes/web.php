@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
@@ -18,7 +19,12 @@ use Inertia\Inertia;
 //         'phpVersion' => PHP_VERSION,
 //     ]);
 // });
-Route::view('/', 'auth/login');
+
+Route::middleware(['guest'])->group(function () {
+    Route::fallback(function () {
+        return view('auth.login');
+    });
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -42,17 +48,11 @@ Route::middleware(['auth','user-access:admin'])->group(function () {
 });
 
 Route::middleware(['auth','user-access:user'])->group(function () {
-    Route::get('items/takeout/{id}',[StockItemController::class,'itemTakeout'])->name('stockItem.takeout');
+    Route::post('items/takeout/{id}',[StockItemController::class,'itemTakeout'])->name('stockItem.takeout');
     Route::get('warehouses/index',[WarehouseController::class,'index'])->name('warehouses.user.index');
     Route::get('/customer/warehouses', [WarehouseController::class,'customerWarehouses'])->name('customer.warehouses');
     Route::get('/users/stock/{id}', [StockController::class,'getAllUserStocks'])->name('user.stock');
     Route::get('/users/stockItem/{id}', [StockController::class,'userStockItems'])->name('user.stockItem');
-
-
-
-
-
-
 
 });
 
