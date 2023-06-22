@@ -4,6 +4,7 @@ namespace App\Repositories\User;
 
 use App\Interfaces\User\UserInterface;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserRepository implements UserInterface
 {
@@ -24,7 +25,7 @@ class UserRepository implements UserInterface
 
     public function index()
     {
-        return $this->user::all();
+        return $this->user::with('customer')->where('id', '!=', Auth::id())->get();
     }
 
     public function create($input)

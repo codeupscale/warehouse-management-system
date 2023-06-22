@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with("customer")->get();
+        $users = $this->userService->index();
         return Inertia::render('Users/index', ['users' => $users]);
     }
 
