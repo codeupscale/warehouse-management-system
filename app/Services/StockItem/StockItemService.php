@@ -120,8 +120,7 @@ Class StockItemService
                 }
 
             }
-
-            $email = $stock->customer->email;
+            $email = $stock->warehouse->customer->email;
             $full_name = Auth::user()->first_name.' '.Auth::user()->last_name;
             $content = [
                 'body'      => $full_name. ' has taken out this '. $stockItem->name .' from '. $warehouse_name .' warehouse and '. $stock->name .' stock',
