@@ -24,10 +24,9 @@ class UpdateUser extends FormRequest
         return [
             'first_name'            => 'string',
             'last_name'             => 'string',
-            'email'                 => 'email|unique:users',
+            'email'                 => 'email',
             'password'              => 'string|min:8',
             'password_confirmation' => 'string|same:password',
-            'image'                 => 'mimes:jpeg,jpg,png,gif',
         ];
     }
 
@@ -38,7 +37,6 @@ class UpdateUser extends FormRequest
             'last_name.string'      => 'Last name must be string',
             'email.unique'          => 'Email already taken',
             'password.required'     => 'Password is requied ans min length is 8',
-            'image.required'        => 'Image is required',
            ];
     }
 }
