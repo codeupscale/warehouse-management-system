@@ -41,7 +41,7 @@ class UpdateCustomer extends FormRequest
             'postal_code.string'      => 'Postal code must be string',
             'city.string'             => 'City must be string',
             'country.string'          => 'Country must be string',
-            'country.unique'          => 'Email is already taken',
+            'email.unique'            => 'Email is already taken',
         ];
     }
 }
