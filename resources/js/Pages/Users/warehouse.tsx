@@ -10,7 +10,7 @@ export default function Warehouse({ customerWarehouses }: any) {
 
     return (
         <>
-            <div className="bg-white w-4/5 h-screen mt-6 text-sm text-left">
+            <div className="bg-white w-full h-screen pt-4 text-sm text-left">
 
                 <table className="table-auto w-full text-left">
                     <thead>
