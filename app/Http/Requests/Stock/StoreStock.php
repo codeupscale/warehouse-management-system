@@ -32,8 +32,8 @@ class StoreStock extends FormRequest
         return [
 
             'name.required'          => 'Name is required',
-            'warehouse_id.required'  => 'Warehouse id is required',
-            'warehouse_id.exists'    => 'Warehouse id does not exist',
+            'warehouse_id.required'  => 'Please select a warehouse',
+            'warehouse_id.exists'    => 'Please select a warehouse',
         ];
     }
 }

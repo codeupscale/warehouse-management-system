@@ -31,7 +31,7 @@ class UpdateWarehouse extends FormRequest
     {
         return [
             'name.required' => 'Name must be string',
-            'customer_id.exists' => 'Customer id does not exists',
+            'customer_id.exists' => 'Please select a Customer',
         ];
 
     }

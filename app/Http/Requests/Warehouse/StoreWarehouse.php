@@ -31,8 +31,8 @@ class StoreWarehouse extends FormRequest
     {
         return [
             'name.required' => 'Name is required',
-            'customer_id.required' => 'Customer id is required',
-            'customer_id.exists' => 'Customer id does not exists',
+            'customer_id.required' => 'Please select a Customer',
+            'customer_id.exists' => 'Please select a Customer',
         ];
 
     }

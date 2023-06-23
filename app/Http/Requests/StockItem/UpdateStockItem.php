@@ -35,9 +35,9 @@ class UpdateStockItem extends FormRequest
         return [
             'stock_id.exists'          => 'Stock id does not exists',
             'name.string'                => 'Name must e string',
-            'size.integer'               => 'Size must be integer',
-            'minimum_quantity.integer'   => 'Minimum quantity must be integer',
-            'quantity.integer'           => 'Quantity must be integer',
+            'size.integer'               => 'Size must be number',
+            'minimum_quantity.integer'   => 'Minimum quantity must be number',
+            'quantity.integer'           => 'Quantity must be number',
         ];
     }
 }
