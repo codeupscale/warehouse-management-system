@@ -73,7 +73,7 @@ Class UserService
             DB::beginTransaction();
             $input = $request->all();
             $input['show_password'] = $request->password;
-            if(isset($input['image'])) {
+            if($request->hasFile('image')) {
                 $input['image'] = userImage($request->image, 'User-Picture');
             }
             $user = $this->userInterface->update($input, $id);

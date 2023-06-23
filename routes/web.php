@@ -37,8 +37,8 @@ Route::middleware(['auth','user-access:admin'])->group(function () {
 
     Route::resource('customers',CustomerController::class);
     Route::resource('warehouses', WarehouseController::class);
+    Route::post('api/users/{id}/update',[UserController::class,'update'])->name('users.update');
     Route::resource('users',UserController::class)->except('update');
-    Route::post('users/{id}/update',[UserController::class,'update'])->name('users.update');
     Route::resource('stocks',StockController::class);
     Route::resource('stockItems',StockItemController::class);
     Route::get('/warehouses/{id}/stocks', [WarehouseController::class,'getAllStocks'])->name('warehouses.stock');
