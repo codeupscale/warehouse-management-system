@@ -33,7 +33,7 @@ class UpdateUser extends FormRequest
             ],
             'password'              => 'string|min:8',
             'password_confirmation' => 'string|same:password',
-            'company_id'            => 'integer|exists:customers,id',
+            'company_id'            => 'required|integer|exists:customers,id',
         ];
     }
 
@@ -43,9 +43,10 @@ class UpdateUser extends FormRequest
             'first_name.string'     => 'First name must be string',
             'last_name.string'      => 'Last name must be string',
             'email.unique'          => 'Email already taken',
-            'password.required'     => 'Password is requied ans min length is 8',
-            'customer_id.exists'    => 'Customer id does not exist',
-            'customer_id.integer'   => 'Customer id must be integer',
+            'password.required'     => 'Password is requied and min length is 8',
+            'customer_id.exists'    => 'Please Select a Customer',
+            'customer_id.required'  => 'Please Select a Customer',
+            'customer_id.integer'   => 'Please Select a Customer',
            ];
     }
 }

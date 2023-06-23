@@ -35,15 +35,15 @@ class StoreStockItem extends FormRequest
     function messages()
     {
         return [
-            'stock_id.required'          => 'Stock id is required',
-            'stock_id.exists'            => 'Stock id does not exists',
+            'stock_id.required'          => 'Please select a stock',
+            'stock_id.exists'            => 'Please select a stock',
             'name.required'              => 'Name is required',
             'size.required'              => 'Size is required',
-            'size.integer'               => 'Size must be integer',
+            'size.integer'               => 'Size must be number',
             'minimum_quantity.required'  => 'Minimum quantity is required',
             'quantity.required'          => 'Quantity is required',
-            'minimum_quantity.integer'   => 'Minimum quantity must be integer',
-            'quantity.integer'           => 'Quantity must be integer',
+            'minimum_quantity.integer'   => 'Minimum quantity must be number',
+            'quantity.integer'           => 'Quantity must be number',
         ];
     }
 

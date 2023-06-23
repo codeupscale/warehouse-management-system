@@ -32,7 +32,7 @@ class UpdateStock extends FormRequest
         return [
 
             'name.string'            => 'Name must be string',
-            'warehouse_id.exists'    => 'Warehouse id does not exist',
+            'warehouse_id.exists'    => 'Please select a warehouse',
         ];
     }
 }

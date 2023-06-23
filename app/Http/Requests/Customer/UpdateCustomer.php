@@ -28,7 +28,7 @@ class UpdateCustomer extends FormRequest
             'postal_code'   => 'string',
             'city'          => 'string',
             'country'       => 'string',
-            'email'         => 'string',
+            'email'         => 'string|unique:customers,email',
         ];
     }
 
@@ -41,6 +41,7 @@ class UpdateCustomer extends FormRequest
             'postal_code.string'      => 'Postal code must be string',
             'city.string'             => 'City must be string',
             'country.string'          => 'Country must be string',
+            'country.unique'          => 'Email is already taken',
         ];
     }
 }

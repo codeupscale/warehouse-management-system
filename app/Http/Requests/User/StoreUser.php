@@ -41,8 +41,8 @@ class StoreUser extends FormRequest
             'email.unique'          => 'Email already taken',
             'password.required'     => 'Password is requied ans min length is 8',
             'image.required'        => 'Image is required',
-            'customer_id.required'  => 'Customer id is required',
-            'customer_id.exists'    => 'Customer id does not exist',
+            'customer_id.required'  => 'Please select a customer',
+            'customer_id.exists'    => 'Please select a customer',
            ];
     }
 }
