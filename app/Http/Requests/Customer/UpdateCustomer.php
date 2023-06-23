@@ -28,7 +28,7 @@ class UpdateCustomer extends FormRequest
             'postal_code'   => 'string',
             'city'          => 'string',
             'country'       => 'string',
-            'email'         => 'string|unique:customers,email',
+            'email'         => 'email|unique:customers,email',
         ];
     }
 

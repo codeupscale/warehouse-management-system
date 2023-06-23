@@ -28,7 +28,7 @@ class StoreCustomer extends FormRequest
             'postal_code'   => 'required|string',
             'city'          => 'required|string',
             'country'       => 'required|string',
-            'email'         => 'required|string|unique:customers,email',
+            'email'         => 'required|email|unique:customers,email',
         ];
     }
 
@@ -41,7 +41,7 @@ class StoreCustomer extends FormRequest
             'postal_code.required'      => 'Postal code is required',
             'city.required'             => 'City is required',
             'country.required'          => 'Country is required',
-            'email.required'            => 'Email is required',
+            'email.required'            => 'Email is required and must be valid email address',
             'email.unique'              => 'Email is already taken',
         ];
     }
