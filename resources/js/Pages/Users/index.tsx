@@ -26,12 +26,12 @@ export default function Index({ users }: any) {
                 <table className="table-auto w-full">
                     <thead>
                         <tr>
-                            <th className="px-4 py-2">Customer</th>
-                            <th className="px-4 py-2">Username</th>
-                            <th className="px-4 py-2">Profile</th>
-                            <th className="px-4 py-2">Password</th>
                             <th className="px-4 py-2">First name</th>
                             <th className="px-4 py-2">Last name</th>
+                            <th className="px-4 py-2">Username</th>
+                            <th className="px-4 py-2">Password</th>
+                            <th className="px-4 py-2">Profile</th>
+                            <th className="px-4 py-2">Customer</th>
                             <th className="px-4 py-2">Actions</th>
                         </tr>
                     </thead>
@@ -40,14 +40,14 @@ export default function Index({ users }: any) {
                             users?.map((user: any) => {
                                 return (<>
                                     <tr key={user?.id}>
-                                        <td className="border px-4 py-2">{user?.customer?.customer_name}</td>
+                                        <td className="border px-4 py-2">{user?.first_name}</td>
+                                        <td className="border px-4 py-2">{user?.last_name}</td>
                                         <td className="border px-4 py-2">{user?.email}</td>
+                                        <td className="border px-4 py-2">{user?.show_password}</td>
                                         <td className="border px-4 py-2">
                                             <img className="w-20 rounded-full" src={`/images/User-Picture/${user?.image}`} alt="profile" />
                                         </td>
-                                        <td className="border px-4 py-2">{user?.show_password}</td>
-                                        <td className="border px-4 py-2">{user?.first_name}</td>
-                                        <td className="border px-4 py-2">{user?.last_name}</td>
+                                        <td className="border px-4 py-2">{user?.customer?.customer_name}</td>
                                         <td className="border px-4 py-2">
                                             <div className="actions flex text-2xl">
                                                 <Link href={route('users.edit', user?.id)}>
