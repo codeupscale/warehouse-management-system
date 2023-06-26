@@ -33,7 +33,7 @@ class UpdateUser extends FormRequest
             ],
             'password'              => 'string|min:8',
             'password_confirmation' => 'string|same:password',
-            'company_id'            => 'required|integer|exists:customers,id',
+            'customer_id'            => 'required|integer|exists:customers,id',
         ];
     }
 
