@@ -73,6 +73,7 @@ Class UserService
             DB::beginTransaction();
             $input = $request->all();
             $input['show_password'] = $request->password;
+            dd($input['show_password']);
             if($request->hasFile('image')) {
                 $input['image'] = userImage($request->image, 'User-Picture');
             }

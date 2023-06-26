@@ -16,7 +16,7 @@ createInertiaApp({
         const root = createRoot(el);
         root.render(
             <div className='flex' >
-                <Authenticated user={props.initialPage.props.auth as User}>
+                <Authenticated user={props?.initialPage?.props?.auth.user as User}>
                     <div className='flex'>
                         <App {...props} />
                     </div>
