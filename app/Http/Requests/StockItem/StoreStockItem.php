@@ -24,7 +24,7 @@ class StoreStockItem extends FormRequest
     public function rules(): array
     {
         return [     
-            'stock_id'          => 'required|exists:stocks,id',
+            'warehouse_id'      => 'required|exists:warehouses,id',
             'name'              => 'required|string',
             'size'              => 'required|integer',
             'minimum_quantity'  => 'required|integer',
@@ -35,8 +35,8 @@ class StoreStockItem extends FormRequest
     function messages()
     {
         return [
-            'stock_id.required'          => 'Please select a stock',
-            'stock_id.exists'            => 'Please select a stock',
+            'warehouse_id.required'      => 'Please select a warehouse',
+            'warehouse_id.exists'        => 'Please select a warehouse',
             'name.required'              => 'Name is required',
             'size.required'              => 'Size is required',
             'size.integer'               => 'Size must be number',

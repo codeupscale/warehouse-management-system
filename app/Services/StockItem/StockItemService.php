@@ -6,6 +6,7 @@ use App\Interfaces\StockItem\StockItemInterface;
 use App\Models\Stock;
 use App\Models\StockItem;
 use App\Models\User;
+use App\Models\Warehouse;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -99,14 +100,26 @@ Class StockItemService
         }
     }
 
+    public function userStockItems($id){
+        try {
+            DB::beginTransaction();
+           $userStockItems = $this->stockItemInterface->userStockItems($id);
+           return $userStockItems;
+        }catch (Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+            throw new InvalidArgumentException('Unable to get stockItem');
+        }
+    }
+
     public function itemTakeout($id)
     {
         try {
             DB::beginTransaction();
             $stockItem = $this->stockItemInterface->find($id);
             $stockItem->decrement('quantity', 1);
-            $stock = Stock::where('id',$stockItem->stock_id)->first();
-            $warehouse_name = $stock->warehouse->name;
+            $stockItem = Warehouse::where('id',$stockItem->warehouse_id)->first();
+            $warehouse_name = $stockItem->warehouse->name;
 
             if($stockItem->quantity <= $stockItem->minimum_quantity) {  
                 $email = User::where('type',config('constants.actor.admin'))->pluck('email')->first();
@@ -120,10 +133,10 @@ Class StockItemService
                 }
 
             }
-            $email = $stock->warehouse->customer->email;
+            $email = $stockItem->warehouse->customer->email;
             $full_name = Auth::user()->first_name.' '.Auth::user()->last_name;
             $content = [
-                'body'      => $full_name. ' has taken out this '. $stockItem->name .' from '. $warehouse_name .' warehouse and '. $stock->name .' stock',
+                'body'      => $full_name. ' has taken out this '. $stockItem->name .' from '. $warehouse_name .' warehouse and '. $stockItem->name .' stock',
             ];
             Mail::send('mail.takeoutItemEmail', $content, function($message) use($email){
                 $message->to($email)->subject('Item Takeout Notification');

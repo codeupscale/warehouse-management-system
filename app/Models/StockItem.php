@@ -11,17 +11,15 @@ class StockItem extends Model
 
     protected $fillable = [
         'warehouse_id',
-        'customer_id',
-        'stock_id',
         'name',
         'size',
         'minimum_quantity',
         'quantity',
     ];
 
-    public function stock()
+    public function warehouse()
     {
-        return $this->belongsTo(Stock::class);
+        return $this->belongsTo(Warehouse::class);
     }
 
 }
