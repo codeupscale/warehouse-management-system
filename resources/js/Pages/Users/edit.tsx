@@ -69,7 +69,6 @@ export default function Edit({ customers, user }: any) {
                         value={data.email}
                         onChange={(e) => setData("email", e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded"
-                        required
                     />
                     {
                         errors && <span className="text-red-500">{errors?.email}</span>
