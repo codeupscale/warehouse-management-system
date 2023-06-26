@@ -1,9 +1,10 @@
 import Sidebar from "@/Components/Sidebar";
 import { Inertia } from "@inertiajs/inertia";
 import { Head, usePage, Link } from '@inertiajs/inertia-react';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Index({ users }: any) {
+    const [showPasswords, setShowPasswords] = useState<{ [key: number]: boolean }>({});
     function destroy(userId: any) {
         if (confirm("Are you sure you want to delete this user?")) {
             Inertia.delete(route("users.destroy", userId));
@@ -13,6 +14,13 @@ export default function Index({ users }: any) {
     useEffect(() => {
         console.log("Users", users)
     }, [])
+
+    const togglePassword = (userId: number) => {
+        setShowPasswords((prevState) => ({
+            ...prevState,
+            [userId]: !prevState[userId],
+        }));
+    };
 
     return (
         <>
@@ -38,12 +46,23 @@ export default function Index({ users }: any) {
                     <tbody>
                         {
                             users?.map((user: any) => {
+                                const isPasswordVisible = showPasswords[user?.id] || false;
                                 return (<>
                                     <tr key={user?.id}>
                                         <td className="border px-4 py-2">{user?.first_name}</td>
                                         <td className="border px-4 py-2">{user?.last_name}</td>
                                         <td className="border px-4 py-2">{user?.email}</td>
-                                        <td className="border px-4 py-2">{user?.show_password}</td>
+                                        <td className="border px-4 py-2 flex items-center justify-between">{isPasswordVisible ? (
+                                            user?.show_password
+                                        ) : (
+                                            <span>*******</span>
+                                        )}
+                                            <button
+                                                className="border bg-gray-400 py-1 px-2 text-white text-sm"
+                                                onClick={() => togglePassword(user?.id)}
+                                            >
+                                                {isPasswordVisible ? 'Hide' : 'Show'}
+                                            </button></td>
                                         <td className="border px-4 py-2">
                                             <img className="w-20 rounded-full" src={`/images/User-Picture/${user?.image}`} alt="profile" />
                                         </td>
