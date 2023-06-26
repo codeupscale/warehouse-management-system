@@ -50,7 +50,7 @@ Route::middleware(['auth','user-access:user'])->group(function () {
     Route::get('items/{id}',[StockItemController::class,'itemTakeout'])->name('stockItem.takeout');
     Route::get('warehouses/index',[WarehouseController::class,'index'])->name('warehouses.user.index');
     Route::get('/customer/warehouses', [WarehouseController::class,'customerWarehouses'])->name('customer.warehouses');
-    Route::get('/users/stock/{id}', [StockController::class,'getAllUserStocks'])->name('user.stock');
+    // Route::get('/users/stock/{id}', [StockController::class,'getAllUserStocks'])->name('user.stock');
     Route::get('/users/stockItem/{id}', [StockController::class,'userStockItems'])->name('user.stockItem');
 
 });

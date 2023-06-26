@@ -100,6 +100,18 @@ Class StockItemService
         }
     }
 
+    public function userStockItems($id){
+        try {
+            DB::beginTransaction();
+           $userStockItems = $this->stockItemInterface->userStockItems($id);
+           return $userStockItems;
+        }catch (Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+            throw new InvalidArgumentException('Unable to get stockItem');
+        }
+    }
+
     public function itemTakeout($id)
     {
         try {
