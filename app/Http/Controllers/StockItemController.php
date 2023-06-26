@@ -101,7 +101,7 @@ class StockItemController extends Controller
 
     public function userStockItems($id)
     {
-        $stockItems = StockItem::where('warehouse_id',$id)->get();
+        $stockItems = StockItem::where('warehouse_id',$id)->with('warehouse')->get();
         return Inertia::render('StockItems/userStockItems',['stockItems' => $stockItems]);
     }
 

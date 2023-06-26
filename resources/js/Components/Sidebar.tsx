@@ -30,12 +30,6 @@ export default function Sidebar() {
                                 <span>Warehouses</span>
                             </InertiaLink>
                         </li>
-                        <InertiaLink href="/stocks" className="flex items-center space-x-2 text-gray-300 hover:text-white">
-                            <svg className="h-5 w-5 fill-current" viewBox="0 0 20 20">
-                                <path d="M10 2C6.69161 2 4 4.69161 4 8C4 10.6812 5.39492 13.1647 7.61777 14.5581L8.38197 14.9119C9.24705 15.2387 10.2529 15.2387 11.118 14.9119L11.8822 14.5581C14.1051 13.1647 15.5 10.6812 15.5 8C15.5 4.69161 12.8084 2 9.5 2H10ZM10 3C12.4142 3 14.5 5.08579 14.5 7.5C14.5 9.91421 12.4142 12 10 12C7.58579 12 5.5 9.91421 5.5 7.5C5.5 5.08579 7.58579 3 10 3ZM10 4C7.51472 4 5.5 6.01472 5.5 8.5C5.5 10.9853 7.51472 13 10 13C12.4853 13 14.5 10.9853 14.5 8.5C14.5 6.01472 12.4853 4 10 4Z"></path>
-                            </svg>
-                            <span>Stocks</span>
-                        </InertiaLink>
                     </li>
                     <li>
                         <InertiaLink href="/stockItems" className="flex items-center space-x-2 text-gray-300 hover:text-white">
