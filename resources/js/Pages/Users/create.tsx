@@ -1,6 +1,7 @@
 import { useForm } from "@inertiajs/react";
 import { useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function Create({ customers }: any) {
     const { data, setData, errors, post } = useForm({
@@ -17,20 +18,22 @@ export default function Create({ customers }: any) {
         try {
             const formData = new FormData();
             formData.append('data', JSON.stringify({
-                customer_name: data.customer_id, image:data.image , email: data.email, password: data.password, first_name: data.first_name, last_name: data.last_name
+                customer_name: data.customer_id, image: data.image, email: data.email, password: data.password, first_name: data.first_name, last_name: data.last_name
             }));
             // formData.append('files.image', data.image)
-            post(route("users.store"));
+
+            post(route("users.store"))
         } catch (error) {
-            console.log(error)
+            console.log("here's error", errors)
         }
     }
+
 
 
     useEffect(() => {
         console.log("Data", data)
         console.log("errors", errors)
-    }, [data])
+    }, [data, errors])
 
     return (
         <>
@@ -54,6 +57,9 @@ export default function Create({ customers }: any) {
                             </option>
                         ))}
                     </select>
+                    {
+                        errors && <span className="text-red-500">{errors?.customer_id}</span>
+                    }
                 </div>
                 <div className="mb-1">
                     <label htmlFor="email" className="block mb-1">
@@ -68,20 +74,25 @@ export default function Create({ customers }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.email}</span>
+                    }
                 </div>
                 <div className="mb-1">
                     <label htmlFor="street" className="block mb-1">
                         Profile
                     </label>
-                    <input 
-                    type="file" 
-                    name="image"
-                    id="file"
-                    className="w-full px-3 py-2 border border-gray-300 rounded"
-                    // value={data.image} 
-                    required
-                    onChange={(e:any) => setData('image', e.target.files[0])} />
-
+                    <input
+                        type="file"
+                        name="image"
+                        id="file"
+                        className="w-full px-3 py-2 border border-gray-300 rounded"
+                        // value={data.image} 
+                        required
+                        onChange={(e: any) => setData('image', e.target.files[0])} />
+                    {
+                        errors && <span className="text-red-500">{errors?.image}</span>
+                    }
                 </div>
                 <div className="mb-1">
                     <label htmlFor="email" className="block mb-1">
@@ -96,6 +107,9 @@ export default function Create({ customers }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.password}</span>
+                    }
                 </div>
                 <div className="mb-1">
                     <label htmlFor="first_name" className="block mb-1">
@@ -110,6 +124,9 @@ export default function Create({ customers }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors&&<span className="text-red-500">{errors?.first_name}</span>
+                    }
                 </div>
                 <div className="mb-1">
                     <label htmlFor="last_name" className="block mb-1">
@@ -124,6 +141,9 @@ export default function Create({ customers }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors&&<span className="text-red-500">{errors?.last_name}</span>
+                    }
                 </div>
                 <button
                     type="submit"
