@@ -12,7 +12,7 @@ const appName = window.document.getElementsByTagName('title')[0]?.innerText || '
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.tsx`, import.meta.glob('./Pages/**/*.tsx')),
-    setup({ el, App, props }) {
+    setup({ el, App, props }:any) {
         const root = createRoot(el);
         root.render(
             <div className='flex' >
