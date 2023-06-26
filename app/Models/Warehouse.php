@@ -19,9 +19,9 @@ class Warehouse extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function stock()
+    public function stockItems()
     {
-        return $this->hasMany(Stock::class);
+        return $this->hasMany(StockItem::class);
     }
 
 }
