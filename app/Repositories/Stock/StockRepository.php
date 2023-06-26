@@ -69,12 +69,5 @@ class StockRepository implements StockInterface
         return $allUserStocks;
     }
 
-    public function userStockItems($id)
-    {
-        $stockItems = $this->stockItem::where('stock_id',$id)->get();
-        
-        return $stockItems;
-    }
-
 
 }
