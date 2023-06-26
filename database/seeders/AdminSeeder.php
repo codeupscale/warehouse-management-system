@@ -17,9 +17,11 @@ class AdminSeeder extends Seeder
             try {
                 DB::beginTransaction();
                 User::create([
-                    'email' => 'admin@admin.com',
-                    'password' => bcrypt('12345678'),
-                    'type' => config('constants.actor.admin'),
+                    'first_name'    => 'Super',
+                    'last_name'     => 'Admin',
+                    'email'         => 'fatih@ariseven.de',
+                    'password'      => bcrypt('12345678'),
+                    'type'          => config('constants.actor.admin'),
                 ]);
     
                 DB::commit();
