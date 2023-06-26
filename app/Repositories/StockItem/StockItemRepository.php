@@ -24,7 +24,7 @@ class StockItemRepository implements StockItemInterface
 
     public function index()
     {
-        return $this->stockItem::with('stock')->get();
+        return $this->stockItem::with('warehouse')->get();
     }
 
     public function create($input)

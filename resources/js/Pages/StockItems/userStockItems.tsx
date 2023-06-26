@@ -10,11 +10,11 @@ export default function Index({ stockItems }: any) {
 
     return (
         <>
-            <div className="bg-white w-4/5 h-screen mt-6 text-sm text-left">
+            <div className="bg-white w-full h-screen pt-4 text-sm text-left">
                 <table className="table-auto w-full">
                     <thead>
                         <tr>
-                            <th className="px-4 py-2">Stock name</th>
+                            <th className="px-4 py-2">Warehouse name</th>
                             <th className="px-4 py-2">Item Name</th>
                             <th className="px-4 py-2">Size</th>
                             <th className="px-4 py-2">Minimum Quantity</th>
@@ -28,7 +28,7 @@ export default function Index({ stockItems }: any) {
                                 console.log("Item takeout", item?.stock)
                                 return (
                                     <tr key={item?.id}>
-                                        <td className="border px-4 py-2">{item?.stock?.name}</td>
+                                        <td className="border px-4 py-2">{item?.warehouse?.name}</td>
                                         <td className="border px-4 py-2">{item?.name}</td>
                                         <td className="border px-4 py-2">{item?.size}</td>
                                         <td className="border px-4 py-2">{item?.minimum_quantity}</td>

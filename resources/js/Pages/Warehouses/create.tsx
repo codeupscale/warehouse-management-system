@@ -1,6 +1,6 @@
 import { useForm } from "@inertiajs/react";
 import { useEffect, useState } from "react";
-export default function Create({ customers }: any) {
+export default function Create({ customers, warehouses }: any) {
     const { data, setData, errors, post } = useForm({
         name: "",
         customer_id: ""
@@ -14,6 +14,7 @@ export default function Create({ customers }: any) {
         console.log("Data", data)
         console.log("errors", errors)
         console.log("Customers", customers)
+        console.log("Warehouses", warehouses)
     }, [data])
     return (
         <>

@@ -30,8 +30,8 @@ export default function Warehouse({ customerWarehouses }: any) {
                                         <td className="border px-4 py-2">{warehouse?.customer?.customer_name}</td>
                                         <td className="border px-4 py-2">
                                             <div className="actions flex text-2xl">
-                                                <Link href={route('user.stock', warehouse.id)}>
-                                                    <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Stocks</button>
+                                                <Link href={route('user.stockItem', warehouse.id)}>
+                                                    <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Items</button>
                                                 </Link>
                                             </div>
                                         </td>
