@@ -22,7 +22,7 @@ class UpdateStockItem extends FormRequest
     public function rules(): array
     {
         return [      
-            'stock_id'          => 'exists:stocks,id',
+            'warehouse_id'      => 'exists:warehouses,id',
             'name'              => 'string',
             'size'              => 'integer',
             'minimum_quantity'  => 'integer',
@@ -33,7 +33,7 @@ class UpdateStockItem extends FormRequest
     function messages()
     {
         return [
-            'stock_id.exists'          => 'Stock id does not exists',
+            'warehouse_id.exists'        => 'Please select a warehouse',
             'name.string'                => 'Name must e string',
             'size.integer'               => 'Size must be number',
             'minimum_quantity.integer'   => 'Minimum quantity must be number',

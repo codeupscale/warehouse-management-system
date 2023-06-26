@@ -93,11 +93,11 @@ class WarehouseController extends Controller
         return redirect()->route('warehouses.index');
     }
 
-    public function getAllStocks($id)
+    public function getAllStockItems($id)
     {
-        $allStocks = $this->warehouseService->getAllStocks($id);
+        $allItems = $this->warehouseService->getAllStockItems($id);
 
-        return Inertia::render('Warehouses/stock', ["allStocks" => $allStocks]);
+        return Inertia::render('Warehouses/stockItems', ["allItems" => $allItems]);
     }
 
     public function customerWarehouses()

@@ -91,16 +91,16 @@ Class WarehouseService
         }
     }
 
-    public function getAllStocks($id)
+    public function getAllStockItems($id)
     {
         try {
             DB::beginTransaction();
-            $allStocks = $this->warehouseInterface->getAllStocks($id);
-            return $allStocks;
+            $allStockItems = $this->warehouseInterface->getAllStockItems($id);
+            return $allStockItems;
         }catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to get stocks');
+            throw new InvalidArgumentException('Unable to get items');
         }
     }
 

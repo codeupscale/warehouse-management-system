@@ -39,10 +39,10 @@ Route::middleware(['auth','user-access:admin'])->group(function () {
     Route::resource('warehouses', WarehouseController::class);
     Route::post('users/{id}/update',[UserController::class,'update'])->name('users.update');
     Route::resource('users',UserController::class)->except('update');
-    Route::resource('stocks',StockController::class);
+    // Route::resource('stocks',StockController::class);
     Route::resource('stockItems',StockItemController::class);
-    Route::get('/warehouses/{id}/stocks', [WarehouseController::class,'getAllStocks'])->name('warehouses.stock');
-    Route::get('/warehouses/stock/{id}/stockItems', [StockController::class,'getStockItems'])->name('stock.stockItems');    
+    Route::get('/warehouses/{id}/stockItems', [WarehouseController::class,'getAllStockItems'])->name('warehouses.stockItems');
+    // Route::get('/warehouses/stock/{id}/stockItems', [StockController::class,'getStockItems'])->name('stock.stockItems');    
 
 });
 

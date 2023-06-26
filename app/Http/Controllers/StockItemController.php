@@ -9,16 +9,17 @@ use Inertia\Inertia;
 use App\Models\StockItem;
 use App\Models\Stock;
 use App\Services\Stock\StockService;
+use App\Services\Warehouse\WarehouseService;
 
 class StockItemController extends Controller
 {
     protected StockItemService $stockItemService;
-    protected StockService $stockService;
+    protected WarehouseService $warehouseService;
 
-    function __construct(StockItemService $stockItemService, StockService $stockService)
+    function __construct(StockItemService $stockItemService, WarehouseService $warehouseService)
     {
         $this->stockItemService = $stockItemService;
-        $this->stockService = $stockService;
+        $this->warehouseService = $warehouseService;
     }
  
     /**
@@ -36,9 +37,9 @@ class StockItemController extends Controller
      */
     public function create()
     {
-        $stocks = $this->stockService->index();
+        $warehouses = $this->warehouseService->index();
 
-        return Inertia::render('StockItems/create',['stocks' => $stocks]);
+        return Inertia::render('StockItems/create',['warehouses' => $warehouses]);
     }
 
     /**
@@ -67,8 +68,8 @@ class StockItemController extends Controller
     public function edit(string $id)
     {
         $stockItem = $this->stockItemService->find($id);
-        $stocks = $this->stockService->index();
-        return Inertia::render('StockItems/edit',['stockItem' => $stockItem, 'stocks' => $stocks]);
+        $warehouses = $this->warehouseService->index();
+        return Inertia::render('StockItems/edit',['stockItem' => $stockItem, 'warehouses' => $warehouses]);
     }
 
     /**
@@ -96,6 +97,12 @@ class StockItemController extends Controller
         $this->stockItemService->itemTakeout($id);
 
         return redirect()->route('customer.warehouses');
+    }
+
+    public function userStockItems($id)
+    {
+        $stockItems = StockItem::where('warehouse_id',$id)->with('warehouses')->get();
+        return Inertia::render('StockItems/userStockItems',['stockItems' => $stockItems]);
     }
 
 }
