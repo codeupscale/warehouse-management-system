@@ -6,7 +6,7 @@ export default function Edit({ customers, user }: any) {
         customer_id: user.customer_id,
         email: user.email,
         image: user.image,
-        show_password: user.show_password,
+        password: user.password,
         first_name: user.first_name,
         last_name: user.last_name
     });
@@ -16,7 +16,7 @@ export default function Edit({ customers, user }: any) {
         try {
             const formData = new FormData();
             formData.append('data', JSON.stringify({
-                customer_name: data.customer_id, image: data.image, email: data.email, password: data.show_password, first_name: data.first_name, last_name: data.last_name
+                customer_name: data.customer_id, image: data.image, email: data.email, password: data.password, first_name: data.first_name, last_name: data.last_name
             }));
             // formData.append('files.image', data.image)
             post(route("users.update", user.id));
@@ -66,7 +66,6 @@ export default function Edit({ customers, user }: any) {
                         value={data.email}
                         onChange={(e) => setData("email", e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded"
-                        required
                     />
                 </div>
                 <div className="mb-1">
@@ -88,8 +87,8 @@ export default function Edit({ customers, user }: any) {
                         type="password"
                         id="password"
                         name="password"
-                        value={data.show_password}
-                        onChange={(e) => setData("show_password", e.target.value)}
+                        value={data.password}
+                        onChange={(e) => setData("password", e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                     />
                 </div>
