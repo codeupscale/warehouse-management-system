@@ -1,8 +1,6 @@
 import Sidebar from "@/Components/Sidebar";
-import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Inertia } from "@inertiajs/inertia";
 import { Link } from '@inertiajs/inertia-react';
-import { useEffect } from 'react';
 
 export default function Index(props: any) {
     function destroy(warehouseId: any) {
@@ -11,10 +9,6 @@ export default function Index(props: any) {
             console.log("Warehouse deleted with id", warehouseId)
         }
     }
-    useEffect(() => {
-        console.log("Warehouses", props.warehouses)
-        console.log("Props", props)
-    }, [])
 
     return (
         <>
