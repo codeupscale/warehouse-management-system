@@ -10,4 +10,5 @@ interface StockItemInterface {
     public function update($input,int $id);
     public function destroy(int $id);
     public function itemTakeout($id);
+    public function userStockItems($id);
 }

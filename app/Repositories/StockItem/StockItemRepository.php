@@ -65,4 +65,5 @@ class StockItemRepository implements StockItemInterface
         return $stockItems;
     }
 
+
 }
