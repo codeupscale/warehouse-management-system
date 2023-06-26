@@ -49,8 +49,8 @@ export default function Index(props: any) {
                                                 <Link href=''>
                                                     <button className="border bg-red-400 py-1 px-2 text-white text-sm" onClick={() => destroy(warehouse.id)}>Remove</button>
                                                 </Link>
-                                                <Link href={route('warehouses.stock', warehouse.id)}>
-                                                    <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Stocks</button>
+                                                <Link href={route('warehouses.stockItems', warehouse.id)}>
+                                                    <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Items</button>
                                                 </Link>
                                             </div>
                                         </td>

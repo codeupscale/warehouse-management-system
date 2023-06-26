@@ -1,8 +1,8 @@
 import { useForm } from "@inertiajs/react";
 import { useEffect } from "react";
-export default function Edit({ stocks, stockItem }: any) {
+export default function Edit({ warehouses, stockItem }: any) {
     const { data, setData, errors, put } = useForm({
-        stock_id: stockItem.stock_id,
+        warehouse_id: stockItem.warehouse_id,
         name: stockItem.name,
         size: stockItem.size,
         minimum_quantity: stockItem.minimum_quantity,
@@ -16,7 +16,7 @@ export default function Edit({ stocks, stockItem }: any) {
     useEffect(() => {
         console.log("Data", data)
         console.log("errors", errors)
-        console.log("Stocks", stocks)
+        console.log("Warehouse", warehouses)
     }, [data])
     return (
         <>
@@ -25,15 +25,15 @@ export default function Edit({ stocks, stockItem }: any) {
                     <select
                         name="stock_id"
                         id="stock_id"
-                        value={data.stock_id}
-                        onChange={(e) => setData("stock_id", e.target.value)}
+                        value={data.warehouse_id}
+                        onChange={(e) => setData("warehouse_id", e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     >
-                        <option value="">Select a Stock</option>
-                        {stocks?.map((stock: any) => (
-                            <option key={stock.id} value={stock.id}>
-                                {stock?.name}
+                        <option value="">Select a Warehouse</option>
+                        {warehouses?.map((warehouse: any) => (
+                            <option key={warehouse.id} value={warehouse.id}>
+                                {warehouse?.name}
                             </option>
                         ))}
                     </select>
