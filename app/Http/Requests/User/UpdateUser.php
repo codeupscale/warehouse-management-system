@@ -31,14 +31,9 @@ class UpdateUser extends FormRequest
                 'max:255',
                 Rule::unique('users')->ignore(request()->id),
             ],
-            'password' => [
-                'string',
-                'min:8',
-                Rule::unique('users')->ignore(request()->id),
-            ],
             'password'              => 'string|min:8',
             'password_confirmation' => 'string|same:password',
-            'company_id'            => 'required|integer|exists:customers,id',
+            'customer_id'            => 'required|integer|exists:customers,id',
         ];
     }
 

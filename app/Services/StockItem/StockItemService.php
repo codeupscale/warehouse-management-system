@@ -118,9 +118,8 @@ Class StockItemService
             DB::beginTransaction();
             $stockItem = $this->stockItemInterface->find($id);
             $stockItem->decrement('quantity', 1);
-            $stockItem = Warehouse::where('id',$stockItem->warehouse_id)->first();
-            $warehouse_name = $stockItem->warehouse->name;
-
+            $warehouse = Warehouse::where('id',$stockItem->warehouse_id)->first();
+            $warehouse_name = $warehouse->name;
             if($stockItem->quantity <= $stockItem->minimum_quantity) {  
                 $email = User::where('type',config('constants.actor.admin'))->pluck('email')->first();
                 if(isset($email)) {
@@ -136,12 +135,14 @@ Class StockItemService
             $email = $stockItem->warehouse->customer->email;
             $full_name = Auth::user()->first_name.' '.Auth::user()->last_name;
             $content = [
-                'body'      => $full_name. ' has taken out this '. $stockItem->name .' from '. $warehouse_name .' warehouse and '. $stockItem->name .' stock',
+                'body'      => $full_name. ' has taken out this '. $stockItem->name .' from '. $warehouse_name .' warehouse and '. $stockItem->name .' item',
             ];
             Mail::send('mail.takeoutItemEmail', $content, function($message) use($email){
                 $message->to($email)->subject('Item Takeout Notification');
             });
+            
             DB::commit();
+            return $stockItem;
         }catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
