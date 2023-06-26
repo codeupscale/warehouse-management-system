@@ -1,7 +1,7 @@
 import { useForm } from "@inertiajs/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-export default function Create({ customers }: any) {
+export default function Create({ customers, warehouses }: any) {
     const { data, setData, errors, post } = useForm({
         name: "",
         customer_id: ""
@@ -16,6 +16,12 @@ export default function Create({ customers }: any) {
             toast.error("Error")
         }
     }
+    useEffect(() => {
+        console.log("Data", data)
+        console.log("errors", errors)
+        console.log("Customers", customers)
+        console.log("Warehouses", warehouses)
+    }, [data])
     return (
         <>
             <form className="max-w-md mx-auto shadow-lg p-5 text-sm mt-6 h-full rounded" onSubmit={handleSubmit}>

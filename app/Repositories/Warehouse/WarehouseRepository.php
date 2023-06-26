@@ -3,7 +3,7 @@
 namespace App\Repositories\Warehouse;
 
 use App\Interfaces\Warehouse\WarehouseInterface;
-use App\Models\Stock;
+use App\Models\StockItem;
 use App\Models\Warehouse;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,17 +13,17 @@ class WarehouseRepository implements WarehouseInterface
      * 
      */
     protected $warehouse;
-    protected $stock;
+    protected StockItem $stockItem;
 
     /**
      * PostRepository constructor.
      *
      * 
      */
-    public function __construct(Warehouse $warehouse, Stock $stock)
+    public function __construct(Warehouse $warehouse, StockItem $stockItem)
     {
         $this->warehouse = $warehouse;
-        $this->stock = $stock;
+        $this->stockItem = $stockItem;
     }
 
     public function index()
@@ -55,10 +55,10 @@ class WarehouseRepository implements WarehouseInterface
         return $this->warehouse::where('id', $id)->delete();
     }
 
-    public function getAllStocks($id)
+    public function getAllStockItems($id)
     {
         
-        $allStocks = $this->stock::where('warehouse_id',$id)->get();
+        $allStocks = $this->stockItem::where('warehouse_id',$id)->get();
         
         return $allStocks;
     }

@@ -24,7 +24,7 @@ class StockItemRepository implements StockItemInterface
 
     public function index()
     {
-        return $this->stockItem::with('stock')->get();
+        return $this->stockItem::with('warehouse')->get();
     }
 
     public function create($input)
@@ -57,5 +57,13 @@ class StockItemRepository implements StockItemInterface
 
         return $stockItem;
     }
+
+    public function userStockItems($id)
+    {
+        $stockItems = $this->stockItem::where('warehouse_id',$id)->get();
+        
+        return $stockItems;
+    }
+
 
 }
