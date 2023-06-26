@@ -13,7 +13,7 @@ export default function Edit({ warehouse, customers }: any) {
     useEffect(() => {
         console.log("Data", data)
         console.log("errors", errors)
-    }, [data])
+    }, [data, errors])
     return (
         <>
             <form className="max-w-md mx-auto shadow-lg p-5 text-sm mt-6 h-full rounded" onSubmit={handleSubmit}>
@@ -30,6 +30,9 @@ export default function Edit({ warehouse, customers }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.name}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <select
@@ -47,6 +50,9 @@ export default function Edit({ warehouse, customers }: any) {
                             </option>
                         ))}
                     </select>
+                    {
+                        errors && <span className="text-red-500">{errors?.customer_id}</span>
+                    }
                 </div>
                 <button
                     type="submit"

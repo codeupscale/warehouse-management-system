@@ -54,6 +54,9 @@ export default function Edit({ customers, user }: any) {
                             </option>
                         ))}
                     </select>
+                    {
+                        errors && <span className="text-red-500">{errors?.customer_id}</span>
+                    }
                 </div>
                 <div className="mb-1">
                     <label htmlFor="email" className="block mb-1">
@@ -68,6 +71,9 @@ export default function Edit({ customers, user }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.email}</span>
+                    }
                 </div>
                 <div className="mb-1">
                     <label htmlFor="street" className="block mb-1">
@@ -80,6 +86,9 @@ export default function Edit({ customers, user }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         onChange={(e: any) => setData('image', e.target.files[0])} />
                     {data?.image ? <img src={`/images/User-Picture/${user?.image}`} alt="previous" /> : null}
+                    {
+                        errors && <span className="text-red-500">{errors?.image}</span>
+                    }
                 </div>
                 <div className="mb-1">
                     <label htmlFor="email" className="block mb-1">
@@ -93,6 +102,9 @@ export default function Edit({ customers, user }: any) {
                         onChange={(e) => setData("password", e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.password}</span>
+                    }
                 </div>
                 <div className="mb-1">
                     <label htmlFor="first_name" className="block mb-1">
@@ -107,6 +119,9 @@ export default function Edit({ customers, user }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.first_name}</span>
+                    }
                 </div>
                 <div className="mb-1">
                     <label htmlFor="last_name" className="block mb-1">
@@ -121,6 +136,9 @@ export default function Edit({ customers, user }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.last_name}</span>
+                    }
                 </div>
                 <button
                     type="submit"

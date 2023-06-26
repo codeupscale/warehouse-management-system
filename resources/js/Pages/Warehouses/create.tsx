@@ -1,5 +1,6 @@
 import { useForm } from "@inertiajs/react";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 export default function Create({ customers, warehouses }: any) {
     const { data, setData, errors, post } = useForm({
         name: "",
@@ -8,7 +9,12 @@ export default function Create({ customers, warehouses }: any) {
 
     function handleSubmit(e: any) {
         e.preventDefault();
-        post(route("warehouses.store"));
+        try {
+            post(route("warehouses.store"));
+            toast.success("Warehouse created successfully")
+        } catch (error) {
+            toast.error("Error")
+        }
     }
     useEffect(() => {
         console.log("Data", data)
@@ -32,6 +38,9 @@ export default function Create({ customers, warehouses }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.name}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <select
@@ -49,6 +58,9 @@ export default function Create({ customers, warehouses }: any) {
                             </option>
                         ))}
                     </select>
+                    {
+                        errors && <span className="text-red-500">{errors?.customer_id}</span>
+                    }
                 </div>
                 <button
                     type="submit"
