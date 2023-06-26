@@ -26,7 +26,7 @@ export default function Index({ stockItems }: any) {
                 <table className="table-auto w-full">
                     <thead>
                         <tr>
-                            <th className="px-4 py-2">Stock name</th>
+                            <th className="px-4 py-2">Warehouse name</th>
                             <th className="px-4 py-2">Item Name</th>
                             <th className="px-4 py-2">Size</th>
                             <th className="px-4 py-2">Minimum Quantity</th>
@@ -37,21 +37,21 @@ export default function Index({ stockItems }: any) {
                     <tbody>
                         {
                             stockItems?.map((item: any) => {
-                                console.log("Item", item?.customer_id)
+                                console.log("Item id", item?.id)
                                 return (
                                     <tr key={item?.id}>
-                                        <td className="border px-4 py-2">{item?.stock?.name}</td>
+                                        <td className="border px-4 py-2">{item?.warehouse?.name}</td>
                                         <td className="border px-4 py-2">{item?.name}</td>
                                         <td className="border px-4 py-2">{item?.size}</td>
                                         <td className="border px-4 py-2">{item?.minimum_quantity}</td>
                                         <td className="border px-4 py-2">{item?.quantity}</td>
                                         <td className="border px-4 py-2">
                                             <div className="actions flex text-2xl">
-                                                <Link href={route('stockItems.edit', item.id)}>
+                                                <Link href={route('stockItems.edit', item?.id)}>
                                                     <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Edit</button>
                                                 </Link>
                                                 <Link href=''>
-                                                    <button className="border bg-red-400 py-1 px-2 text-white text-sm" onClick={() => destroy(item.id)}>Remove</button>
+                                                    <button className="border bg-red-400 py-1 px-2 text-white text-sm" onClick={() => destroy(item?.id)}>Remove</button>
                                                 </Link>
                                             </div>
                                         </td>
