@@ -61,7 +61,6 @@ class CustomerController extends Controller
     public function destroy(string $id)
     {
         $this->customerService->destroy($id);
-        
         return redirect()->route('customers.index');
     }
 }

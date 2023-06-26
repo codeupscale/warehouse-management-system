@@ -81,11 +81,4 @@ class StockController extends Controller
 
         return Inertia::render('Stocks/stockItems', ["stockItems" => $stockItems]);
     }
-
-    public function getAllUserStocks($id)
-    {
-        $allUserStocks = $this->stockService->getAllUserStocks($id);
-
-        return Inertia::render('Stocks/userStock', ["allUserStocks" => $allUserStocks]);
-    }
 }
