@@ -17,7 +17,7 @@ export default function Create({ stocks }: any) {
         console.log("Data", data)
         console.log("errors", errors)
         console.log("Stocks", stocks)
-    }, [data])
+    }, [data, errors])
     return (
         <>
             <form className="max-w-md mx-auto shadow-lg p-5 text-sm mt-6 h-full rounded" onSubmit={handleSubmit}>
@@ -37,6 +37,9 @@ export default function Create({ stocks }: any) {
                             </option>
                         ))}
                     </select>
+                    {
+                        errors && <span className="text-red-500">{errors?.stock_id}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <label htmlFor="name" className="block mb-1">
@@ -51,6 +54,9 @@ export default function Create({ stocks }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.name}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <label htmlFor="name" className="block mb-1">
@@ -65,6 +71,9 @@ export default function Create({ stocks }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.size}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <label htmlFor="name" className="block mb-1">
@@ -79,6 +88,9 @@ export default function Create({ stocks }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.minimum_quantity}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <label htmlFor="name" className="block mb-1">
@@ -93,6 +105,9 @@ export default function Create({ stocks }: any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.quantity}</span>
+                    }
                 </div>
                 <button
                     type="submit"

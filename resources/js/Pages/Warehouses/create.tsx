@@ -10,13 +10,8 @@ export default function Create({ customers }: any) {
     function handleSubmit(e: any) {
         e.preventDefault();
         try {
-            if (!(data.customer_id && data.name)) {
-                toast.error(errors.name)
-            }
-            else {
-                post(route("warehouses.store"));
-                toast.success("Warehouse created successfully")
-            }
+            post(route("warehouses.store"));
+            toast.success("Warehouse created successfully")
         } catch (error) {
             toast.error("Error")
         }
@@ -35,8 +30,11 @@ export default function Create({ customers }: any) {
                         value={data.name}
                         onChange={(e) => setData("name", e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded"
-                    // required
+                        required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.name}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <select
@@ -45,7 +43,7 @@ export default function Create({ customers }: any) {
                         value={data.customer_id}
                         onChange={(e) => setData("customer_id", e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded"
-                    // required
+                        required
                     >
                         <option value="">Select a customer</option>
                         {customers?.map((customer: any) => (
@@ -54,6 +52,9 @@ export default function Create({ customers }: any) {
                             </option>
                         ))}
                     </select>
+                    {
+                        errors && <span className="text-red-500">{errors?.customer_id}</span>
+                    }
                 </div>
                 <button
                     type="submit"
