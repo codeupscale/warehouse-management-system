@@ -55,7 +55,7 @@ class WarehouseRepository implements WarehouseInterface
         return $this->warehouse::where('id', $id)->delete();
     }
 
-    public function getAllStockItems($id)
+    public function getAllItems($id)
     {
         
         $allStocks = $this->stockItem::where('warehouse_id',$id)->get();

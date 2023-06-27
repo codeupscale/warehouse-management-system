@@ -40,7 +40,7 @@ Route::middleware(['auth','user-access:admin'])->group(function () {
     Route::post('users/{id}/update',[UserController::class,'update'])->name('users.update');
     Route::resource('users',UserController::class)->except('update');
     Route::resource('stockItems',StockItemController::class);
-    Route::get('/warehouses/{id}/stockItems', [WarehouseController::class,'getAllStockItems'])->name('warehouses.stockItems');
+    Route::get('/warehouses/{id}/stockItems', [WarehouseController::class,'getAllItems'])->name('warehouses.stockItems');
 
 });
 

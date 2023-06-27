@@ -91,11 +91,11 @@ Class WarehouseService
         }
     }
 
-    public function getAllStockItems($id)
+    public function getAllItems($id)
     {
         try {
             DB::beginTransaction();
-            $allStockItems = $this->warehouseInterface->getAllStockItems($id);
+            $allStockItems = $this->warehouseInterface->getAllItems($id);
             return $allStockItems;
         }catch (Exception $e) {
             DB::rollBack();
