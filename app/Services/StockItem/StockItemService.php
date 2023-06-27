@@ -117,11 +117,9 @@ Class StockItemService
         try {
             DB::beginTransaction();
             $stockItem = $this->stockItemInterface->find($id);
-            // dd($stockItem);
             $stockItem->decrement('quantity', 1);
             DB::commit();
-            $warehouse = $stockItem->load('warehouse');
-            dd($stockItem->warehouse->name);
+            $stockItem->load('warehouse');
             if($stockItem->quantity <= $stockItem->minimum_quantity) {  
                 $email = User::where('type',config('constants.actor.admin'))->pluck('email')->first();
                 if(isset($email)) {
