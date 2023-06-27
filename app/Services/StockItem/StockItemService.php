@@ -135,7 +135,7 @@ Class StockItemService
             $email = $stockItem->warehouse->customer->email;
             $full_name = Auth::user()->full_name;
             $content = [
-                'body'      => $full_name. ' has taken out this '. dd($stockItem->name) .' from '. $stockItem->warehouse->name .' warehouse.',
+                'body'      => $full_name. ' has taken out this '. $stockItem->name .' item from '. $stockItem->warehouse->name .' warehouse.',
             ];
             Mail::send('mail.takeoutItemEmail', $content, function($message) use($email){
                 $message->to($email)->subject('Item Takeout Notification');
