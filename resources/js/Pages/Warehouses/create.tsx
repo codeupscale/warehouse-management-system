@@ -11,9 +11,8 @@ export default function Create({ customers, warehouses }: any) {
         e.preventDefault();
         try {
             post(route("warehouses.store"));
-            toast.success("Warehouse created successfully")
         } catch (error) {
-            toast.error("Error")
+            console.log(error)
         }
     }
     useEffect(() => {
