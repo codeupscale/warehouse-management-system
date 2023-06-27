@@ -35,9 +35,9 @@ export default function Index({ stockItems }: any) {
                                         <td className="border px-4 py-2">{item?.quantity}</td>
                                         <td className="border px-4 py-2">
                                             <div className="actions flex text-2xl">
-                                                <Link href={route('stockItem.takeout', item.id)}>
+                                                <form method="GET" action={route('stockItem.takeout', item.id)}>
                                                     <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Takeout</button>
-                                                </Link>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
