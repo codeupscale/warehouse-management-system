@@ -32,6 +32,7 @@
         "formik": "^2.4.2",
         "multiselect-react-dropdown": "^2.0.25",
         "react-icons": "^4.9.0",
-        "react-select": "^5.7.3"
+        "react-select": "^5.7.3",
+        "react-toastify": "^9.1.3"
     }
 }
