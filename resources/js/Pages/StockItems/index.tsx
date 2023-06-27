@@ -50,9 +50,9 @@ export default function Index({ stockItems }: any) {
                                                 <Link href={route('stockItems.edit', item?.id)}>
                                                     <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Edit</button>
                                                 </Link>
-                                                <Link href=''>
+                                                <div>
                                                     <button className="border bg-red-400 py-1 px-2 text-white text-sm" onClick={() => destroy(item?.id)}>Remove</button>
-                                                </Link>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
