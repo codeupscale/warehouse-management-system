@@ -20,3 +20,5 @@ yarn-error.log
 /.vscode
 composer.lock
 public/images
+package.json
+package-lock.json
