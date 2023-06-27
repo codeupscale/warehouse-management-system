@@ -26,7 +26,7 @@ export default function Authenticated({ user, header, children }) {
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
-                            <h1>{user?.first_name ? user?.first_name : "N/A"}</h1>
+                            <h1>{user?.first_name ? user?.first_name : "N/A"} {user?.last_name ? user?.last_name : "N/A"}</h1>
                             <div className="ml-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>

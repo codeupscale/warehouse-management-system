@@ -2,6 +2,7 @@ import Sidebar from "@/Components/Sidebar";
 import { Inertia } from "@inertiajs/inertia";
 import { Link } from '@inertiajs/inertia-react';
 import { useEffect } from 'react';
+import { toast } from "react-toastify";
 
 export default function Index({ stockItems }: any) {
     useEffect(() => {

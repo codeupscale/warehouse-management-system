@@ -96,7 +96,7 @@ class StockItemController extends Controller
     {
         $this->stockItemService->itemTakeout($id);
 
-        return redirect()->route('customer.warehouses');
+        return redirect()->back();
     }
 
     public function userStockItems($id)

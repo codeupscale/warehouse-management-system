@@ -63,6 +63,11 @@ class User extends Authenticatable
         );
     }
 
+    public function getFullNameAttribute()
+    {
+        $full_name = $this->first_name.' '.$this->last_name;
+        return $full_name;
+    }
 
     public function customer()
     {

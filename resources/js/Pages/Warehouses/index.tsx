@@ -40,9 +40,9 @@ export default function Index(props: any) {
                                                 <Link href={route('warehouses.edit', warehouse.id)}>
                                                     <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Edit</button>
                                                 </Link>
-                                                <Link href=''>
+                                                <div>
                                                     <button className="border bg-red-400 py-1 px-2 text-white text-sm" onClick={() => destroy(warehouse.id)}>Remove</button>
-                                                </Link>
+                                                </div>
                                                 <Link href={route('warehouses.stockItems', warehouse.id)}>
                                                     <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Items</button>
                                                 </Link>
