@@ -19,7 +19,7 @@ export default function EditCustomer({ customer }:any) {
         console.log('Data', data);
         console.log('Errors', errors);
         console.log("customer", customer)
-      }, [data]);
+      }, [data, errors]);
 
     return (
         <>
@@ -37,6 +37,9 @@ export default function EditCustomer({ customer }:any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.customer_name}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <label htmlFor="street" className="block mb-1">
@@ -51,6 +54,9 @@ export default function EditCustomer({ customer }:any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.street}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <label htmlFor="houseNo" className="block mb-1">
@@ -65,6 +71,9 @@ export default function EditCustomer({ customer }:any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.house_no}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <label htmlFor="postalCode" className="block mb-1">
@@ -79,6 +88,9 @@ export default function EditCustomer({ customer }:any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.postal_code}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <label htmlFor="city" className="block mb-1">
@@ -93,6 +105,9 @@ export default function EditCustomer({ customer }:any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.city}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <label htmlFor="country" className="block mb-1">
@@ -107,6 +122,9 @@ export default function EditCustomer({ customer }:any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.country}</span>
+                    }
                 </div>
                 <div className="mb-1 w-96">
                     <label htmlFor="email" className="block mb-1">
@@ -121,6 +139,9 @@ export default function EditCustomer({ customer }:any) {
                         className="w-full px-3 py-2 border border-gray-300 rounded"
                         required
                     />
+                    {
+                        errors && <span className="text-red-500">{errors?.email}</span>
+                    }
                 </div>
                 <button
                     type="submit"
