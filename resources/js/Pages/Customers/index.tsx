@@ -49,9 +49,10 @@ export default function Index({ customers }: any) {
                                                 <Link href={route('customers.edit', customer.id)}>
                                                     <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Edit</button>
                                                 </Link>
-                                                <Link href=''>
+                                                <div>
                                                     <button className="border bg-red-400 py-1 px-2 text-white text-sm" onClick={() => destroy(customer.id)}>Delete</button>
-                                                </Link>
+                                                </div>
+
                                             </div>
                                         </td>
                                     </tr>
