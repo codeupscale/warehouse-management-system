@@ -8,7 +8,7 @@ import { Link } from "@inertiajs/react";
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
-        console.log('mera user', user?.first_name)
+    console.log("mera user", user?.first_name);
     return (
         <div
             className="min-h-screen bg-gray-100"
@@ -26,7 +26,10 @@ export default function Authenticated({ user, header, children }) {
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
-                            <h1>{user?.first_name ? user?.first_name : "N/A"} {user?.last_name ? user?.last_name : "N/A"}</h1>
+                            <h1>
+                                {user?.first_name ? user?.first_name : "N/A"}{" "}
+                                {user?.last_name ? user?.last_name : "N/A"}
+                            </h1>
                             <div className="ml-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -54,11 +57,13 @@ export default function Authenticated({ user, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link
-                                            href={route("profile.edit")}
-                                        >
-                                            Profile
-                                        </Dropdown.Link>
+                                        {user?.email == "fatih@ariseven.de" || "admin@admin.com" && (
+                                            <Dropdown.Link
+                                                href={route("profile.edit")}
+                                            >
+                                                Profile
+                                            </Dropdown.Link>
+                                        )}
                                         <Dropdown.Link
                                             href={route("logout")}
                                             method="post"
