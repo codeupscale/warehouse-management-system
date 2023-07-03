@@ -57,7 +57,7 @@ export default function Authenticated({ user, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        {user?.email == "fatih@ariseven.de" || "admin@admin.com" && (
+                                        {user?.email == "fatih@ariseven.de" && (
                                             <Dropdown.Link
                                                 href={route("profile.edit")}
                                             >
