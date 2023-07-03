@@ -13,54 +13,64 @@ export default function Index({ customers }: any) {
     return (
         <>
             <Sidebar />
-            <div className="bg-white p-3 w-full h-screen text-sm text-left">
-                <div className="flex justify-end pt-2">
-                    <button className="bg-indigo-400 text-white p-1">
-                        <Link href={route('customers.create')}>Add Customer</Link>
-                    </button>
+            <div className="w-full px-4 pt-3 sm:px-6 lg:px-8">
+                <div className="sm:flex sm:items-center">
+                    <div className="sm:flex-auto">
+                        <h1 className="text-base font-semibold leading-6 text-gray-900">Customers</h1>
+                        <p className="mt-2 text-sm text-gray-700">A list of all the customers in your account including their name, street, and email etc.</p>
+                    </div>
+                    <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                        <button type="button" className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"><Link href={route('customers.create')}>Add Customer</Link></button>
+                    </div>
                 </div>
-                <table className="table-auto w-full">
-                    <thead>
-                        <tr>
-                            <th className="px-4 py-2">Customer name</th>
-                            <th className="px-4 py-2">Street</th>
-                            <th className="px-4 py-2">House no</th>
-                            <th className="px-4 py-2">Postal Code</th>
-                            <th className="px-4 py-2">City</th>
-                            <th className="px-4 py-2">Country</th>
-                            <th className="px-4 py-2">Email</th>
-                            <th className="px-4 py-2">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            customers?.map((customer: any) => {
-                                return (
-                                    <tr key={customer?.id}>
-                                        <td className="border px-4 py-2">{customer?.customer_name}</td>
-                                        <td className="border px-4 py-2">{customer?.street}</td>
-                                        <td className="border px-4 py-2">{customer?.house_no}</td>
-                                        <td className="border px-4 py-2">{customer?.postal_code}</td>
-                                        <td className="border px-4 py-2">{customer?.city}</td>
-                                        <td className="border px-4 py-2">{customer?.country}</td>
-                                        <td className="border px-4 py-2">{customer?.email}</td>
-                                        <td className="border px-4 py-2">
-                                            <div className="actions flex text-2xl">
-                                                <Link href={route('customers.edit', customer.id)}>
-                                                    <button className="border bg-gray-400 py-1 px-2 text-white text-sm">Edit</button>
-                                                </Link>
-                                                <div>
-                                                    <button className="border bg-red-400 py-1 px-2 text-white text-sm" onClick={() => destroy(customer.id)}>Delete</button>
-                                                </div>
+                <div className="mt-8 flow-root">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                            <table className="min-w-full divide-y divide-gray-300">
+                                <thead>
 
-                                            </div>
-                                        </td>
+                                    <tr>
+                                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Customer name</th>
+                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Street</th>
+                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">House no</th>
+                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Postal Code</th>
+                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">City</th>
+                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Country</th>
+                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
+                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                            Actions
+                                        </th>
                                     </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+                                </thead>
+                                <tbody className="divide-y divide-gray-200">
+                                    {
+                                        customers?.map((customer: any) => {
+                                            return (
+                                                <tr>
+                                                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{customer?.customer_name}</td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{customer?.street}</td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{customer?.house_no}</td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{customer?.postal_code}</td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{customer?.city}</td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{customer?.country}</td>
+                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{customer?.email}</td>
+                                                    <td className="flex items-center relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                                                        <Link href={route('customers.edit', customer.id)} className="text-indigo-600">
+                                                            Edit
+                                                        </Link>
+                                                        <div>
+                                                            <button className="py-1 px-2 text-red-600 text-sm" onClick={() => destroy(customer.id)}>Remove</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     )

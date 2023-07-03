@@ -2,45 +2,49 @@ import { InertiaLink } from '@inertiajs/inertia-react';
 
 export default function Sidebar() {
     return (
-        <div className="flex flex-col h-auto w-52 bg-gray-800 text-white">
-            <nav className="flex-1 px-4 py-6">
-                <ul className="space-y-2">
-                    <li>
-                        <InertiaLink href="/customers" className="flex items-center space-x-2 text-gray-300 hover:text-white">
-                            <svg className="h-5 w-5 fill-current" viewBox="0 0 20 20">
-                                <path d="M10 2C6.69161 2 4 4.69161 4 8C4 10.6812 5.39492 13.1647 7.61777 14.5581L8.38197 14.9119C9.24705 15.2387 10.2529 15.2387 11.118 14.9119L11.8822 14.5581C14.1051 13.1647 15.5 10.6812 15.5 8C15.5 4.69161 12.8084 2 9.5 2H10ZM10 3C12.4142 3 14.5 5.08579 14.5 7.5C14.5 9.91421 12.4142 12 10 12C7.58579 12 5.5 9.91421 5.5 7.5C5.5 5.08579 7.58579 3 10 3ZM10 4C7.51472 4 5.5 6.01472 5.5 8.5C5.5 10.9853 7.51472 13 10 13C12.4853 13 14.5 10.9853 14.5 8.5C14.5 6.01472 12.4853 4 10 4Z"></path>
-                            </svg>
-                            <span>Customers</span>
-                        </InertiaLink>
-                    </li>
-                    <li>
-                        <InertiaLink href="/users" className="flex items-center space-x-2 text-gray-300 hover:text-white">
-                            <svg className="h-5 w-5 fill-current" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M2 4C2 2.89543 2.89543 2 4 2H12C13.1046 2 14 2.89543 14 4V16C14 17.1046 13.1046 18 12 18H4C2.89543 18 2 17.1046 2 16V4ZM12 4H8C7.44772 4 7 4.44772 7 5C7 5.55228 7.44772 6 8 6H12C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4ZM8 8C7.44772 8 7 8.44772 7 9C7 9.55228 7.44772 10 8 10H12C12.5523 10 13 9.55228 13 9C13 8.44772 12.5523 8 12 8H8ZM8 12C7.44772 12 7 12.4477 7 13C7 13.5523 7.44772 14 8 14H12C12.5523 14 13 13.5523 13 13C13 12.4477 12.5523 12 12 12H8Z"></path>
-                            </svg>
-                            <span>Users</span>
-                        </InertiaLink>
-                    </li>
-                    <li>
+        <div className="flex flex-col h-screen w-72 bg-gray-800 text-white">
+            <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pt-4 pb-4">
+                <nav className="flex flex-1 flex-col">
+                    <ul role="list" className="flex flex-1 flex-col gap-y-7">
                         <li>
-                            <InertiaLink href="/warehouses" className="flex items-center space-x-2 text-gray-300 hover:text-white">
-                                <svg className="h-5 w-5 fill-current" viewBox="0 0 20 20">
-                                    <path d="M7 2H4C2.89543 2 2 2.89543 2 4V17C2 18.1046 2.89543 19 4 19H16C17.1046 19 18 18.1046 18 17V4C18 2.89543 17.1046 2 16 2H13V1C13 0.447715 12.5523 0 12 0H8C7.44772 0 7 0.447715 7 1V2ZM13 4H16V17H4V4H7V6C7 6.55228 7.44772 7 8 7H12C12.5523 7 13 6.55228 13 6V4Z"></path>
-                                </svg>
-                                <span>Warehouses</span>
-                            </InertiaLink>
+                            <ul role="list" className="-mx-2 space-y-1">
+                                <li>
+                                    <InertiaLink href="customers" className="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                        <svg className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                        </svg>
+                                        Customers
+                                    </InertiaLink>
+                                </li>
+                                <li>
+                                    <InertiaLink href="/users" className="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                        <svg className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                                        </svg>
+                                        Users
+                                    </InertiaLink>
+                                </li>
+                                <li>
+                                    <InertiaLink href="/warehouses" className="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                        <svg className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                                        </svg>
+                                        Warehouses
+                                    </InertiaLink>
+                                </li>
+                                <li>
+                                    <InertiaLink href="/stockItems" className="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                        <svg className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                                        </svg>
+                                        Stock Items
+                                    </InertiaLink>
+                                </li>
+                            </ul>
                         </li>
-                    </li>
-                    <li>
-                        <InertiaLink href="/stockItems" className="flex items-center space-x-2 text-gray-300 hover:text-white">
-                            <svg className="h-5 w-5 fill-current" viewBox="0 0 20 20">
-                                <path d="M10 2C6.69161 2 4 4.69161 4 8C4 10.6812 5.39492 13.1647 7.61777 14.5581L8.38197 14.9119C9.24705 15.2387 10.2529 15.2387 11.118 14.9119L11.8822 14.5581C14.1051 13.1647 15.5 10.6812 15.5 8C15.5 4.69161 12.8084 2 9.5 2H10ZM10 3C12.4142 3 14.5 5.08579 14.5 7.5C14.5 9.91421 12.4142 12 10 12C7.58579 12 5.5 9.91421 5.5 7.5C5.5 5.08579 7.58579 3 10 3ZM10 4C7.51472 4 5.5 6.01472 5.5 8.5C5.5 10.9853 7.51472 13 10 13C12.4853 13 14.5 10.9853 14.5 8.5C14.5 6.01472 12.4853 4 10 4Z"></path>
-                            </svg>
-                            <span>Stock Items</span>
-                        </InertiaLink>
-                    </li>
-                </ul>
-            </nav>
+                    </ul>
+                </nav>
+            </div>
         </div>
     );
 }
