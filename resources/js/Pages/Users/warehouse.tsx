@@ -1,12 +1,8 @@
 import Sidebar from "@/Components/Sidebar";
 import { Inertia } from "@inertiajs/inertia";
 import { Link } from '@inertiajs/inertia-react';
-import { useEffect } from 'react';
 
 export default function Warehouse({ customerWarehouses }: any) {
-    useEffect(() => {
-        console.log("Warehouses", customerWarehouses)
-    }, [])
 
     return (
         <>
@@ -35,7 +31,7 @@ export default function Warehouse({ customerWarehouses }: any) {
                                     {
                                         customerWarehouses?.map((warehouse: any) => {
                                             return (
-                                                <tr>
+                                                <tr key={warehouse?.id}>
                                                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{warehouse?.name}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{warehouse?.customer?.customer_name}</td>
                                                     <td className="flex items-center relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">

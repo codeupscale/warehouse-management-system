@@ -1,5 +1,4 @@
 import { useForm } from "@inertiajs/react";
-import { useEffect } from "react";
 export default function Create({ customers, warehouses }: any) {
     const { data, setData, errors, post } = useForm({
         name: "",
@@ -10,12 +9,6 @@ export default function Create({ customers, warehouses }: any) {
         e.preventDefault();
         post(route("stocks.store"));
     }
-    useEffect(() => {
-        console.log("Data", data)
-        console.log("errors", errors)
-        console.log("Customers", customers)
-        console.log("Warehouses", warehouses)
-    }, [data])
     return (
         <>
             <form className="max-w-md mx-auto shadow-lg p-5 text-sm mt-6 h-full rounded" onSubmit={handleSubmit}>

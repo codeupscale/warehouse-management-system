@@ -1,13 +1,8 @@
 import Sidebar from "@/Components/Sidebar";
 import { Inertia } from "@inertiajs/inertia";
 import { Link } from '@inertiajs/inertia-react';
-import { useEffect } from 'react';
 
 export default function Index({ stockItems }: any) {
-    useEffect(() => {
-        console.log("Stock Items", stockItems)
-    }, [])
-
     return (
         <>
             <Sidebar />
@@ -24,7 +19,6 @@ export default function Index({ stockItems }: any) {
                     <tbody>
                         {
                             stockItems?.map((item: any) => {
-                                console.log("Item", item?.customer_id)
                                 return (
                                     <tr key={item?.id}>
                                         <td className="border px-4 py-2">{item?.name}</td>

@@ -1,13 +1,8 @@
 import Sidebar from "@/Components/Sidebar";
 import { Inertia } from "@inertiajs/inertia";
 import { Link } from '@inertiajs/inertia-react';
-import { useEffect } from 'react';
 
 export default function UserStock({ allUserStocks }: any) {
-    useEffect(() => {
-        console.log("Stocks", allUserStocks)
-    }, [])
-
     return (
         <>
             <div className="bg-white p-3 w-full h-screen text-sm text-left">
@@ -21,7 +16,6 @@ export default function UserStock({ allUserStocks }: any) {
                     <tbody>
                         {
                             allUserStocks?.map((stock: any) => {
-                                console.log("customer", stock?.customer_id)
                                 return (
                                     <tr key={stock?.id}>
                                         <td className="border px-4 py-2">{stock?.name}</td>

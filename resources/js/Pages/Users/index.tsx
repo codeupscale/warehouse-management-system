@@ -1,19 +1,15 @@
 import Sidebar from "@/Components/Sidebar";
 import { Inertia } from "@inertiajs/inertia";
 import { Head, usePage, Link } from '@inertiajs/inertia-react';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Index({ users }: any) {
     const [showPasswords, setShowPasswords] = useState<{ [key: number]: boolean }>({});
     function destroy(userId: any) {
         if (confirm("Are you sure you want to delete this user?")) {
             Inertia.delete(route("users.destroy", userId));
-            console.log("User deleted with id", userId)
         }
     }
-    useEffect(() => {
-        console.log("Users", users)
-    }, [])
 
     const togglePassword = (userId: number) => {
         setShowPasswords((prevState) => ({
@@ -58,7 +54,7 @@ export default function Index({ users }: any) {
                                         users?.map((user: any) => {
                                             const isPasswordVisible = showPasswords[user?.id] || false;
                                             return (
-                                                <tr>
+                                                <tr key={user?.id}>
                                                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{user?.first_name}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{user?.last_name}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{user?.email}</td>
