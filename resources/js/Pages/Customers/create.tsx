@@ -16,10 +16,6 @@ export default function Create() {
         e.preventDefault();
         post(route("customers.store"));
     }
-    useEffect(() => {
-        console.log("Data", data)
-        console.log("errors", errors)
-    }, [data, errors])
 
     return (
         <>

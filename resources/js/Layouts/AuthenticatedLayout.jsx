@@ -1,14 +1,13 @@
 import { useState } from "react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
-import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
-    console.log("mera user", user?.first_name);
+        
     return (
         <div
             className="min-h-screen bg-gray-100"
@@ -19,16 +18,22 @@ export default function Authenticated({ user, header, children }) {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
-                                <Link href="/">
+                                <Link
+                                    href={`${
+                                        user?.type == "admin"
+                                            ? "/warehouses"
+                                            : "/"
+                                    }`}
+                                >
                                     <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
                             </div>
                         </div>
-
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
                             <h1>
-                                {user?.first_name ? user?.first_name : "N/A"}{" "}
-                                {user?.last_name ? user?.last_name : "N/A"}
+                                {user?.first_name && user?.last_name
+                                    ? `${user?.first_name} ${user?.last_name}`
+                                    : "N/A"}
                             </h1>
                             <div className="ml-3 relative">
                                 <Dropdown>
@@ -57,7 +62,7 @@ export default function Authenticated({ user, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        {user?.email == "fatih@ariseven.de" && (
+                                        {user?.type == "admin" && (
                                             <Dropdown.Link
                                                 href={route("profile.edit")}
                                             >

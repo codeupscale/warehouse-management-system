@@ -1,18 +1,13 @@
-import Sidebar from "@/Components/Sidebar";
 import { Inertia } from "@inertiajs/inertia";
 import { Link } from '@inertiajs/inertia-react';
-import { useEffect } from 'react';
+import Sidebar from "@/Components/Sidebar";
 
 export default function Index({ stockItems }: any) {
     function destroy(itemId: any) {
         if (confirm("Are you sure you want to delete this Item?")) {
             Inertia.delete(route("stockItems.destroy", itemId));
-            console.log("Item deleted with id", itemId)
         }
     }
-    useEffect(() => {
-        console.log("Items", stockItems)
-    }, [])
 
     return (
         <>
@@ -48,7 +43,7 @@ export default function Index({ stockItems }: any) {
                                     {
                                         stockItems?.map((item: any) => {
                                             return (
-                                                <tr>
+                                                <tr key={item?.id}>
                                                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{item?.warehouse?.name}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item?.name}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item?.size}</td>

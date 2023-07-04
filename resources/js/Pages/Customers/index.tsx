@@ -7,7 +7,6 @@ export default function Index({ customers }: any) {
     function destroy(customerId: any) {
         if (confirm("Are you sure you want to delete this user?")) {
             Inertia.delete(route("customers.destroy", customerId));
-            console.log("Customer deleted with id", customerId)
         }
     }
     return (
@@ -46,7 +45,7 @@ export default function Index({ customers }: any) {
                                     {
                                         customers?.map((customer: any) => {
                                             return (
-                                                <tr>
+                                                <tr key={customer?.id}>
                                                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{customer?.customer_name}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{customer?.street}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{customer?.house_no}</td>

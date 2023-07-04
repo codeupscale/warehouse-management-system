@@ -1,5 +1,4 @@
 import { useForm } from "@inertiajs/react";
-import { useEffect } from "react";
 export default function EditCustomer({ customer }: any) {
     const { data, setData, errors, put } = useForm({
         customer_name: customer.customer_name,
@@ -14,12 +13,6 @@ export default function EditCustomer({ customer }: any) {
         e.preventDefault();
         put(route('customers.update', customer?.id));
     }
-
-    useEffect(() => {
-        console.log('Data', data);
-        console.log('Errors', errors);
-        console.log("customer", customer)
-    }, [data, errors]);
 
     return (
         <>
