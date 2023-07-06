@@ -21,7 +21,12 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect('/warehouses');
+                $userType = Auth::guard($guard)->user()->type;
+                if ($userType == 1) {
+                    return redirect('/warehouses');
+                } else {
+                    return redirect('/customer/warehouses');
+                }
             }
         }
 

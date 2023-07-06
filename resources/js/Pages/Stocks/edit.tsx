@@ -1,5 +1,4 @@
 import { useForm } from "@inertiajs/react";
-import { useEffect } from "react";
 export default function Edit({ customers, warehouses, stock }: any) {
     const { data, setData, errors, put } = useForm({
         name: stock.name,
@@ -10,12 +9,6 @@ export default function Edit({ customers, warehouses, stock }: any) {
         e.preventDefault();
         put(route("stocks.update", stock?.id));
     }
-    useEffect(() => {
-        console.log("Data", data)
-        console.log("errors", errors)
-        console.log("Customers", customers)
-        console.log("Warehouses", warehouses)
-    }, [data])
     return (
         <>
             <form className="max-w-md mx-auto shadow-lg p-5 text-sm mt-6 h-full rounded" onSubmit={handleSubmit}>

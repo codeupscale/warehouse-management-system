@@ -1,18 +1,13 @@
 import Sidebar from "@/Components/Sidebar";
 import { Inertia } from "@inertiajs/inertia";
 import { Link } from '@inertiajs/inertia-react';
-import { useEffect } from 'react';
 
 export default function Index({ stocks }: any) {
     function destroy(stockId: any) {
         if (confirm("Are you sure you want to delete this Stock?")) {
             Inertia.delete(route("stocks.destroy", stockId));
-            console.log("Stock deleted with id", stockId)
         }
     }
-    useEffect(() => {
-        console.log("Stocks", stocks)
-    }, [])
 
     return (
         <>
@@ -34,7 +29,6 @@ export default function Index({ stocks }: any) {
                     <tbody>
                         {
                             stocks?.map((stock: any) => {
-                                console.log("customer", stock?.customer_id)
                                 return (
                                     <tr key={stock?.id}>
                                         <td className="border px-4 py-2">{stock?.name}</td>

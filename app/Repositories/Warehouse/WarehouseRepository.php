@@ -58,7 +58,7 @@ class WarehouseRepository implements WarehouseInterface
     public function getAllItems($id)
     {
         
-        $allStocks = $this->stockItem::where('warehouse_id',$id)->get();
+        $allStocks = $this->stockItem::where('warehouse_id',$id)->with('warehouse')->get();
         
         return $allStocks;
     }
