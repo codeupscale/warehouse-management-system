@@ -7,6 +7,7 @@ use App\Models\Stock;
 use App\Models\StockItem;
 use App\Models\User;
 use App\Models\Warehouse;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -138,8 +139,9 @@ Class StockItemService
             }
             $email = $stockItem->warehouse->customer->email;
             $full_name = Auth::user()->full_name;
+            $date = Carbon::now();
             $content = [
-                'body'      => $full_name. ' has taken out this '. $stockItem->name .' item from '. $stockItem->warehouse->name .' warehouse.',
+                'body'      => $full_name. ' has taken out this '. $stockItem->name .' item from '. $stockItem->warehouse->name .' warehouse on ' . $date->format("d-m-Y").' at '.$date->format("H:i:s").' .',
             ];
             Mail::send('mail.takeoutItemEmail', $content, function($message) use($email){
                 $message->to($email)->subject('Item Takeout Notification');
