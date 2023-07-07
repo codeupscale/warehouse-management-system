@@ -16,9 +16,10 @@ createInertiaApp({
     resolve: (name) => resolvePageComponent(`./Pages/${name}.tsx`, import.meta.glob('./Pages/**/*.tsx')),
     setup({ el, App, props }:any) {
         const root = createRoot(el);
+        const user = (props?.initialPage?.props?.auth.user || null) as User;
         root.render(
             <div className='flex' >
-                <Authenticated user={props?.initialPage?.props?.auth.user as User}>
+                <Authenticated user={user}>
                     <div className='flex'>
                         <ToastContainer />
                         <App {...props} />

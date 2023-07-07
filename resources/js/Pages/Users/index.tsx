@@ -4,19 +4,11 @@ import { Head, usePage, Link } from '@inertiajs/inertia-react';
 import { useState } from "react";
 
 export default function Index({ users }: any) {
-    const [showPasswords, setShowPasswords] = useState<{ [key: number]: boolean }>({});
     function destroy(userId: any) {
         if (confirm("Are you sure you want to delete this user?")) {
             Inertia.delete(route("users.destroy", userId));
         }
     }
-
-    const togglePassword = (userId: number) => {
-        setShowPasswords((prevState) => ({
-            ...prevState,
-            [userId]: !prevState[userId],
-        }));
-    };
 
     return (
         <>
@@ -41,7 +33,6 @@ export default function Index({ users }: any) {
                                         <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">First name</th>
                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Last name</th>
                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Username</th>
-                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Password</th>
                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Profile</th>
                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Customer</th>
                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -52,24 +43,11 @@ export default function Index({ users }: any) {
                                 <tbody className="divide-y divide-gray-200">
                                     {
                                         users?.map((user: any) => {
-                                            const isPasswordVisible = showPasswords[user?.id] || false;
                                             return (
                                                 <tr key={user?.id}>
                                                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{user?.first_name}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{user?.last_name}</td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{user?.email}</td>
-                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{isPasswordVisible ? (
-                                                        user?.show_password
-                                                    ) : (
-                                                        "*******"
-                                                    )}
-                                                        <button
-                                                            className="ml-3 text-sm"
-                                                            onClick={() => togglePassword(user?.id)}
-                                                        >
-                                                            {isPasswordVisible ? 'Hide' : 'Show'}
-                                                        </button>
-                                                    </td>
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                         <img className="w-20 h-20 rounded-full" src={`/images/User-Picture/${user?.image}`} alt="profile" />
                                                     </td>
