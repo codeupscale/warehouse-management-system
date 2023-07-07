@@ -26,7 +26,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('stock_items', function (Blueprint $table) {
-            //
+            $table->dropForeign(['warehouse_id']);
+            $table->dropColumn('warehouse_id');
+            $table->unsignedBigInteger('stock_id');
+            $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
         });
     }
 };
