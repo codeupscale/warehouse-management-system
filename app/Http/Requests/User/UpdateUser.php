@@ -31,8 +31,8 @@ class UpdateUser extends FormRequest
                 'max:255',
                 Rule::unique('users')->ignore(request()->id),
             ],
-            'password'              => 'string|min:8',
-            'password_confirmation' => 'string|same:password',
+            'password' => 'nullable|string|min:8',
+            'password_confirmation' => 'nullable|string|same:password',
             'customer_id'            => 'required|integer|exists:customers,id',
         ];
     }
@@ -43,7 +43,6 @@ class UpdateUser extends FormRequest
             'first_name.string'     => 'First name must be string',
             'last_name.string'      => 'Last name must be string',
             'email.unique'          => 'Email already taken',
-            'password.required'     => 'Password is requied and min length is 8',
             'customer_id.exists'    => 'Please Select a Customer',
             'customer_id.required'  => 'Please Select a Customer',
             'customer_id.integer'   => 'Please Select a Customer',

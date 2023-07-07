@@ -44,7 +44,6 @@ Class UserService
             DB::beginTransaction();
             $input = $request->all();
             $input['type'] = config('constants.actor.user');
-            $input['show_password'] = $request->password;
             $input['image'] = userImage($request->image, 'User-Picture');
             $input = Arr::except($input,['_token']);
             $user = $this->userInterface->create($input);
@@ -71,11 +70,12 @@ Class UserService
     {
         try {
             DB::beginTransaction();
-            $input = $request->all();
+            $input = $request->except(['password', 'password_confirmation']);
 
-            if($request->password) {
-                $input['show_password'] = $request->password;
+            if ($request->filled('password')) {
+                $input['password'] = bcrypt($request->input('password'));
             }
+            
             if($request->hasFile('image')) {
                 $input['image'] = userImage($request->image, 'User-Picture');
             }
