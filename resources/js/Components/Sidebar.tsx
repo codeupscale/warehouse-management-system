@@ -2,7 +2,7 @@ import { InertiaLink } from '@inertiajs/inertia-react';
 
 export default function Sidebar() {
     return (
-        <div className="sticky top-0 h-screen w-1/4 flex flex-col bg-gray-800 text-white">
+        <div className="sticky top-0 h-screen w-1/5 flex flex-col bg-gray-800 text-white">
             <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pt-4 pb-4">
                 <nav className="flex flex-1 flex-col">
                     <ul role="list" className="flex flex-1 flex-col gap-y-7">
